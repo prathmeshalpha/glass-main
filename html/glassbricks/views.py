@@ -19,11 +19,15 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
-            login(request,user)
-            return redirect('home')
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+        else:
+            # Log or print form errors
+            print(form.errors)
     else:
         form = SignUpForm()
-    return render(request, 'signup.html',{'form':form})
+    return render(request, 'signup.html', {'form': form})
     
 
 def signin(request):
@@ -36,11 +40,15 @@ def signin(request):
                 if user is not None:
                     login(request,user)
                     return redirect('home')
+                else:
+                    form.add_error(None,'Invalid username or password')
+            else:
+                print(form.errors)
         else:
             form = AuthenticationForm()
         return render(request, 'login.html', {'form':form})
             
 def logout(request):
     logout(request)
-    return redirect('signin')
+    return redirect('signin.html')
 
