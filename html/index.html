@@ -279,6 +279,19 @@
                                 <a href="signin.html" data-bs-toggle="modal" data-bs-target="#login-modal"><i
                                         data-feather="user"></i></a>
                             </li>
+
+                              <!-- Profile Dropdown -->
+                        <li id="profile-dropdown" style="display: none;">
+                            <a href="#" id="profileButton" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                <i data-feather="user"></i> Profile
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="profile.html">View Profile</a></li>
+                                <li><a class="dropdown-item" href="#" id="logoutButton">Logout</a></li>
+                            </ul>
+                        </li>
+                    
+
                         </ul>
                     </div>
                 </div>
@@ -286,6 +299,42 @@
         </div>
     </header>
     <!--  header end -->
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Assume a function checkLoginStatus() that returns true if the user is logged in
+    if (checkLoginStatus()) {
+        toggleLoginProfile(true);
+    }
+    
+    document.getElementById('logoutButton').addEventListener('click', function() {
+        toggleLoginProfile(false);
+        // Add your logout logic here, e.g., clearing session storage, redirecting, etc.
+    });
+});
+
+function checkLoginStatus() {
+    // Replace this with actual login status checking logic
+    return sessionStorage.getItem('isLoggedIn') === 'true';
+}
+
+function toggleLoginProfile(isLoggedIn) {
+    if (isLoggedIn) {
+        document.getElementById('login-signup').style.display = 'none';
+        document.getElementById('profile-dropdown').style.display = 'block';
+    } else {
+        document.getElementById('login-signup').style.display = 'block';
+        document.getElementById('profile-dropdown').style.display = 'none';
+        sessionStorage.setItem('isLoggedIn', 'false');
+    }
+}
+
+// Example of handling login (to be replaced with actual login logic)
+document.getElementById('loginButton').addEventListener('click', function() {
+    sessionStorage.setItem('isLoggedIn', 'true');
+    toggleLoginProfile(true);
+});
+
+     </script> 
 
     <!-- home section start -->
     <section class="layout-home4 p-0">              
