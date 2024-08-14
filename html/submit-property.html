@@ -30,13 +30,13 @@
 <body>
 
     <!-- Loader start -->
-    <div class="loader-wrapper">
+    <!-- <div class="loader-wrapper">
         <div class="row loader-img">
             <div class="col-12">
                 <img src="static/images/loader/loader-2.gif" class="img-fluid" alt="">
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Loader end -->
 
     <!-- header start -->
@@ -644,23 +644,44 @@
                                     <h2>General</h2>
                                     <p class="font-roboto">Basic information about property</p>
                                     <form class="row gx-3">
-                                        <div class="form-group col-sm-4">
-                                            <label>Property Type</label>
-                                            <input type="text" class="form-control" placeholder="villa" required="">
+                                        <div class="form-group col-sm-6">
+                                            <label>You are looking for</label>
+                                            <div class="toggle-buttons">
+                                                <button type="button" id="rent" class="btn btn-outline-primary active">Rent / Lease</button>
+                                                <button type="button" id="sale" class="btn btn-outline-primary">Sale</button>
+                                            </div>
                                         </div>
-                                        <div class="form-group col-sm-4">
-                                            <label>Property Status</label>
-                                            <div class="dropdown">
-                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>For sale</span> <i class="fas fa-angle-down"></i></span>
-                                                <div class="dropdown-menu text-start">
-                                                    <a class="dropdown-item" href="javascript:void(0)">For Rent</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">For Sale</a>
+                                        
+                                        <div class="form-group col-sm-6">
+                                            <label>And it's a</label>
+                                            <div class="toggle-buttons d-flex">
+                                                <button type="button" id="residential" class="btn btn-outline-primary active me-2">Residential</button>
+                                                <button type="button" id="commercial" class="btn btn-outline-primary">Commercial</button>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group col-sm-12">
+                                            <div id="property-type-buttons">
+                                                <div id="residential-options" class="toggle-buttons d-flex">
+                                                    <button type="button" id="flat-apartment" class="btn btn-outline-primary me-2">Apartment</button>
+                                                    <button type="button" id="independent-house" class="btn btn-outline-primary me-2">Villa</button>
+                                                    <button type="button" id="builder-floor" class="btn btn-outline-primary">Builder Floor</button>
+                                                </div>
+                                                <div id="commercial-options" class="toggle-buttons d-flex d-none">
+                                                    <button type="button" id="office" class="btn btn-outline-primary me-2">Office</button>
+                                                    <button type="button" id="retail" class="btn btn-outline-primary">Retail</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-sm-4">
+                                        
+                                        
+                                        <div class="form-group col-sm-6">
                                             <label>Property Price</label>
-                                            <input type="text" class="form-control" placeholder="$2800" required="">
+                                            <input type="number" class="form-control" placeholder="₹ 280000" required="">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label>Area</label>
+                                            <input type="number" class="form-control" placeholder="850 sq ft">
                                         </div>
                                         <div class="form-group col-sm-4">
                                             <label>Max Rooms</label>
@@ -701,10 +722,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-sm-4">
-                                            <label>Area</label>
-                                            <input type="text" class="form-control" placeholder="85 sq ft">
-                                        </div>
+                                        
                                         <div class="form-group col-sm-4">
                                             <label>Price</label>
                                             <input type="text" class="form-control" placeholder="$3000">
@@ -841,7 +859,91 @@
         </div>
     </section>
     <!-- submit property section end -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const rentButton = document.getElementById('rent');
+            const saleButton = document.getElementById('sale');
+            const residentialButton = document.getElementById('residential');
+            const commercialButton = document.getElementById('commercial');
+            const residentialOptions = document.getElementById('residential-options');
+            const commercialOptions = document.getElementById('commercial-options');
+    
+            const residentialOptionButtons = residentialOptions.querySelectorAll('button');
+            const commercialOptionButtons = commercialOptions.querySelectorAll('button');
+    
+            function toggleActiveButton(selectedButton, buttonGroup) {
+                // Remove 'active' class from all buttons in the group
+                buttonGroup.forEach(button => button.classList.remove('active'));
+                // Add 'active' class to the selected button
+                selectedButton.classList.add('active');
+            }
+    
+            function togglePropertyTypeButtons() {
+                if (residentialButton.classList.contains('active')) {
+                    residentialOptions.classList.remove('d-none');
+                    commercialOptions.classList.add('d-none');
+                    clearSelectedOptions(commercialOptionButtons); // Clear commercial options
+                } else {
+                    residentialOptions.classList.add('d-none');
+                    commercialOptions.classList.remove('d-none');
+                    clearSelectedOptions(residentialOptionButtons); // Clear residential options
+                }
+            }
+    
+            function clearSelectedOptions(buttons) {
+                buttons.forEach(button => button.classList.remove('active'));
+            }
+    
+            rentButton.addEventListener('click', () => {
+                toggleActiveButton(rentButton, [saleButton]);
+            });
+    
+            saleButton.addEventListener('click', () => {
+                toggleActiveButton(saleButton, [rentButton]);
+            });
+    
+            residentialButton.addEventListener('click', () => {
+                toggleActiveButton(residentialButton, [commercialButton]);
+                togglePropertyTypeButtons();
+            });
+    
+            commercialButton.addEventListener('click', () => {
+                toggleActiveButton(commercialButton, [residentialButton]);
+                togglePropertyTypeButtons();
+            });
+    
+            residentialOptionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    toggleActiveButton(button, residentialOptionButtons);
+                });
+            });
+    
+            commercialOptionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    toggleActiveButton(button, commercialOptionButtons);
+                });
+            });
+        });
+    </script>
+    
+    
+    
+    <style>
+        .toggle-buttons button.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .toggle-buttons .btn {
+            flex: 1;
+        }
+        .toggle-buttons button.active {
+    background-color: #007bff;
+    color: white;
+}
 
+
+    </style>
+    
     <!-- footer start -->
     <footer>
         <div class="footer footer-bg">
