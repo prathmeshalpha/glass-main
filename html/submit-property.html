@@ -677,73 +677,71 @@
                                         
                                         <div class="form-group col-sm-6">
                                             <label>Property Price</label>
-                                            <input type="number" class="form-control" placeholder="₹ 280000" required="">
+                                            <input type="number" id="property-price" class="form-control" placeholder="₹ 280000" required="">
                                         </div>
                                         <div class="form-group col-sm-6">
-                                            <label>Area</label>
-                                            <input type="number" class="form-control" placeholder="850 sq ft">
+                                            <label>Area (sq ft)</label>
+                                            <input type="number" id="property-area" class="form-control" placeholder="850 sq ft">
                                         </div>
-                                        <div class="form-group col-sm-4">
-                                            <label>Max Rooms</label>
+                                        <div class="form-group col-sm-4 hide-on-commercial" id="bedrooms-group">
+                                            <label>Bedrooms</label>
                                             <div class="dropdown">
-                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>1</span> <i class="fas fa-angle-down"></i></span>
+                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Select</span> <i class="fas fa-angle-down"></i></span>
                                                 <div class="dropdown-menu text-start">
-                                                    <a class="dropdown-item" href="javascript:void(0)">2</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">3</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">4</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">5</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">6</a>
+                                                    <a class="dropdown-item" id="Bedrooms-1" href="javascript:void(0)">1</a>
+                                                    <a class="dropdown-item" id="Bedrooms-2" href="javascript:void(0)">2</a>
+                                                    <a class="dropdown-item" id="Bedrooms-3" href="javascript:void(0)">3</a>
+                                                    <a class="dropdown-item" id="Bedrooms-4+" href="javascript:void(0)">4+</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-sm-4">
-                                            <label>Beds</label>
+                                        
+                                        <div class="form-group col-sm-4 hide-on-commercial" id="balconies-group">
+                                            <label>Balconies</label>
                                             <div class="dropdown">
-                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>1</span> <i class="fas fa-angle-down"></i></span>
+                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Select</span> <i class="fas fa-angle-down"></i></span>
                                                 <div class="dropdown-menu text-start">
-                                                    <a class="dropdown-item" href="javascript:void(0)">2</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">3</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">4</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">5</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">6</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-sm-4">
-                                            <label>Baths</label>
-                                            <div class="dropdown">
-                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>1</span> <i class="fas fa-angle-down"></i></span>
-                                                <div class="dropdown-menu text-start">
-                                                    <a class="dropdown-item" href="javascript:void(0)">2</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">3</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">4</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">5</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">6</a>
+                                                    <a class="dropdown-item" id="Balconies-1" href="javascript:void(0)">1</a>
+                                                    <a class="dropdown-item" id="Balconies-2" href="javascript:void(0)">2</a>
+                                                    <a class="dropdown-item" id="Balconies-3+" href="javascript:void(0)">3+</a>
                                                 </div>
                                             </div>
                                         </div>
                                         
                                         <div class="form-group col-sm-4">
-                                            <label>Price</label>
-                                            <input type="text" class="form-control" placeholder="$3000">
-                                        </div>
-                                        <div class="form-group col-sm-4">
-                                            <label>Agencies</label>
+                                            <label>Bathrooms</label>
                                             <div class="dropdown">
-                                                <span class="dropdown-toggle font-rubik"
-                                                    data-bs-toggle="dropdown"><span>Premiere</span> <i
-                                                        class="fas fa-angle-down"></i></span>
+                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Select</span> <i class="fas fa-angle-down"></i></span>
                                                 <div class="dropdown-menu text-start">
-                                                    <a class="dropdown-item" href="javascript:void(0)">Blue Sky</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">Zephyr</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">Premiere</a>
+                                                    <a class="dropdown-item" id="Bathrooms-1" href="javascript:void(0)">1</a>
+                                                    <a class="dropdown-item" id="Bathrooms-2" href="javascript:void(0)">2</a>
+                                                    <a class="dropdown-item" id="Bathrooms-3" href="javascript:void(0)">3</a>
+                                                    <a class="dropdown-item" id="Bathrooms-3+" href="javascript:void(0)">3+</a>
                                                 </div>
                                             </div>
+                                        </div>
+                                        
+                                        <div class="form-group col-sm-4">
+                                            <label>Availability Status </label>
+                                            <div class="dropdown">
+                                                <span class="dropdown-toggle font-rubik"
+                                                data-bs-toggle="dropdown"><span>Select</span> <i
+                                                class="fas fa-angle-down"></i></span>
+                                                <div class="dropdown-menu text-start">
+                                                    <a class="dropdown-item" id="status-under_cons" href="javascript:void(0)">Under Construction</a>
+                                                    <a class="dropdown-item" id="status-read" href="javascript:void(0)">Ready to move</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group col-sm-4">
+                                            <label>Price</label>
+                                            <input type="text" class="form-control" placeholder="$3000">
                                         </div>
                                         <div class="form-group col-sm-12">
                                             <label>Description</label>
                                             <textarea class="form-control" rows="4"></textarea>
-                                        </div>
+                                        </div> -->
                                     </form>
                                     <div class="next-btn text-end">
                                         <button type="button" class="btn btn-gradient color-2 next1 btn-pill">Next <i class="fas fa-arrow-right ms-2"></i></button>
@@ -754,17 +752,21 @@
                                     <p class="font-roboto">Add your property Location</p>
                                     <form class="row gx-3">
                                         <div class="form-group col-sm-6">
-                                            <label>Address</label>
-                                            <input type="text" class="form-control" placeholder="Address of your property">
+                                            <label>City</label>
+                                            <div class="dropdown">
+                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Select</span> <i class="fas fa-angle-down"></i></span>
+                                                <div class="dropdown-menu text-start">
+                                                    <a class="dropdown-item" href="javascript:void(0)">Mumbai</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">Pune</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">Banglore</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">Hydarbad</a>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group col-sm-6">
-                                            <label>Zip code</label>
-                                            <input type="number" class="form-control" placeholder="39702">
-                                        </div>
-                                        <div class="form-group col-sm-4">
-                                            <label>Any Country</label>
+                                            <label>Locality</label>
                                             <div class="dropdown">
-                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Austria</span> <i class="fas fa-angle-down"></i></span>
+                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Select</span> <i class="fas fa-angle-down"></i></span>
                                                 <div class="dropdown-menu text-start">
                                                     <a class="dropdown-item" href="javascript:void(0)">Austria</a>
                                                     <a class="dropdown-item" href="javascript:void(0)">Brazil</a>
@@ -773,26 +775,28 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-sm-4">
-                                            <label>Any City</label>
-                                            <div class="dropdown">
-                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Amreli</span> <i class="fas fa-angle-down"></i></span>
-                                                <div class="dropdown-menu text-start">
-                                                    <a class="dropdown-item" href="javascript:void(0)">Gandhinagar</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">Bharuch</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">Amreli</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">Ahmadabad</a>
-                                                </div>
-                                            </div>
+                                        
+                                        <div class="form-group col-sm-6">
+                                            <label>Address</label>
+                                            <input type="text" class="form-control" placeholder="Address of your property">
                                         </div>
-                                        <div class="form-group col-sm-4">
+                                        <div class="form-group col-sm-6">
+                                            <label>Appartment & Flat no.</label>
+                                            <input type="text" class="form-control" placeholder="Appartment & Flat no.">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label>Zip code</label>
+                                            <input type="number" class="form-control" placeholder="422009">
+                                        </div>
+                                      
+                                        <div class="form-group col-sm-6">
                                             <label>Landmark</label>
                                             <input type="text" class="form-control" placeholder="landmark place name">
                                         </div>
-                                        <div class="col-sm-12">
+                                        <!-- <div class="col-sm-12">
                                             <iframe title="realestate location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.1583091352!2d-74.11976373946229!3d40.69766374859258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1563449626439!5m2!1sen!2sin"
                                             allowfullscreen></iframe>
-                                        </div>
+                                        </div> -->
                                     </form>
                                     <div class="next-btn d-flex">
                                         <button type="button" class="btn btn-dashed color-2 prev1 btn-pill"><i class="fas fa-arrow-left me-2"></i> Previous</button>
@@ -805,7 +809,7 @@
                                     <label>Media</label>
                                     <form class="dropzone" id="multiFileUpload" action="https://themes.pixelstrap.com/upload.php">
                                         <div class="dz-message needsclick"><i class="fas fa-cloud-upload-alt"></i>
-                                        <h6>Drop files here or click to upload.</h6><span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+                                        <h6>Drop files here or click to upload.</h6>
                                         </div>
                                     </form>
                                     <form class="row gx-3">
@@ -816,20 +820,32 @@
                                             <div class="form-group col-sm-12">
                                                 <label>Additional features</label>
                                                 <div class="feature-checkbox">
-                                                    <label for="chk-ani">
-                                                        <input class="checkbox_animated color-2" id="chk-ani" type="checkbox"> Emergency Exit
+                                                    <label for="feature-Security">
+                                                        <input class="checkbox_animated color-2" id="feature-Security" type="checkbox"> Security
                                                     </label>
-                                                    <label for="chk-ani1">
-                                                        <input class="checkbox_animated color-2" id="chk-ani1" type="checkbox"> CCTV
+                                                    <label for="feature-Power-Backup">
+                                                        <input class="checkbox_animated color-2" id="feature-Power-Backup" type="checkbox"> Power Backup
                                                     </label>
-                                                    <label for="chk-ani2">
-                                                        <input class="checkbox_animated color-2" id="chk-ani2" type="checkbox"> Free Wi-Fi
+                                                    <label for="feature-wifi">
+                                                        <input class="checkbox_animated color-2" id="feature-wifi" type="checkbox"> Wi-Fi
                                                     </label>
-                                                    <label for="chk-ani3">
-                                                        <input class="checkbox_animated color-2" id="chk-ani3" type="checkbox">  Free Parking In The Area
+                                                    <label for="feature-Elevator">
+                                                        <input class="checkbox_animated color-2" id="feature-Elevator" type="checkbox"> Elevator
                                                     </label>
-                                                    <label for="chk-ani4">
-                                                        <input class="checkbox_animated color-2" id="chk-ani4" type="checkbox">  Air Conditioning
+                                                    <label for="featuer-Parking">
+                                                        <input class="checkbox_animated color-2" id="featuer-Parking" type="checkbox"> Parking
+                                                    </label>
+                                                    <label for="featuer-Air-Conditioning">
+                                                        <input class="checkbox_animated color-2" id="featuer-Air-Conditioning" type="checkbox"> Air Conditioning
+                                                    </label>
+                                                    <label for="featuer-Pool">
+                                                        <input class="checkbox_animated color-2" id="featuer-Pool" type="checkbox"> Pool
+                                                    </label>
+                                                    <label for="featuer-Gym">
+                                                        <input class="checkbox_animated color-2" id="featuer-Gym" type="checkbox"> Gym
+                                                    </label>
+                                                    <label for="featuer-Clubhouse">
+                                                        <input class="checkbox_animated color-2" id="featuer-Clubhouse" type="checkbox"> Clubhouse
                                                     </label>
                                                 </div>
                                             </div>
@@ -860,89 +876,116 @@
     </section>
     <!-- submit property section end -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const rentButton = document.getElementById('rent');
-            const saleButton = document.getElementById('sale');
-            const residentialButton = document.getElementById('residential');
-            const commercialButton = document.getElementById('commercial');
-            const residentialOptions = document.getElementById('residential-options');
-            const commercialOptions = document.getElementById('commercial-options');
-    
-            const residentialOptionButtons = residentialOptions.querySelectorAll('button');
-            const commercialOptionButtons = commercialOptions.querySelectorAll('button');
-    
-            function toggleActiveButton(selectedButton, buttonGroup) {
-                // Remove 'active' class from all buttons in the group
-                buttonGroup.forEach(button => button.classList.remove('active'));
-                // Add 'active' class to the selected button
-                selectedButton.classList.add('active');
-            }
-    
-            function togglePropertyTypeButtons() {
-                if (residentialButton.classList.contains('active')) {
-                    residentialOptions.classList.remove('d-none');
-                    commercialOptions.classList.add('d-none');
-                    clearSelectedOptions(commercialOptionButtons); // Clear commercial options
-                } else {
-                    residentialOptions.classList.add('d-none');
-                    commercialOptions.classList.remove('d-none');
-                    clearSelectedOptions(residentialOptionButtons); // Clear residential options
-                }
-            }
-    
-            function clearSelectedOptions(buttons) {
-                buttons.forEach(button => button.classList.remove('active'));
-            }
-    
-            rentButton.addEventListener('click', () => {
-                toggleActiveButton(rentButton, [saleButton]);
-            });
-    
-            saleButton.addEventListener('click', () => {
-                toggleActiveButton(saleButton, [rentButton]);
-            });
-    
-            residentialButton.addEventListener('click', () => {
-                toggleActiveButton(residentialButton, [commercialButton]);
-                togglePropertyTypeButtons();
-            });
-    
-            commercialButton.addEventListener('click', () => {
-                toggleActiveButton(commercialButton, [residentialButton]);
-                togglePropertyTypeButtons();
-            });
-    
-            residentialOptionButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    toggleActiveButton(button, residentialOptionButtons);
-                });
-            });
-    
-            commercialOptionButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    toggleActiveButton(button, commercialOptionButtons);
-                });
-            });
+    document.addEventListener('DOMContentLoaded', () => {
+    const rentButton = document.getElementById('rent');
+    const saleButton = document.getElementById('sale');
+    const residentialButton = document.getElementById('residential');
+    const commercialButton = document.getElementById('commercial');
+    const residentialOptions = document.getElementById('residential-options');
+    const commercialOptions = document.getElementById('commercial-options');
+
+    const residentialOptionButtons = residentialOptions.querySelectorAll('button');
+    const commercialOptionButtons = commercialOptions.querySelectorAll('button');
+
+    const hideOnCommercial = document.querySelectorAll('.hide-on-commercial');
+
+    function toggleActiveButton(selectedButton, buttonGroup) {
+        buttonGroup.forEach(button => button.classList.remove('active'));
+        selectedButton.classList.add('active');
+    }
+
+    function togglePropertyTypeButtons() {
+        if (residentialButton.classList.contains('active')) {
+            residentialOptions.classList.remove('d-none');
+            commercialOptions.classList.add('d-none');
+            clearSelectedOptions(commercialOptionButtons);
+
+            hideOnCommercial.forEach(el => el.style.display = 'block');
+        } else {
+            residentialOptions.classList.add('d-none');
+            commercialOptions.classList.remove('d-none');
+            clearSelectedOptions(residentialOptionButtons);
+
+            hideOnCommercial.forEach(el => el.style.display = 'none');
+        }
+    }
+
+    function clearSelectedOptions(buttons) {
+        buttons.forEach(button => button.classList.remove('active'));
+    }
+
+    rentButton.addEventListener('click', () => {
+        toggleActiveButton(rentButton, [saleButton]);
+    });
+
+    saleButton.addEventListener('click', () => {
+        toggleActiveButton(saleButton, [rentButton]);
+    });
+
+    residentialButton.addEventListener('click', () => {
+        toggleActiveButton(residentialButton, [commercialButton]);
+        togglePropertyTypeButtons();
+    });
+
+    commercialButton.addEventListener('click', () => {
+        toggleActiveButton(commercialButton, [residentialButton]);
+        togglePropertyTypeButtons();
+    });
+
+    residentialOptionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            toggleActiveButton(button, residentialOptionButtons);
         });
+    });
+
+    commercialOptionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            toggleActiveButton(button, commercialOptionButtons);
+        });
+    });
+
+    // Initialize the correct state on page load
+    togglePropertyTypeButtons();
+});
+
     </script>
     
     
     
     <style>
-        .toggle-buttons button.active {
-            background-color: #007bff;
-            color: white;
-        }
         .toggle-buttons .btn {
             flex: 1;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            border: 1px solid rgba(88, 97, 103, 0.6);
+            color: rgba(0, 0, 0, 0.772);
+            border-radius: 8px;
+            box-sizing: border-box; /* Ensures padding and border are included in width and height */
+            transition: border-color 0.2s ease, background-color 0.2s ease; /* Smooth transition */
         }
-        .toggle-buttons button.active {
-    background-color: #007bff;
-    color: white;
-}
-
-
+        
+        .toggle-buttons .btn.active {
+            background-color: #f0f9ff;
+            color: #000000;
+            font-weight: 600;
+            border: 1px solid #68bdf6;
+        }
+        
+        .toggle-buttons .btn:not(.active) {
+            background-color: white;
+        }
+        
+        .toggle-buttons .btn:focus {
+            outline: none;
+            box-shadow: none;
+            border: 1px solid #68bdf6; /* Consistent border on focus */
+        }
     </style>
+    
+    
+    
+    
+    
     
     <!-- footer start -->
     <footer>
