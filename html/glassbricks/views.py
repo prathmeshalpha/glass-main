@@ -11,6 +11,14 @@ def home(request):
     
     return render(request,'index.html')
     
+def header(request):
+    
+    return render(request,'headerall.html')
+
+def footer(request):
+    
+    return render(request,'footerdark.html')
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)

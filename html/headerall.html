@@ -1,3 +1,5 @@
+{% load static %}
+
 <head>
      <!--Google font-->
      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800,800i"
@@ -7,18 +9,18 @@
  <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i" rel="stylesheet">
 
         <!-- magnific css -->
-        <link rel="stylesheet" type="text/css" href="static/css/magnific-popup.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
 
         <!-- animate css -->
-        <link rel="stylesheet" type="text/css" href="static/css/animate.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
     
         <!-- Template css -->
-        <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="static/css/color1.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/color1.css' %}">
 </head>
  <!-- feather icon js-->
- <script src="static/js/feather-icon/feather.min.js"></script>
- <script src="static/js/feather-icon/feather-icon.js"></script>
+ <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+ <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
 
 <header class="header-4">
         <div class="container">
@@ -27,8 +29,8 @@
                     <div class="menu">
                         <div class="brand-logo">
                             <a href="#">
-                                <img src="static/images/logo/4.png" alt="" class="img-fluid for-light">
-                                <img src="static/images/logo/9.png" alt="" class="img-fluid for-dark">
+                                <img src="{% static 'images/logo/4.png' %}" alt="" class="img-fluid for-light">
+                                <img src="{% static 'images/logo/9.png' %}" alt="" class="img-fluid for-dark">
                             </a>
                         </div>
                         <nav>
@@ -253,29 +255,31 @@
                                 
                                 <a href="submit-property.html"><i class="fas fa-home white-icon" ></i></a>
                             </li>
-                            <li>
-                                <a href="signin.html" data-bs-toggle="modal" data-bs-target="#login-modal"><i
-                                    class="fas fa-user white-icon"></i></a>
-                            </li>
+                            {% if user.is_authenticated %}
+                            
 
-                              <!-- Profile Dropdown -->
-                        <li id="profile-dropdown" style="display: none;">
-                            <a href="#" id="profileButton" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                <i data-feather="user"></i> Profile
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="profile.html">View Profile</a></li>
-                                <li><a class="dropdown-item" href="#" id="logoutButton">Logout</a></li>
-                            </ul>
-                        </li>
-                    
-
+                                <!-- Profile Dropdown -->
+                                <li id="profile-dropdown" style="display: none;">
+                                    <a href="#" id="profileButton" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                        <i data-feather="user"></i> Profile
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="profile.html">View Profile</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'logout' %}" id="logoutButton">Logout</a></li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="{% url 'signin' %}" class="btn btn-dashed btn-pill color-2"><i
+                                        class="fas fa-user white-icon"></i></a>
+                                </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+</header>
   <style>
     .white-icon {
   color: #dc3545;
@@ -283,32 +287,32 @@
   </style>
 <body>
     <!-- latest jquery-->
-    <script src="static/js/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 
     <!-- popper js-->
-    <script src="static/js/popper.min.js"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
 
     <!-- Bootstrap js-->
-    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
     <!-- wow js-->
-    <script src="static/js/wow.min.js"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
 
     <!-- feather icon js-->
-    <script src="static/js/feather-icon/feather.min.js"></script>
-    <script src="static/js/feather-icon/feather-icon.js"></script>
+    <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
+    <script src="{% static 'js/feather-icon/feather-icon.js' %}"></script>
 
     <!-- slick js -->
-    <script src="static/js/slick.js"></script>
-    <script src="static/js/slick-animation.min.js"></script>
-    <script src="static/js/custom-slick.js"></script>
+    <script src="{% static 'js/slick.js' %}"></script>
+    <script src="{% static 'js/slick-animation.min.js' %}"></script>
+    <script src="{% static 'js/custom-slick.js' %}"></script>
 
     <!-- Template js-->
-    <script src="static/js/script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 
     <!-- Customizer js-->
-    <script src="static/js/customizer.js"></script>
+    <script src="{% static 'js/customizer.js' %}"></script>
 
     <!-- Color-picker js-->
-    <script src="static/js/color/template-color.js"></script>
+    <script src="{% static 'js/color/template-color.js' %}"></script>
 </body>
