@@ -255,11 +255,12 @@
                                 
                                 <a href="submit-property.html"><i class="fas fa-home white-icon" ></i></a>
                             </li>
+                            
                             {% if user.is_authenticated %}
                             
 
                                 <!-- Profile Dropdown -->
-                                <li id="profile-dropdown" style="display: none;">
+                                <li id="profile-dropdown" >
                                     <a href="#" id="profileButton" class="dropdown-toggle" data-bs-toggle="dropdown">
                                         <i data-feather="user"></i> Profile
                                     </a>
@@ -274,7 +275,9 @@
                                         class="fas fa-user white-icon"></i></a>
                                 </li>
                             {% endif %}
+                            
                         </ul>
+                    
                     </div>
                 </div>
             </div>

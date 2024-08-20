@@ -44,7 +44,7 @@
                 <div class="col">
                     <div class="menu">
                         <div class="brand-logo">
-                            <a href="https://themes.pixelstrap.com/sheltos/index.html">
+                            <a href="{% url 'home' %}">
                                 <img src=" {% static 'images/logo/2.png'%}" alt="" class="img-fluid">
                             </a>
                         </div>
@@ -595,7 +595,7 @@
                                     </div>
                                 </div>
                                 {{form.username.errors}}
-                                <input type="text" class="form-control" name="username" placeholder="Enter Email" value="{{form.username.value}}" required>
+                                <input type="text" class="form-control" name="username" placeholder="Enter Email" value="{{form.username.value|default_if_none:''}}" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -606,7 +606,7 @@
                                     </div>
                                 </div>
                                 {{form.password.errors}}
-                                <input type="password" id="pwd-input" name="password" class="form-control" placeholder="Password"  value="Password" required>
+                                <input type="password" id="pwd-input" name="password" class="form-control" placeholder="Password"   required>
                                 <div class="input-group-apend">
                                     <div class="input-group-text">
                                         <i id="pwd-icon" class="far fa-eye-slash"></i>
@@ -621,7 +621,7 @@
                             <label class="d-block mb-0" for="chk-ani">
                                 <input class="checkbox_animated color-2" id="chk-ani" type="checkbox"> <span>Remember me</span>
                             </label>
-                            <a href="{forgot-password.html}" class="font-rubik text-color-2">Forgot password ?</a>
+                            <a href="{% url 'password_reset' %}" class="font-rubik text-color-2">Forgot password ?</a>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-gradient btn-pill color-2 me-sm-3 me-2">Log in</button>
@@ -646,7 +646,7 @@
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="https://account.google.com/" class="btn btn-social btn-flat google p-0">
+                                    <a href="{% url 'social:begin' 'google' %}" class="btn btn-social btn-flat google p-0">
                                         <i class="fab fa-google"></i>
                                         <span>Google</span>
                                     </a>
