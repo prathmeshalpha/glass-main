@@ -663,25 +663,31 @@
                                         <div class="form-group col-sm-12">
                                             <div id="property-type-buttons">
                                                 <div id="residential-options" class="toggle-buttons d-flex">
-                                                    <button type="button" id="flat-apartment" class="btn btn-outline-primary me-2">Apartment</button>
-                                                    <button type="button" id="independent-house" class="btn btn-outline-primary me-2">Villa</button>
-                                                    <button type="button" id="builder-floor" class="btn btn-outline-primary">Builder Floor</button>
+                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="flat-apartment" class="btn btn-outline-primary me-2">Apartment</button>
+                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="independent-house" class="btn btn-outline-primary me-2">Villa</button>
+                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="builder-floor" class="btn btn-outline-primary me-2">Builder Floor</button>
+                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="res-new-project" class="btn btn-outline-primary me-2">New Project</button>
+                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="weekend-homes" class="btn btn-outline-primary">Weekend Homes</button>
                                                 </div>
                                                 <div id="commercial-options" class="toggle-buttons d-flex d-none">
-                                                    <button type="button" id="office" class="btn btn-outline-primary me-2">Office</button>
-                                                    <button type="button" id="retail" class="btn btn-outline-primary">Retail</button>
+                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="office" class="btn btn-outline-primary me-2">Office</button>
+                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="retail" class="btn btn-outline-primary me-2 ">Retail</button>
+                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="com-new-project" class="btn btn-outline-primary">New Project</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        
+                                        <div class="form-group col-sm-12">  
+                                            <label>MahaRERA Registration Number <span class="required">*</span></label>
+                                            <input type="text" class="form-control" id="maharera-number" placeholder="Registration Number" required>
+                                        </div>
                                         
                                         <div class="form-group col-sm-6">
-                                            <label>Property Price</label>
-                                            <input type="number" id="property-price" class="form-control" placeholder="₹ 280000" required="">
+                                            <label>Property Price <span class="required">*</span></label>
+                                            <input type="number" id="property-price" class="form-control" placeholder="₹ 280000" required>
                                         </div>
                                         <div class="form-group col-sm-6">
-                                            <label>Area (sq ft)</label>
-                                            <input type="number" id="property-area" class="form-control" placeholder="850 sq ft">
+                                            <label>Area (sq ft) <span class="required">*</span></label>
+                                            <input type="number" id="property-area" class="form-control" placeholder="850 sq ft" required>
                                         </div>
                                         <div class="form-group col-sm-4 hide-on-commercial" id="bedrooms-group">
                                             <label>Bedrooms</label>
@@ -722,7 +728,7 @@
                                         </div>
                                         
                                         <div class="form-group col-sm-4">
-                                            <label>Availability Status </label>
+                                            <label>Availability Status <span class="required">*</span></label>
                                             <div class="dropdown">
                                                 <span class="dropdown-toggle font-rubik"
                                                 data-bs-toggle="dropdown"><span>Select</span> <i
@@ -732,6 +738,13 @@
                                                     <a class="dropdown-item" id="status-read" href="javascript:void(0)">Ready to move</a>
                                                     
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-sm-5">
+                                            <label>Ownership Details <span class="required">*</span></label>
+                                            <div class="toggle-buttons">
+                                                <button type="button" id="owner" class="btn btn-outline-primary active">Owner</button>
+                                                <button type="button" id="agent" class="btn btn-outline-primary">Agent</button>
                                             </div>
                                         </div>
                                         <!-- <div class="form-group col-sm-4">
@@ -876,80 +889,94 @@
     </section>
     <!-- submit property section end -->
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    const rentButton = document.getElementById('rent');
-    const saleButton = document.getElementById('sale');
-    const residentialButton = document.getElementById('residential');
-    const commercialButton = document.getElementById('commercial');
-    const residentialOptions = document.getElementById('residential-options');
-    const commercialOptions = document.getElementById('commercial-options');
-
-    const residentialOptionButtons = residentialOptions.querySelectorAll('button');
-    const commercialOptionButtons = commercialOptions.querySelectorAll('button');
-
-    const hideOnCommercial = document.querySelectorAll('.hide-on-commercial');
-
-    function toggleActiveButton(selectedButton, buttonGroup) {
-        buttonGroup.forEach(button => button.classList.remove('active'));
-        selectedButton.classList.add('active');
-    }
-
-    function togglePropertyTypeButtons() {
-        if (residentialButton.classList.contains('active')) {
-            residentialOptions.classList.remove('d-none');
-            commercialOptions.classList.add('d-none');
-            clearSelectedOptions(commercialOptionButtons);
-
-            hideOnCommercial.forEach(el => el.style.display = 'block');
-        } else {
-            residentialOptions.classList.add('d-none');
-            commercialOptions.classList.remove('d-none');
-            clearSelectedOptions(residentialOptionButtons);
-
-            hideOnCommercial.forEach(el => el.style.display = 'none');
-        }
-    }
-
-    function clearSelectedOptions(buttons) {
-        buttons.forEach(button => button.classList.remove('active'));
-    }
-
-    rentButton.addEventListener('click', () => {
-        toggleActiveButton(rentButton, [saleButton]);
-    });
-
-    saleButton.addEventListener('click', () => {
-        toggleActiveButton(saleButton, [rentButton]);
-    });
-
-    residentialButton.addEventListener('click', () => {
-        toggleActiveButton(residentialButton, [commercialButton]);
-        togglePropertyTypeButtons();
-    });
-
-    commercialButton.addEventListener('click', () => {
-        toggleActiveButton(commercialButton, [residentialButton]);
-        togglePropertyTypeButtons();
-    });
-
-    residentialOptionButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            toggleActiveButton(button, residentialOptionButtons);
+        document.addEventListener('DOMContentLoaded', () => {
+            const rentButton = document.getElementById('rent');
+            const saleButton = document.getElementById('sale');
+            const residentialButton = document.getElementById('residential');
+            const commercialButton = document.getElementById('commercial');
+            const residentialOptions = document.getElementById('residential-options');
+            const commercialOptions = document.getElementById('commercial-options');
+        
+            const residentialOptionButtons = residentialOptions.querySelectorAll('button');
+            const commercialOptionButtons = commercialOptions.querySelectorAll('button');
+        
+            const hideOnCommercial = document.querySelectorAll('.hide-on-commercial');
+        
+            const ownerButton = document.getElementById('owner');
+            const agentButton = document.getElementById('agent');
+        
+            function toggleActiveButton(selectedButton, buttonGroup) {
+                buttonGroup.forEach(button => button.classList.remove('active'));
+                selectedButton.classList.add('active');
+            }
+        
+            function togglePropertyTypeButtons() {
+                if (residentialButton.classList.contains('active')) {
+                    residentialOptions.classList.remove('d-none');
+                    commercialOptions.classList.add('d-none');
+                    clearSelectedOptions(commercialOptionButtons);
+        
+                    hideOnCommercial.forEach(el => el.style.display = 'block');
+                } else {
+                    residentialOptions.classList.add('d-none');
+                    commercialOptions.classList.remove('d-none');
+                    clearSelectedOptions(residentialOptionButtons);
+        
+                    hideOnCommercial.forEach(el => el.style.display = 'none');
+                }
+            }
+        
+            function clearSelectedOptions(buttons) {
+                buttons.forEach(button => button.classList.remove('active'));
+            }
+        
+            // Event listeners for Rent/Sale buttons
+            rentButton.addEventListener('click', () => {
+                toggleActiveButton(rentButton, [saleButton]);
+            });
+        
+            saleButton.addEventListener('click', () => {
+                toggleActiveButton(saleButton, [rentButton]);
+            });
+        
+            // Event listeners for Residential/Commercial buttons
+            residentialButton.addEventListener('click', () => {
+                toggleActiveButton(residentialButton, [commercialButton]);
+                togglePropertyTypeButtons();
+            });
+        
+            commercialButton.addEventListener('click', () => {
+                toggleActiveButton(commercialButton, [residentialButton]);
+                togglePropertyTypeButtons();
+            });
+        
+            // Event listeners for property type buttons
+            residentialOptionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    toggleActiveButton(button, residentialOptionButtons);
+                });
+            });
+        
+            commercialOptionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    toggleActiveButton(button, commercialOptionButtons);
+                });
+            });
+        
+            // Event listeners for Ownership Details buttons
+            ownerButton.addEventListener('click', () => {
+                toggleActiveButton(ownerButton, [agentButton]);
+            });
+        
+            agentButton.addEventListener('click', () => {
+                toggleActiveButton(agentButton, [ownerButton]);
+            });
+        
+            // Initialize the correct state on page load
+            togglePropertyTypeButtons();
         });
-    });
-
-    commercialOptionButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            toggleActiveButton(button, commercialOptionButtons);
-        });
-    });
-
-    // Initialize the correct state on page load
-    togglePropertyTypeButtons();
-});
-
-    </script>
-    
+        </script>
+        
     
     
     <style>
@@ -980,6 +1007,9 @@
             box-shadow: none;
             border: 1px solid #68bdf6; /* Consistent border on focus */
         }
+        .required {
+    color: red;
+}
     </style>
     
     
