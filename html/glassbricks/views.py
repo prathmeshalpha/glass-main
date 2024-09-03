@@ -6,10 +6,13 @@ from django.core.mail import send_mail
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
-from .forms import SignUpForm, PasswordResetForm
-from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.urls import reverse
+from .forms import SignUpForm, PasswordResetForm, PropertyForm
+from .models import Property
 import random
+import os
 
 # Function to send OTP via email
 def send_otp(email):
@@ -26,7 +29,6 @@ def otp_verification(request):
         stored_otp = request.session.get('otp')
         
         if entered_otp == stored_otp:
-            # Create the user now that the OTP is verified
             user_data = request.session.get('user_data')
             if user_data:
                 user = get_user_model().objects.create_user(
@@ -36,12 +38,10 @@ def otp_verification(request):
                 )
                 user.save()
                 login(request, user)
-                # Clear session data after successful OTP verification
                 request.session.pop('otp', None)
                 request.session.pop('user_data', None)
                 return redirect('home')
-        else:
-            return render(request, 'otp_verification.html', {'error': 'Invalid OTP'})
+        return render(request, 'otp_verification.html', {'error': 'Invalid OTP'})
     
     return render(request, 'otp_verification.html')
 
@@ -50,15 +50,14 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            # Don't save the user yet, only collect the data
             user_data = {
                 'username': form.cleaned_data.get('username'),
                 'email': form.cleaned_data.get('email'),
                 'password': form.cleaned_data.get('password1'),
             }
             request.session['user_data'] = user_data
-            otp = send_otp(user_data['email'])  # Send OTP and store it
-            request.session['otp'] = otp  # Store OTP in session
+            otp = send_otp(user_data['email'])
+            request.session['otp'] = otp
             return redirect('otp_verification')
         else:
             print(form.errors)  # Debugging; remove in production
@@ -66,16 +65,79 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
-# Other views remain unchanged
+# View for property submission
+@login_required
+def submit_property(request):
+    if request.method == 'POST':
+        property_form = PropertyForm(request.POST, request.FILES)
+        
+        if property_form.is_valid():
+            property_instance = property_form.save(commit=False)
+            property_instance.posted_by = request.user  # Automatically assign the current user
+            
+            # Handle multiple image uploads
+            images = request.FILES.getlist('images')
+            if images:
+                print(f"Images uploaded: {[image.name for image in images]}")  # Debugging line
+            else:
+                print("No images uploaded")  # Debugging line
+
+            image_paths = []
+            for image in images:
+                image_path = os.path.join('property_images', image.name)
+                full_path = os.path.join(settings.MEDIA_ROOT, image_path)
+                with open(full_path, 'wb+') as destination:
+                    for chunk in image.chunks():
+                        destination.write(chunk)
+                image_paths.append(image_path)
+            property_instance.images = ','.join(image_paths)
+
+            # Handle multiple video uploads
+            videos = request.FILES.getlist('videos')
+            if videos:
+                print(f"Videos uploaded: {[video.name for video in videos]}")  # Debugging line
+            else:
+                print("No videos uploaded")  # Debugging line
+
+            video_paths = []
+            for video in videos:
+                video_path = os.path.join('property_videos', video.name)
+                full_path = os.path.join(settings.MEDIA_ROOT, video_path)
+                with open(full_path, 'wb+') as destination:
+                    for chunk in video.chunks():
+                        destination.write(chunk)
+                video_paths.append(video_path)
+            property_instance.videos = ','.join(video_paths)
+
+            property_instance.save()
+            return redirect('home')  # Redirect to a success page after saving
+        else:
+            # Print form errors for debugging
+            print("Form errors:", property_form.errors)
+            return render(request, 'submit-property.html', {
+                'property_form': property_form,
+                'form_errors': property_form.errors
+            })
+    else:
+        property_form = PropertyForm()
+
+    return render(request, 'submit-property.html', {
+        'property_form': property_form,
+    })
+
+# View for the home page
 def home(request):
     return render(request, 'index.html')
 
+# View for the header
 def header(request):
     return render(request, 'headerall.html')
 
+# View for the footer
 def footer(request):
     return render(request, 'footerdark.html')
 
+# View for user signin
 def signin(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -94,10 +156,12 @@ def signin(request):
         form = AuthenticationForm()
     return render(request, 'signin.html', {'form': form})
 
+# View for user logout
 def user_logout(request):
     logout(request)
     return redirect('signin')
 
+# View for forgot password
 def forgot_password(request):
     if request.method == 'POST':
         form = PasswordResetForm(request.POST)

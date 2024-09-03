@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Application definition
 
 INSTALLED_APPS = [
@@ -150,4 +151,5 @@ EMAIL_HOST_PASSWORD = 'aqdy mxkw pwvs croc'  # Use an App Password if 2FA is ena
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
+LOGIN_URL = '/signin/'
 

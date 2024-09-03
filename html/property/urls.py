@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 from glassbricks import views
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,6 +13,8 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('header/', views.header, name='header'),
     path('footer/', views.footer, name='footer'),
+    path('submit-property/',views.submit_property ,name='submitproperty'),
+    
 
     # Password reset URLs
     path('password_reset/', 
@@ -39,6 +43,6 @@ urlpatterns = [
     path('auth/', include('social_django.urls', namespace='social')),
     
    
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

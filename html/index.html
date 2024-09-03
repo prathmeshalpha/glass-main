@@ -33,7 +33,7 @@
       
 // Function to load the header component
 function loadHeader() {
-    fetch('header')
+    fetch("{% url 'header'%}")
         .then(response => response.text())
         .then(data => {
             document.getElementById('header-container').innerHTML = data;
@@ -43,7 +43,7 @@ function loadHeader() {
 
 // Function to load the footer component
 function loadFooter() {
-    fetch('footer')
+    fetch("{% url 'footer'%}")
         .then(response => response.text())
         .then(data => {
             document.getElementById('footer-container').innerHTML = data;

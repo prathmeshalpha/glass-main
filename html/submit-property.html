@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,7 @@
     <meta name="description" content="Sheltos - Submit property page">
     <meta name="keywords" content="sheltos">
     <meta name="author" content="sheltos">
-    <link rel="icon" href="static/images/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="{% static 'images/favicon.png'%}" type="image/x-icon" />
     <title>Sheltos - Submit property page</title>
 
    <!--Google font-->
@@ -19,16 +20,16 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i" rel="stylesheet">
 
     <!-- animate css -->
-    <link rel="stylesheet" type="text/css" href="static/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css'%}">
 
     <!-- Template css -->
-    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="static/css/color1.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/color1.css'%}">
     <script>
       
         // Function to load the header component
         function loadHeader() {
-            fetch('header')
+            fetch("{% url 'header'%}")
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('header-container').innerHTML = data;
@@ -38,7 +39,7 @@
         
         // Function to load the footer component
         function loadFooter() {
-            fetch('footer')
+            fetch("{% url 'footer'%}")
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('footer-container').innerHTML = data;
@@ -61,7 +62,7 @@
     <!-- <div class="loader-wrapper">
         <div class="row loader-img">
             <div class="col-12">
-                <img src="static/images/loader/loader-2.gif" class="img-fluid" alt="">
+                <img src="{% static 'images/loader/loader-2.gif'%}" class="img-fluid" alt="">
             </div>
         </div>
     </div> -->
@@ -74,7 +75,7 @@
 
     <!-- breadcrumb start -->
     <section class="breadcrumb-section p-0">
-        <img src="static/images/inner-background.jpg" class="bg-img img-fluid" alt="">
+        <img src="{% static 'images/inner-background.jpg'%}" class="bg-img img-fluid" alt="">
         <div class="container">
             <div class="breadcrumb-content">
                 <div>
@@ -91,399 +92,521 @@
     </section>
     <!-- breadcrumb end -->
 
-    <!-- submit property section start -->
-    <section class="property-wizard">
-        <div class="container">
-            <div class="row wizard-box">
-                <div class="col-sm-12">
-                    <div class="wizard-step-container row">
-                       <div class="col-xxl-3 col-lg-4">
-                           <div class="theme-card">
-                            <ul class="wizard-steps">
-                                <li class="step-container step-1 active">
-                                    <div class="media">
-                                        <div class="step-icon">
-                                            <i data-feather="check"></i>
-                                            <span>1</span>
-                                        </div>
-                                        <div class="media-body">
-                                            <h5>General</h5>
-                                            <h6>Basic Information</h6>
-                                        </div>
+<!-- submit property section start -->
+<section class="property-wizard">
+    <div class="container">
+        <div class="row wizard-box">
+            <div class="col-sm-12">
+                <div class="wizard-step-container row">
+                   <div class="col-xxl-3 col-lg-4">
+                       <div class="theme-card">
+                        <ul class="wizard-steps">
+                            <li class="step-container step-1 active">
+                                <div class="media">
+                                    <div class="step-icon">
+                                        <i data-feather="check"></i>
+                                        <span>1</span>
                                     </div>
-                                </li>
-                                <li class="step-container step-2">
-                                    <div class="media">
-                                        <div class="step-icon">
-                                            <i data-feather="check"></i>
-                                            <span>2</span>
-                                        </div>
-                                        <div class="media-body">
-                                            <h5>Address</h5>
-                                            <h6>Add your place</h6>
-                                        </div>
+                                    <div class="media-body">
+                                        <h5>General</h5>
+                                        <h6>Basic Information</h6>
                                     </div>
-                                </li>
-                                <li class="step-container step-3">
-                                    <div class="media">
-                                        <div class="step-icon">
-                                            <i data-feather="check"></i>
-                                            <span>3</span>
-                                        </div>
-                                        <div class="media-body">
-                                            <h5>Gallery</h5>
-                                            <h6>Add your media</h6>
-                                        </div>
+                                </div>
+                            </li>
+                            <li class="step-container step-2">
+                                <div class="media">
+                                    <div class="step-icon">
+                                        <i data-feather="check"></i>
+                                        <span>2</span>
                                     </div>
-                                </li>
-                                <li class="step-container step-4">
-                                    <div class="media">
-                                        <div class="step-icon">
-                                            <i data-feather="check"></i>
-                                            <span>4</span>
-                                        </div>
-                                        <div class="media-body">
-                                            <h5>Confirmation</h5>
-                                            <h6>Complete details</h6>
-                                        </div>
+                                    <div class="media-body">
+                                        <h5>Address</h5>
+                                        <h6>Add your place</h6>
                                     </div>
-                                </li>
-                            </ul>
-                           </div>
+                                </div>
+                            </li>
+                            <li class="step-container step-3">
+                                <div class="media">
+                                    <div class="step-icon">
+                                        <i data-feather="check"></i>
+                                        <span>3</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5>Gallery</h5>
+                                        <h6>Add your media</h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="step-container step-4">
+                                <div class="media">
+                                    <div class="step-icon">
+                                        <i data-feather="check"></i>
+                                        <span>4</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5>Confirmation</h5>
+                                        <h6>Complete details</h6>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                        </div>
-                        <div class="wizard-form-details col-xxl-9 col-lg-8">
-                            <div class="theme-card my-3">
-                                <div class="wizard-step-1 d-block">
-                                    <h2>General</h2>
-                                    <p class="font-roboto">Basic information about property</p>
-                                    <form class="row gx-3">
-                                        <div class="form-group col-sm-6">
-                                            <label>You are looking for</label>
-                                            <div class="toggle-buttons">
-                                                <button type="button" id="rent" class="btn btn-outline-primary active">Rent / Lease</button>
-                                                <button type="button" id="sale" class="btn btn-outline-primary">Sale</button>
+                   </div>
+                   {% if form_errors %}
+                        <div class="form-errors">
+                            <ul>
+                                {% for field, errors in form_errors.items %}
+                                    <li>{{ field }}: 
+                                        {% for error in errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+               
+
+                    <form class="wizard-form-details col-xxl-9 col-lg-8" action="/submit-property/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div>
+                        <div class="theme-card my-3">
+                            <div class="wizard-step-1 d-block">
+                                <h2>General</h2>
+                                <p class="font-roboto">Basic information about property</p>
+                                <div class="row gx-3">
+                                    
+                                    <div class="form-group col-sm-6">
+                                        <label>You are looking for</label>
+                                        <div class="toggle-buttons">
+                                            <button type="button" id="Rent" class="btn btn-outline-primary active">Rent / Lease</button>
+                                            <button type="button" id="Sale" class="btn btn-outline-primary">Sale</button>
+                                            <input type="hidden" name="post_type" id="post_type" value="Rent">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group col-sm-6">
+                                        <label>And it's a</label>
+                                        <div class="toggle-buttons d-flex">
+                                            <button type="button" id="Residential" class="btn btn-outline-primary active me-2">Residential</button>
+                                            <button type="button" id="Commercial" class="btn btn-outline-primary">Commercial</button>
+                                            <input type="hidden" name="property_type1" id="property_type1" value="Residential">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group col-sm-12">
+                                        <div id="property-type-buttons">
+                                            <div id="residential-options" class="toggle-buttons d-flex">
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Apartment" class="btn btn-outline-primary me-2">Apartment</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Villa" class="btn btn-outline-primary me-2">Villa</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Builder Floor" class="btn btn-outline-primary me-2">Builder Floor</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Residential New Project" class="btn btn-outline-primary me-2">New Project</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Weekend Homes" class="btn btn-outline-primary">Weekend Homes</button>
+                                                
+                                                <input type="hidden" name="specific_type1" id="specific_type1" value="Apartment">
+                                            </div>
+                                            <div id="commercial-options" class="toggle-buttons d-flex d-none">
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Office" class="btn btn-outline-primary me-2">Office</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Retail" class="btn btn-outline-primary me-2 ">Retail</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Commercial New Project" class="btn btn-outline-primary">New Project</button>
+                                                
+                                                <input type="hidden" name="specific_type2" id="specific_type2" value="Office">
                                             </div>
                                         </div>
-                                        
-                                        <div class="form-group col-sm-6">
-                                            <label>And it's a</label>
-                                            <div class="toggle-buttons d-flex">
-                                                <button type="button" id="residential" class="btn btn-outline-primary active me-2">Residential</button>
-                                                <button type="button" id="commercial" class="btn btn-outline-primary">Commercial</button>
+                                    </div>
+                                    <div class="form-group col-sm-12">  
+                                        <label>MahaRERA Registration Number <span class="required">*</span></label>
+                                        <input type="text" class="form-control" name="maharera_number" id="maharera-number" placeholder="Registration Number" required>
+                                    </div>
+                                    
+                                    <div class="form-group col-sm-6">
+                                        <label>Property Price <span class="required">*</span></label>
+                                        <input type="number" name="property_price" id="property-price" class="form-control" placeholder="₹ 280000" required>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Area (sq ft) <span class="required">*</span></label>
+                                        <input type="number" name="property_area" id="property-area" class="form-control" placeholder="850 sq ft" required>
+                                    </div>
+                                    <div class="form-group col-sm-4 hide-on-commercial" id="bedrooms-group">
+                                        <label>Bedrooms</label>
+                                        <div class="dropdown">
+                                            <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Select</span> <i class="fas fa-angle-down"></i></span>
+                                            <div class="dropdown-menu text-start">
+                                                <a class="dropdown-item" id="Bedrooms-1" href="javascript:void(0)">1</a>
+                                                <a class="dropdown-item" id="Bedrooms-2" href="javascript:void(0)">2</a>
+                                                <a class="dropdown-item" id="Bedrooms-3" href="javascript:void(0)">3</a>
+                                                <a class="dropdown-item" id="Bedrooms-4+" href="javascript:void(0)">4+</a>
+                                                
                                             </div>
+                                            <input type="hidden" name="bedrooms" id="bedrooms-count" value="">
                                         </div>
-                                        
-                                        <div class="form-group col-sm-12">
-                                            <div id="property-type-buttons">
-                                                <div id="residential-options" class="toggle-buttons d-flex">
-                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="flat-apartment" class="btn btn-outline-primary me-2">Apartment</button>
-                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="independent-house" class="btn btn-outline-primary me-2">Villa</button>
-                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="builder-floor" class="btn btn-outline-primary me-2">Builder Floor</button>
-                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="res-new-project" class="btn btn-outline-primary me-2">New Project</button>
-                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="weekend-homes" class="btn btn-outline-primary">Weekend Homes</button>
-                                                </div>
-                                                <div id="commercial-options" class="toggle-buttons d-flex d-none">
-                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="office" class="btn btn-outline-primary me-2">Office</button>
-                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="retail" class="btn btn-outline-primary me-2 ">Retail</button>
-                                                    <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="com-new-project" class="btn btn-outline-primary">New Project</button>
-                                                </div>
+                                    </div>
+                                    
+                                    <div class="form-group col-sm-4 hide-on-commercial" id="balconies-group">
+                                        <label>Balconies</label>
+                                        <div class="dropdown">
+                                            <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Select</span> <i class="fas fa-angle-down"></i></span>
+                                            <div class="dropdown-menu text-start">
+                                                <a class="dropdown-item" id="Balconies-1" href="javascript:void(0)">1</a>
+                                                <a class="dropdown-item" id="Balconies-2" href="javascript:void(0)">2</a>
+                                                <a class="dropdown-item" id="Balconies-3+" href="javascript:void(0)">3+</a>
+                                                
                                             </div>
+                                            <input type="hidden" name="balconies" id="balconies-count" value="">
                                         </div>
-                                        <div class="form-group col-sm-12">  
-                                            <label>MahaRERA Registration Number <span class="required">*</span></label>
-                                            <input type="text" class="form-control" id="maharera-number" placeholder="Registration Number" required>
-                                        </div>
-                                        
-                                        <div class="form-group col-sm-6">
-                                            <label>Property Price <span class="required">*</span></label>
-                                            <input type="number" id="property-price" class="form-control" placeholder="₹ 280000" required>
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <label>Area (sq ft) <span class="required">*</span></label>
-                                            <input type="number" id="property-area" class="form-control" placeholder="850 sq ft" required>
-                                        </div>
-                                        <div class="form-group col-sm-4 hide-on-commercial" id="bedrooms-group">
-                                            <label>Bedrooms</label>
-                                            <div class="dropdown">
-                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Select</span> <i class="fas fa-angle-down"></i></span>
-                                                <div class="dropdown-menu text-start">
-                                                    <a class="dropdown-item" id="Bedrooms-1" href="javascript:void(0)">1</a>
-                                                    <a class="dropdown-item" id="Bedrooms-2" href="javascript:void(0)">2</a>
-                                                    <a class="dropdown-item" id="Bedrooms-3" href="javascript:void(0)">3</a>
-                                                    <a class="dropdown-item" id="Bedrooms-4+" href="javascript:void(0)">4+</a>
-                                                </div>
+                                    </div>
+                                    
+                                    <div class="form-group col-sm-4" id="bathrooms-group">
+                                        <label>Bathrooms</label>
+                                        <div class="dropdown">
+                                            <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Select</span> <i class="fas fa-angle-down"></i></span>
+                                            <div class="dropdown-menu text-start">
+                                                <a class="dropdown-item" id="Bathrooms-1" href="javascript:void(0)">1</a>
+                                                <a class="dropdown-item" id="Bathrooms-2" href="javascript:void(0)">2</a>
+                                                <a class="dropdown-item" id="Bathrooms-3" href="javascript:void(0)">3</a>
+                                                <a class="dropdown-item" id="Bathrooms-3+" href="javascript:void(0)">3+</a>
+                                                
                                             </div>
+                                            <input type="hidden" name="bathrooms" id="bathrooms-count" value="">
                                         </div>
-                                        
-                                        <div class="form-group col-sm-4 hide-on-commercial" id="balconies-group">
-                                            <label>Balconies</label>
-                                            <div class="dropdown">
-                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Select</span> <i class="fas fa-angle-down"></i></span>
-                                                <div class="dropdown-menu text-start">
-                                                    <a class="dropdown-item" id="Balconies-1" href="javascript:void(0)">1</a>
-                                                    <a class="dropdown-item" id="Balconies-2" href="javascript:void(0)">2</a>
-                                                    <a class="dropdown-item" id="Balconies-3+" href="javascript:void(0)">3+</a>
-                                                </div>
+                                    </div>
+                                    
+                                    <div class="form-group col-sm-4" id="availibility-group">
+                                        <label>Availability Status <span class="required">*</span></label>
+                                        <div class="dropdown">
+                                            <span class="dropdown-toggle font-rubik"
+                                            data-bs-toggle="dropdown"><span>Select</span> <i
+                                            class="fas fa-angle-down"></i></span>
+                                            <div class="dropdown-menu text-start">
+                                                <a class="dropdown-item" id="status-under_cons" href="javascript:void(0)">Under Construction</a>
+                                                <a class="dropdown-item" id="status-read" href="javascript:void(0)">Ready to move</a>   
                                             </div>
+                                            <input type="hidden" name="status" id="status" value="">
                                         </div>
-                                        
-                                        <div class="form-group col-sm-4">
-                                            <label>Bathrooms</label>
-                                            <div class="dropdown">
-                                                <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Select</span> <i class="fas fa-angle-down"></i></span>
-                                                <div class="dropdown-menu text-start">
-                                                    <a class="dropdown-item" id="Bathrooms-1" href="javascript:void(0)">1</a>
-                                                    <a class="dropdown-item" id="Bathrooms-2" href="javascript:void(0)">2</a>
-                                                    <a class="dropdown-item" id="Bathrooms-3" href="javascript:void(0)">3</a>
-                                                    <a class="dropdown-item" id="Bathrooms-3+" href="javascript:void(0)">3+</a>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div class="form-group col-sm-5">
+                                        <label>Ownership Details <span class="required">*</span></label>
+                                        <div class="toggle-buttons" id="poster_detail">
+                                            <button type="button" id="owner" class="btn btn-outline-primary active">Owner</button>
+                                            <button type="button" id="agent" class="btn btn-outline-primary">Agent</button>
+                                            <input type="hidden" name="ownership" id="poster" value="owner">
                                         </div>
-                                        
-                                        <div class="form-group col-sm-4">
-                                            <label>Availability Status <span class="required">*</span></label>
-                                            <div class="dropdown">
-                                                <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Select</span> <i
-                                                class="fas fa-angle-down"></i></span>
-                                                <div class="dropdown-menu text-start">
-                                                    <a class="dropdown-item" id="status-under_cons" href="javascript:void(0)">Under Construction</a>
-                                                    <a class="dropdown-item" id="status-read" href="javascript:void(0)">Ready to move</a>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-sm-5">
-                                            <label>Ownership Details <span class="required">*</span></label>
-                                            <div class="toggle-buttons">
-                                                <button type="button" id="owner" class="btn btn-outline-primary active">Owner</button>
-                                                <button type="button" id="agent" class="btn btn-outline-primary">Agent</button>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="form-group col-sm-4">
-                                            <label>Price</label>
-                                            <input type="text" class="form-control" placeholder="$3000">
-                                        </div>
-                                        <div class="form-group col-sm-12">
-                                            <label>Description</label>
-                                            <textarea class="form-control" rows="4"></textarea>
-                                        </div> -->
-                                    </form>
+                                    </div>
+                                    <!-- <div class="form-group col-sm-4">
+                                        <label>Price</label>
+                                        <input type="text" class="form-control" placeholder="$3000">
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label>Description</label>
+                                        <textarea class="form-control" rows="4"></textarea>
+                                    </div> -->
                                     <div class="next-btn text-end">
                                         <button type="button" class="btn btn-gradient color-2 next1 btn-pill">Next <i class="fas fa-arrow-right ms-2"></i></button>
                                     </div>
                                 </div>
-                                <div class="wizard-step-2 d-none">
-                                    <h2>Address</h2>
-                                    <p class="font-roboto">Add your property Location</p>
-                                    <form class="row gx-3">
-                                        <div class="form-group col-sm-6">
-                                            <label>City</label>
-                                            <input type="text" id="city" class="form-control" placeholder="City">
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <label>Locality</label>
-                                            <input type="text" id="Locality" class="form-control" placeholder="Locality">
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <label>State</label>
-                                            <input type="text" class="form-control" placeholder="State">
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <label>Country</label>
-                                            <input type="text" class="form-control" placeholder="Country">
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <label>Address</label>
-                                            <input type="text" class="form-control" placeholder="Address of your property">
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <label>Appartment & Flat no.</label>
-                                            <input type="text" class="form-control" placeholder="Appartment & Flat no.">
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <label>Zip code</label>
-                                            <input type="number" class="form-control" placeholder="422009">
-                                        </div>
-                                      
-                                        <div class="form-group col-sm-6">
-                                            <label>Landmark</label>
-                                            <input type="text" class="form-control" placeholder="landmark place name">
-                                        </div>
-                                        <!-- <div class="col-sm-12">
-                                            <iframe title="realestate location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.1583091352!2d-74.11976373946229!3d40.69766374859258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1563449626439!5m2!1sen!2sin"
-                                            allowfullscreen></iframe>
-                                        </div> -->
-                                    </form>
+                                
+                            </div>
+                            <div class="wizard-step-2 d-none">
+                                <h2>Address</h2>
+                                <p class="font-roboto">Add your property Location</p>
+                                <div class="row gx-3" >
+                                    
+                                    <div class="form-group col-sm-6">
+                                        <label>City</label>
+                                        <input type="text" id="city" name="city" class="form-control" placeholder="City">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Locality</label>
+                                        <input type="text" id="Locality" name="locality" class="form-control" placeholder="Locality">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>State</label>
+                                        <input type="text" class="form-control" name="state" placeholder="State">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control" name="country" placeholder="Country">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" name="address" placeholder="Address of your property">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Appartment & Flat no.</label>
+                                        <input type="text" class="form-control" name="appartment" placeholder="Appartment & Flat no.">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Zip code</label>
+                                        <input type="number" class="form-control" name="zip_code" placeholder="422009">
+                                    </div>
+                                  
+                                    <div class="form-group col-sm-6">
+                                        <label>Landmark</label>
+                                        <input type="text" class="form-control" name="landmark" placeholder="landmark place name">
+                                    </div>
+                                    <!-- <div class="col-sm-12">
+                                        <iframe title="realestate location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.1583091352!2d-74.11976373946229!3d40.69766374859258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1563449626439!5m2!1sen!2sin"
+                                        allowfullscreen></iframe>
+                                    </div> -->
                                     <div class="next-btn d-flex">
                                         <button type="button" class="btn btn-dashed color-2 prev1 btn-pill"><i class="fas fa-arrow-left me-2"></i> Previous</button>
                                         <button type="button" class="btn btn-gradient color-2 next2 btn-pill">Next <i class="fas fa-arrow-right ms-2"></i></button>
                                     </div>
                                 </div>
-                                <div class="wizard-step-3 d-none">
-                                    <h2>Gallery</h2>
-                                    <p class="font-roboto">Add your property Media</p>
-                                    <label>Media</label>
-                                    <form class="dropzone" id="multiFileUpload" action="https://themes.pixelstrap.com/upload.php">
-                                        <div class="dz-message needsclick"><i class="fas fa-cloud-upload-alt"></i>
-                                        <h6>Drop files here or click to upload.</h6>
+                                
+                            </div>
+                            <div class="wizard-step-3 d-none">
+                                <h2>Gallery</h2>
+                                <p class="font-roboto">Add your property Media</p>
+                                <label>Images</label>
+                                <div class="dropzone" id="form3"  >
+                                    
+                                    <div class="dz-message needsclick">
+                                    <h6>Drop files here or click to upload.</h6>
+                                    <input type="file" name="images" id="images" class="form-control" multiple>
+                                    </div>
+                                </div>
+                                <label>Video</label>
+                                <div class="dropzone" id="form3"  >
+                                    
+                                    <div class="dz-message needsclick">
+                                    <h6>Drop files here or click to upload.</h6>
+                                    <input type="file" name="videos" id="videos" class="form-control" multiple>
+                                    </div>
+                                </div>
+                                <div class="row gx-3" id="form4">
+                                        <div class="form-group col-sm-12">
+                                            <label>Additional features</label>
+                                            <div class="feature-checkbox">
+                                                <label for="feature-Security">
+                                                    <input class="checkbox_animated color-2" id="feature-Security" name="security" type="checkbox"> Security
+                                                </label>
+                                                <label for="feature-Power-Backup">
+                                                    <input class="checkbox_animated color-2" id="feature-Power-Backup" name="powerbackup" type="checkbox"> Power Backup
+                                                </label>
+                                                <label for="feature-wifi">
+                                                    <input class="checkbox_animated color-2" id="feature-wifi" name="wifi" type="checkbox"> Wi-Fi
+                                                </label>
+                                                <label for="feature-Elevator">
+                                                    <input class="checkbox_animated color-2" id="feature-Elevator" name="elevator" type="checkbox"> Elevator
+                                                </label>
+                                                <label for="featuer-Parking">
+                                                    <input class="checkbox_animated color-2" id="featuer-Parking" name="parking" type="checkbox"> Parking
+                                                </label>
+                                                <label for="featuer-Air-Conditioning">
+                                                    <input class="checkbox_animated color-2" id="featuer-Air-Conditioning" name="ac" type="checkbox"> Air Conditioning
+                                                </label>
+                                                <label for="featuer-Pool">
+                                                    <input class="checkbox_animated color-2" id="featuer-Pool" name="pool" type="checkbox"> Pool
+                                                </label>
+                                                <label for="featuer-Gym">
+                                                    <input class="checkbox_animated color-2" id="featuer-Gym" name="gym" type="checkbox"> Gym
+                                                </label>
+                                                <label for="featuer-Clubhouse">
+                                                    <input class="checkbox_animated color-2" id="featuer-Clubhouse" name="club" type="checkbox"> Clubhouse
+                                                </label>
+                                            </div>
                                         </div>
-                                    </form>
-                                    <form class="row gx-3">
-                                            <div class="form-group col-sm-12">
-                                                <label>Video (mp4)</label>
-                                                <input type="text" class="form-control" placeholder="mp4 video link">
-                                            </div>
-                                            <div class="form-group col-sm-12">
-                                                <label>Additional features</label>
-                                                <div class="feature-checkbox">
-                                                    <label for="feature-Security">
-                                                        <input class="checkbox_animated color-2" id="feature-Security" type="checkbox"> Security
-                                                    </label>
-                                                    <label for="feature-Power-Backup">
-                                                        <input class="checkbox_animated color-2" id="feature-Power-Backup" type="checkbox"> Power Backup
-                                                    </label>
-                                                    <label for="feature-wifi">
-                                                        <input class="checkbox_animated color-2" id="feature-wifi" type="checkbox"> Wi-Fi
-                                                    </label>
-                                                    <label for="feature-Elevator">
-                                                        <input class="checkbox_animated color-2" id="feature-Elevator" type="checkbox"> Elevator
-                                                    </label>
-                                                    <label for="featuer-Parking">
-                                                        <input class="checkbox_animated color-2" id="featuer-Parking" type="checkbox"> Parking
-                                                    </label>
-                                                    <label for="featuer-Air-Conditioning">
-                                                        <input class="checkbox_animated color-2" id="featuer-Air-Conditioning" type="checkbox"> Air Conditioning
-                                                    </label>
-                                                    <label for="featuer-Pool">
-                                                        <input class="checkbox_animated color-2" id="featuer-Pool" type="checkbox"> Pool
-                                                    </label>
-                                                    <label for="featuer-Gym">
-                                                        <input class="checkbox_animated color-2" id="featuer-Gym" type="checkbox"> Gym
-                                                    </label>
-                                                    <label for="featuer-Clubhouse">
-                                                        <input class="checkbox_animated color-2" id="featuer-Clubhouse" type="checkbox"> Clubhouse
-                                                    </label>
-                                                </div>
-                                            </div>
-                                    </form>
                                     <div class="next-btn d-flex">
                                         <button type="button" class="btn btn-dashed color-2 prev2 btn-pill"><i class="fas fa-arrow-left me-2"></i> Previous</button>
                                         <button type="button" class="btn btn-gradient color-2 next3 btn-pill">Next <i class="fas fa-arrow-right ms-2"></i></button>
                                     </div>
                                 </div>
-                                <div class="wizard-step-4 d-none">
-                                    <div class="complete-details">
-                                        <div>
-                                            <img src="https://themes.pixelstrap.com/sheltos/static/images/inner-pages/4.svg" class="img-fluid" alt="">
-                                            <h3>Thank you !!</h3>
-                                            <h6>Congratulations, your property has been submitted</h6>
-                                            <p class="font-roboto">Residences can be classified by and how they are connected to neighbouring residences and land. 
-                                                Different types of housing tenure can be used for the same physical type.</p>
-                                            <button type="submit" class="btn btn-gradient color-2 step-again btn-pill">Add new property</button>
-                                        </div>
+                                
+                            </div>
+                            <div class="wizard-step-4 d-none">
+                                <div class="complete-details">
+                                    <div>
+                                        <img src="https://themes.pixelstrap.com/sheltos/static/images/inner-pages/4.svg" class="img-fluid" alt="">
+                                        <h3>Thank you !!</h3>
+                                        <h6>Congratulations, your property has been submitted</h6>
+                                        <p class="font-roboto">Residences can be classified by and how they are connected to neighbouring residences and land. 
+                                            Different types of housing tenure can be used for the same physical type.</p>
+                                        
+                                        <button type="submit" id="submit" class="btn btn-gradient color-2 step-again btn-pill">Submit Property</button>
                                     </div>
                                 </div>
-                             </div>
+                            </div>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+<!-- submit property section end -->
     <!-- submit property section end -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const rentButton = document.getElementById('rent');
-            const saleButton = document.getElementById('sale');
-            const residentialButton = document.getElementById('residential');
-            const commercialButton = document.getElementById('commercial');
-            const residentialOptions = document.getElementById('residential-options');
-            const commercialOptions = document.getElementById('commercial-options');
-        
-            const residentialOptionButtons = residentialOptions.querySelectorAll('button');
-            const commercialOptionButtons = commercialOptions.querySelectorAll('button');
-        
-            const hideOnCommercial = document.querySelectorAll('.hide-on-commercial');
-        
-            const ownerButton = document.getElementById('owner');
-            const agentButton = document.getElementById('agent');
-        
-            function toggleActiveButton(selectedButton, buttonGroup) {
-                buttonGroup.forEach(button => button.classList.remove('active'));
-                selectedButton.classList.add('active');
-            }
-        
-            function togglePropertyTypeButtons() {
-                if (residentialButton.classList.contains('active')) {
-                    residentialOptions.classList.remove('d-none');
-                    commercialOptions.classList.add('d-none');
-                    clearSelectedOptions(commercialOptionButtons);
-        
-                    hideOnCommercial.forEach(el => el.style.display = 'block');
-                } else {
-                    residentialOptions.classList.add('d-none');
-                    commercialOptions.classList.remove('d-none');
-                    clearSelectedOptions(residentialOptionButtons);
-        
-                    hideOnCommercial.forEach(el => el.style.display = 'none');
-                }
-            }
-        
-            function clearSelectedOptions(buttons) {
-                buttons.forEach(button => button.classList.remove('active'));
-            }
-        
-            // Event listeners for Rent/Sale buttons
-            rentButton.addEventListener('click', () => {
-                toggleActiveButton(rentButton, [saleButton]);
-            });
-        
-            saleButton.addEventListener('click', () => {
-                toggleActiveButton(saleButton, [rentButton]);
-            });
-        
-            // Event listeners for Residential/Commercial buttons
-            residentialButton.addEventListener('click', () => {
-                toggleActiveButton(residentialButton, [commercialButton]);
-                togglePropertyTypeButtons();
-            });
-        
-            commercialButton.addEventListener('click', () => {
-                toggleActiveButton(commercialButton, [residentialButton]);
-                togglePropertyTypeButtons();
-            });
-        
-            // Event listeners for property type buttons
-            residentialOptionButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    toggleActiveButton(button, residentialOptionButtons);
-                });
-            });
-        
-            commercialOptionButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    toggleActiveButton(button, commercialOptionButtons);
-                });
-            });
-        
-            // Event listeners for Ownership Details buttons
-            ownerButton.addEventListener('click', () => {
-                toggleActiveButton(ownerButton, [agentButton]);
-            });
-        
-            agentButton.addEventListener('click', () => {
-                toggleActiveButton(agentButton, [ownerButton]);
-            });
-        
-            // Initialize the correct state on page load
-            togglePropertyTypeButtons();
+        document.getElementById('Rent').addEventListener('click', function() {
+            document.getElementById('post_type').value = 'Rent';
+            this.classList.add('active');
+            document.getElementById('Sale').classList.remove('active');
         });
-        </script>
+
+        document.getElementById('Sale').addEventListener('click', function() {
+            document.getElementById('post_type').value = 'Sale';
+            this.classList.add('active');
+            document.getElementById('Rent').classList.remove('active');
+        });
+
+        // Toggle button functionality for "property_type"
+        document.getElementById('Residential').addEventListener('click', function() {
+            document.getElementById('property_type1').value = 'Residential';
+            document.getElementById('specific_type2').value = '';
+            this.classList.add('active');
+            document.getElementById('Commercial').classList.remove('active');
+            document.getElementById('residential-options').classList.remove('d-none');
+            document.getElementById('commercial-options').classList.add('d-none');
+            document.getElementById('balconies-group').classList.remove('d-none');
+            document.getElementById('bedrooms-group').classList.remove('d-none');
+        });
+
+        document.getElementById('Commercial').addEventListener('click', function() {
+            document.getElementById('property_type1').value = 'Commercial';
+            document.getElementById('specific_type1').value = '';
+            this.classList.add('active');
+            document.getElementById('Residential').classList.remove('active');
+            document.getElementById('residential-options').classList.add('d-none');
+            document.getElementById('commercial-options').classList.remove('d-none');
+            document.getElementById('balconies-group').classList.add('d-none');
+            document.getElementById('bedrooms-group').classList.add('d-none');
+        });
+
+        document.getElementById('Apartment').addEventListener('click', function() {
+            document.getElementById('specific_type1').value = 'apartment';
+            this.classList.add('active');
+            document.getElementById('Villa').classList.remove('active');
+            document.getElementById('Builder Floor').classList.remove('active');
+            document.getElementById('Residential New Project').classList.remove('active');
+            document.getElementById('Weekend Homes').classList.remove('active');
+        });
+
+        document.getElementById('Villa').addEventListener('click', function() {
+            document.getElementById('specific_type1').value = 'Villa';
+            this.classList.add('active');
+            document.getElementById('Apartment').classList.remove('active');
+            document.getElementById('Builder Floor').classList.remove('active');
+            document.getElementById('Residential New Project').classList.remove('active');
+            document.getElementById('Weekend Homes').classList.remove('active');
+        });
+        document.getElementById('Builder Floor').addEventListener('click', function() {
+            document.getElementById('specific_type1').value = 'Builder Floor';
+            this.classList.add('active');
+            document.getElementById('Villa').classList.remove('active');
+            document.getElementById('Apartment').classList.remove('active');
+            document.getElementById('Residential New Project').classList.remove('active');
+            document.getElementById('Weekend Homes').classList.remove('active');
+        });
+        document.getElementById('Residential New Project').addEventListener('click', function() {
+            document.getElementById('specific_type1').value = 'Residential New Project';
+            this.classList.add('active');
+            document.getElementById('Villa').classList.remove('active');
+            document.getElementById('Builder Floor').classList.remove('active');
+            document.getElementById('Apartment').classList.remove('active');
+            document.getElementById('Weekend Homes').classList.remove('active');
+        });
+        document.getElementById('Weekend Homes').addEventListener('click', function() {
+            document.getElementById('specific_type1').value = 'Weekend Homes';
+            this.classList.add('active');
+            document.getElementById('Villa').classList.remove('active');
+            document.getElementById('Builder Floor').classList.remove('active');
+            document.getElementById('Residential New Project').classList.remove('active');
+            document.getElementById('Apartment').classList.remove('active');
+        });
+        document.getElementById('Office').addEventListener('click', function() {
+            document.getElementById('specific_type2').value = 'Office';
+            this.classList.add('active');
+            document.getElementById('Retail').classList.remove('active');
+            document.getElementById('Commercial New Project').classList.remove('active');
+        });
+        document.getElementById('Retail').addEventListener('click', function() {
+            document.getElementById('specific_type2').value = 'Retail';
+            this.classList.add('active');
+            document.getElementById('Office').classList.remove('active');
+            document.getElementById('Commercial New Project').classList.remove('active');
+            
+        });
+        document.getElementById('Commercial New Project').addEventListener('click', function() {
+            document.getElementById('specific_type2').value = 'Commercial New Project';
+            this.classList.add('active');
+            document.getElementById('Retail').classList.remove('active');
+            document.getElementById('Office').classList.remove('active');
+        });
+
+        document.getElementById('owner').addEventListener('click', function() {
+            document.getElementById('poster').value = 'owner';
+            this.classList.add('active');
+            document.getElementById('agent').classList.remove('active');
+        });
+
+        document.getElementById('agent').addEventListener('click', function() {
+            document.getElementById('poster').value = 'agent';
+            this.classList.add('active');
+            document.getElementById('owner').classList.remove('active');
+        });
+
+        // Update all the specific type buttons
+        document.querySelectorAll('#property-type-buttons button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('#property-type-buttons button').forEach(function(btn) {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+
+
+                // General function to handle dropdown selections
+        function setupDropdown(dropdownGroupId, hiddenInputId) {
+            // Select all dropdown items within the specified dropdown group
+            document.querySelectorAll(`#${dropdownGroupId} .dropdown-item`).forEach(function(item) {
+                item.addEventListener('click', function(event) {
+                    // Prevent default action
+                    event.preventDefault();
+                    
+                    // Get the selected value from the item text
+                    const selectedValue = this.textContent;
+                    
+                    // Update the hidden input field value
+                    document.getElementById(hiddenInputId).value = selectedValue;
+                    
+                    // Update the dropdown toggle text to show the selected value
+                    document.querySelector(`#${dropdownGroupId} .dropdown-toggle span`).textContent = selectedValue;
+                    
+                    // Add active class to the selected item and remove from others
+                    document.querySelectorAll(`#${dropdownGroupId} .dropdown-item`).forEach(function(el) {
+                        el.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        setupDropdown('bedrooms-group', 'bedrooms-count'); // For bedrooms
+        setupDropdown('bathrooms-group', 'bathrooms-count'); // Replace with actual IDs
+        setupDropdown('balconies-group', 'balconies-count'); // Replace with actual IDs
+        setupDropdown('availibility-group', 'status'); // Replace with actual IDs
+
+        document.querySelector('.next1').addEventListener('click', function() {
+            var postType = document.getElementById('post_type').value;
+            var propertyType = document.getElementById('property_type1').value;
         
+            if (!postType || !propertyType) {
+                alert("Please fill out the required fields before proceeding.");
+            } else {
+                // Proceed to the next step
+                document.querySelector('.wizard-step-1').classList.add('d-none');
+                document.querySelector('.wizard-step-2').classList.remove('d-none');
+            }
+        });
+        
+    </script>    
     
     
-    <style>
+<style>
         .toggle-buttons .btn {
             flex: 1;
             padding-top: 3px;
@@ -536,41 +659,41 @@
    
 
     <!-- latest jquery-->
-    <script src="static/js/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
 
     <!-- popper js-->
-    <script src="static/js/popper.min.js"></script>
+    <script src="{% static 'js/popper.min.js'%}"></script>
 
     <!-- Bootstrap js-->
-    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
 
     <!-- feather icon js-->
-    <script src="static/js/feather-icon/feather.min.js"></script>
-    <script src="static/js/feather-icon/feather-icon.js"></script>
+    <script src="{% static 'js/feather-icon/feather.min.js'%}"></script>
+    <script src="{% static 'js/feather-icon/feather-icon.js'%}"></script>
 
     <!-- slick js -->
-    <script src="static/js/slick.js"></script>
-    <script src="static/js/slick-animation.min.js"></script>
-    <script src="static/js/custom-slick.js"></script>
+    <script src="{% static 'js/slick.js'%}"></script>
+    <script src="{% static 'js/slick-animation.min.js'%}"></script>
+    <script src="{% static 'js/custom-slick.js'%}"></script>
 
     <!-- Dropzone js -->
-    <script src="static/js/dropzone/dropzone.js"></script>
-    <script src="static/js/dropzone/dropzone-script.js"></script>
+    <script src="{% static 'js/dropzone/dropzone.js'%}"></script>
+    <script src="{% static 'js/dropzone/dropzone-script.js'%}"></script>
 
     <!-- property wizard js -->
-    <script src="static/js/property-wizard.js"></script>
+    <script src="{% static 'js/property-wizard.js'%}"></script>
 
     <!-- Template js-->
-    <script src="static/js/script.js"></script>
+    <script src="{% static 'js/script.js'%}"></script>
 
     <!-- Customizer js-->
-    <script src="static/js/customizer.js"></script>
+    <script src="{% static 'js/customizer.js'%}"></script>
 
     <!-- wow js-->
-    <script src="static/js/wow.min.js"></script>
+    <script src="{% static 'js/wow.min.js'%}"></script>
 
     <!-- Color-picker js-->
-    <script src="static/js/color/template-color.js"></script>
+    <script src="{% static 'js/color/template-color.js'%}"></script>
 
 </body>
 
