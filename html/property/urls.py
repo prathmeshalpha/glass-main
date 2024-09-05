@@ -14,6 +14,7 @@ urlpatterns = [
     path('header/', views.header, name='header'),
     path('footer/', views.footer, name='footer'),
     path('submit-property/',views.submit_property ,name='submitproperty'),
+    path('profile/',views.user_profile ,name='profile'),
     
 
     # Password reset URLs

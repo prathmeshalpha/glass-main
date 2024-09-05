@@ -129,6 +129,10 @@ def submit_property(request):
 def home(request):
     return render(request, 'index.html')
 
+@login_required
+def user_profile(request):
+    return render(request, 'user-profile.html')
+
 # View for the header
 def header(request):
     return render(request, 'headerall.html')
