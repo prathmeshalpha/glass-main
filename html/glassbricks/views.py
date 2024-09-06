@@ -133,6 +133,10 @@ def home(request):
 def user_profile(request):
     return render(request, 'user-profile.html')
 
+@login_required
+def update_profile(request):
+    return render(request, 'update-profile.html')
+
 # View for the header
 def header(request):
     return render(request, 'headerall.html')
