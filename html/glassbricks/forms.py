@@ -2,6 +2,7 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm as DjangoPasswordResetForm
 from .models import CustomUser, Property
+from django.core.validators import FileExtensionValidator
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, required=True, widget=forms.EmailInput(attrs={
@@ -50,8 +51,8 @@ class PropertyForm(forms.ModelForm):
     gym = forms.BooleanField(required=False)
     club = forms.BooleanField(required=False)
 
-    images = forms.FileField(required=False)
-    videos = forms.FileField(required=False)    
+    images = forms.FileField(required=False, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png', 'jpeg'])])
+    videos = forms.FileField(required=False, validators=[FileExtensionValidator(allowed_extensions=['mp4', 'mov'])])    
 
     class Meta:
         model = Property

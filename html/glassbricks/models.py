@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings 
+from django.core.validators import FileExtensionValidator
 
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
@@ -29,8 +30,8 @@ class Property(models.Model):
     appartment = models.CharField(max_length=50, null=True, blank=True)
     zip_code = models.CharField(max_length=10)
     landmark = models.CharField(max_length=100, null=True, blank=True)
-    images = models.TextField(null=True, blank=True)  # Store paths of images as comma-separated values
-    videos = models.TextField(null=True, blank=True)  # Store paths of videos as comma-separated values
+    images = models.ImageField(upload_to='property_images/',null=True, blank=True)  # Store paths of images as comma-separated values
+    videos = models.FileField(upload_to='property_videos/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['mp4', 'mov'])])  # Store paths of videos as comma-separated values
     
     # Feature columns as individual boolean fields
     security = models.BooleanField(default=False)
@@ -45,6 +46,8 @@ class Property(models.Model):
     
     posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 
     def __str__(self):
         return f"{self.property_type1} - {self.city} ({self.post_type})"

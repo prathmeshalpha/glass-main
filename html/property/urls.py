@@ -14,6 +14,7 @@ urlpatterns = [
     path('header/', views.header, name='header'),
     path('footer/', views.footer, name='footer'),
     path('update-profile/', views.update_profile, name='update-profile'),
+    path('update-profile1/', views.update_profile1, name='update-profile1'),
     path('submit-property/',views.submit_property ,name='submitproperty'),
     path('profile/',views.user_profile ,name='profile'),
     

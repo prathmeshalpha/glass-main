@@ -137,6 +137,10 @@ def user_profile(request):
 def update_profile(request):
     return render(request, 'update-profile.html')
 
+@login_required
+def update_profile1(request):
+    return render(request, 'update-profile-demo.html')
+
 # View for the header
 def header(request):
     return render(request, 'headerall.html')

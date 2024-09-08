@@ -1,0 +1,615 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sheltos - Signup wizard page">
+    <meta name="keywords" content="sheltos">
+    <meta name="author" content="sheltos">
+    <link rel="icon" href="{% static 'images/favicon.png'%}" type="image/x-icon" />
+    <title>Sheltos - Signup wizard page</title>
+
+   <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800,800i"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i" rel="stylesheet">
+
+    <!-- animate css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css'%}">
+    
+    <!-- Template css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/color1.css'%}">
+
+</head>
+
+<body>
+
+    <!-- Loader start -->
+    <div class="loader-wrapper">
+        <div class="row loader-img">
+            <div class="col-12">
+                <img src="{% static 'images/loader/loader-2.gif'%}" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Loader end -->
+
+    <!-- header start -->
+    
+    <!--  header end -->
+
+
+    <!-- breadcrumb start -->
+    <section class="breadcrumb-section p-0">
+        <img src="{% static 'images/inner-background.jpg'%}" class="bg-img img-fluid" alt="">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <div>
+                    <h2>Sign up wizard</h2>
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Sign up wizard</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb end -->
+
+    <!-- sign up section start -->
+    <section class="property-wizard horizontal-wizard">
+        <div class="container">
+            <div class="row wizard-box">
+                <div class="col-lg-8 col-sm-10">
+                    <div class="wizard-step-container theme-card">
+                        <ul class="wizard-steps">
+                            <li class="step-container step-1 active">
+                                <div class="media">
+                                    <div class="step-icon">
+                                        <i data-feather="check"></i>
+                                        <span>1</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5>Get started</h5>
+                                        <h6>Account information</h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="step-container step-2">
+                                <div class="media">
+                                    <div class="step-icon">
+                                        <i data-feather="check"></i>
+                                        <span>2</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5>Location</h5>
+                                        <h6>Set your address</h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="step-container step-3">
+                                <div class="media">
+                                    <div class="step-icon">
+                                        <i data-feather="check"></i>
+                                        <span>3</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5>Complete</h5>
+                                        <h6>Successfully submitted</h6>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <form action="">
+                        <div class="wizard-form-details log-in">
+                            <div class="wizard-step-1 d-block">
+                                <div class="title-3 text-start">
+                                    <h2>Get started</h2>
+                                </div>
+                                <div class="row needs-validation" id="needs-validation" novalidate="" >
+                                    
+                                    <div class="form-group col-md-12">
+                                        <div class="input-group">
+                                            <div class="input-group-text">
+                                                <i data-feather="user"></i>
+                                            </div>
+                                            <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="first-name" 
+                                            name="firstname" 
+                                            placeholder="Enter your Name" 
+                                            required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div class="input-group">
+                                            <div class="input-group-text">
+                                                <i data-feather="phone"></i>
+                                            </div>
+                                            <input
+                                                class="form-control" 
+                                                name="mobnumber" 
+                                                id="tbNumbers" 
+                                                oninput="maxLengthCheck(this)"
+                                                type = "tel"
+                                                onkeypress="javascript:return isNumber(event)"
+                                                maxlength = "10"
+                                                placeholder="Enter your phone number"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div class="input-group">
+                                            <div class="input-group-text">
+                                                <i data-feather="mail"></i>
+                                            </div>
+                                            <input 
+                                            type="email" 
+                                            class="form-control" 
+                                            id="email" 
+                                            placeholder="e.g,demo@gmail.com" 
+                                            required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <div class="input-group">
+                                            <div class="input-group-text">
+                                                <i data-feather="lock"></i>
+                                            </div>
+                                            <input 
+                                            type="password" 
+                                            id="pwd-input" 
+                                            class="form-control" 
+                                            placeholder="Password" 
+                                            maxlength = "8" 
+                                            required>
+                                            <div class="input-group-text">
+                                                <i id="pwd-icon" class="far fa-eye-slash"></i>
+                                            </div>
+                                        </div>
+                                        <div class="important-note mb-4">
+                                            password should be a minimum of 8 characters and should contains letters and numbers
+                                        </div>
+                                        <div class="text-end">
+                                            <p>Alerady have an account ? 
+                                                <a href="login.html" class="btn btn-dashed btn-pill color-2">Log in</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="next-btn text-end col-sm-12">
+                                        <button type="submit" class="btn btn-gradient color-2 next1 btn-pill">Next <i class="fas fa-arrow-right ms-2"></i></button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="wizard-step-2 d-none">
+                                <div class="title-3 text-start">
+                                    <h2>Add your Location</h2>
+                                </div>
+                                <div class="row" id="needs-validation1" novalidate="" >
+                                    <div class="form-group col-md-12">
+                                        <div class="input-group">
+                                            <div class="input-group-text">
+                                                <i data-feather="map-pin"></i>
+                                            </div>
+                                            <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="address" 
+                                            placeholder="Enter your Address" 
+                                            required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div class="input-group">
+                                            <div class="input-group-text">
+                                                <i data-feather="map-pin"></i>
+                                            </div>
+                                            <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="city_name" 
+                                            placeholder="Enter your city" 
+                                            required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div class="input-group">
+                                            <div class="input-group-text">
+                                                <i data-feather="map-pin"></i>
+                                            </div>
+                                            <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="state_name" 
+                                            placeholder="Enter your state" 
+                                            required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div class="input-group">
+                                            <div class="input-group-text">
+                                                <i data-feather="map"></i>
+                                            </div>
+                                            <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="country_name" 
+                                            placeholder="Enter your country" 
+                                            required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div class="input-group">
+                                            <div class="input-group-text">
+                                                <i data-feather="map-pin"></i>
+                                            </div>
+                                            <input 
+                                            type="number" 
+                                            class="form-control" 
+                                            id="pin_code" 
+                                            placeholder="Enter your pin code" 
+                                            required>
+                                        </div>
+                                    </div>
+                                    <div class="next-btn d-flex col-sm-12">
+                                        <button type="button" class="btn btn-dashed color-2 prev1 btn-pill"><i class="fas fa-arrow-left me-2"></i> Previous</button>
+                                        <button type="submit" class="btn btn-gradient color-2 next2 btn-pill">Next <i class="fas fa-arrow-right ms-2"></i></button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="wizard-step-3 d-none">
+                                <div class="title-3 text-start">
+                                    <h2>complete details</h2>
+                                </div>
+                                <div class="input-data">
+                                    <div class="account-content">
+                                        <h3>Account information</h3>
+                                        <ul>
+                                            <li>Name : <span class="first_name">test</span></li>
+                                            <li>phone number : <span class="phone_number">64847654</span></li>
+                                            <li>Email : <span class="email_add">test@gmail.com</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="account-content">
+                                        <h3>Location Details</h3>
+                                        <ul>
+                                            <li>Address : <span class="address-type">test</span></li>
+                                            <li>city : <span class="city-name">test</span></li>
+                                            <li>state : <span class="state-name">test</span></li>
+                                            <li>country : <span class="country-name">test</span></li>
+                                            <li>pincode : <span class="pin-code">test</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="next-btn d-flex">
+                                    <button type="button" class="btn btn-dashed color-2 prev2 btn-pill"><i class="fas fa-arrow-left me-2"></i> Previous</button>
+                                    <button type="button" class="btn btn-gradient color-2 next3 btn-pill">submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- sign up section end -->
+
+    <!-- footer start -->
+    <footer>
+        <div class="footer footer-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3">
+                        <div class="footer-details text-center">
+                            <a href="https://themes.pixelstrap.com/sheltos/index.html">
+                                <img src="{% static 'images/logo/footer-logo.png'%}" alt="">
+                            </a>
+                            <p>Elegant retreat in a quiet Coral Gables setting. This home provides
+                                wonderful entertaining spaces with a chef kitchen opening
+                            </p>
+                            <h6>Contact us</h6>
+                            <ul class="icon-list">
+                                <li><a href="contact-3.html"><i class="fas fa-map-marker-alt"></i></a></li>
+                                <li><a href="contact-3.html"><i class="fas fa-phone-alt"></i></a></li>
+                                <li><a href="signup.html"><i class="fas fa-envelope"></i></a></li>
+                                <li><a href="contact-3.html"><i class="fas fa-globe"></i></a></li>
+                                <li><a href="contact-3.html"><i class="fas fa-wifi"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-9">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4">
+                                <div class="footer-links footer-left-space">
+                                    <h5 class="footer-title ">Useful links
+                                        <span class="according-menu"><i class="fas fa-chevron-down"></i></span>
+                                    </h5>
+                                    <ul class="footer-content">
+                                        <li>
+                                            <a href="about-us-2.html">About us</a>
+                                        </li>
+                                        <li>
+                                            <a href="grid-2.html">New Arrivals</a>
+                                        </li>
+                                        <li>
+                                            <a href="agency-grid.html">Agency</a>
+                                        </li>
+                                        <li>
+                                            <a href="faq.html">Faq</a>
+                                        </li>
+                                        <li>
+                                            <a href="contact-2.html">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4">
+                                <div class="footer-links">
+                                    <h5 class="footer-title">feature
+                                        <span class="according-menu"><i class="fas fa-chevron-down"></i></span>
+                                    </h5>
+                                    <ul class="footer-content">
+                                        <li>
+                                            <a href="services.html">Services</a>
+                                        </li>
+                                        <li>
+                                            <a href="agency-list.html">Agency</a>
+                                        </li>
+                                        <li>
+                                            <a href="agent-grid.html">Agents</a>
+                                        </li>
+                                        <li>
+                                            <a href="pricing.html">Pricing</a>
+                                        </li>
+                                        <li>
+                                            <a href="user-favourites.html">Favourites</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4">
+                                <div class="footer-links">
+                                    <h5 class="footer-title">Social
+                                        <span class="according-menu"><i class="fas fa-chevron-down"></i></span>
+                                    </h5>
+                                    <ul class="footer-content">
+                                        <li>
+                                            <a href="https://www.facebook.com/">Facebook</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.instagram.com/">Instagram</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://twitter.com/">Twitter</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://login.mailchimp.com/">Mail chimp</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://accounts.google.com/">Gmail</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="footer-links">
+                                    <h5 class="footer-title">subscribe
+                                        <span class="according-menu"><i class="fas fa-chevron-down"></i></span>
+                                    </h5>
+                                    <div class="footer-content">
+                                        <p class="mb-0">
+                                            Real estate investing involves the purchase, Improvement of realty, management and sale or rental of real estate for profit.
+                                        </p>
+                                        <form>
+                                            <div class="input-group">
+                                                <input type="email" class="form-control" placeholder="Email Address" required>
+                                                <span class="input-group-apend">
+                                                    <button type="submit" class="input-group-text" id="basic-addon2"><i
+                                                        class="fas fa-paper-plane"></i></button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom-blog">
+                            <div class="slick-between">
+                                <div class="footer-slider">
+                                    <div>
+                                        <div class="media">
+                                            <a href="blog-detail-left-sidebar.html">
+                                                <div class="img-overlay">
+                                                        <img src="{% static 'images/footer/1.jpg'%}" alt="">
+                                                </div>
+                                            </a>
+                                            <div class="media-body">
+                                               <h6><a href="blog-detail-left-sidebar.html">Real Estate Industry</a></h6>
+                                                <p class="font-roboto"><a href="blog-detail-right-sidebar.html">An Electronic version of the real estate industry.</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="media">
+                                            <a href="blog-detail-left-sidebar.html">
+                                                <div class="img-overlay">
+                                                        <img src="{% static 'images/footer/2.jpg'%}" alt="">
+                                                </div>
+                                            </a>
+                                            <div class="media-body">
+                                                <h6><a href="blog-detail-left-sidebar.html">Entertaining Spaces</a></h6>
+                                                <p class="font-roboto"><a href="blog-detail-right-sidebar.html">This home provides
+                                                    wonderful entertaining spaces.</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="media">
+                                            <a href="blog-detail-left-sidebar.html">
+                                                <div class="img-overlay">
+                                                        <img src="{% static 'images/footer/3.jpg'%}" alt="">
+                                                </div>
+                                            </a>
+                                            <div class="media-body">
+                                               <h6><a href="blog-detail-left-sidebar.html">Estate Agents Work</a></h6>
+                                                <p class="font-roboto"><a href="blog-detail-right-sidebar.html">The market of buying and selling real estate.</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="media">
+                                            <a href="blog-detail-left-sidebar.html">
+                                                <div class="img-overlay">
+                                                        <img src="{% static 'images/footer/4.jpg'%}" alt="">
+                                                </div>
+                                            </a>
+                                            <div class="media-body">
+                                                <h6><a href="blog-detail-left-sidebar.html">Increase in Demand</a></h6>
+                                                <p class="font-roboto"><a href="blog-detail-right-sidebar.html">The effects of an increase demand in short run.</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sub-footer footer-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-md-6">
+                        <div class="copy-right">
+                            <p class="mb-0">Copyright 2022, All Right Reserved Sheltos</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 text-end">
+                        <ul class="sub-footer-link">
+                            <li><a href="layout-2.html">Home</a></li>
+                            <li><a href="terms-conditions.html">Terms</a></li>
+                            <li><a href="privacy-policy.html">Privacy policy</a></li>
+                            <li><a href="contact-2.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+
+    <!-- tap to top start -->
+    <div class="tap-top">
+        <div>
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </div>
+    <!-- tap to top end -->
+
+    <!-- customizer start -->
+    <div class="customizer-wrap">
+        <div class="customizer-links">
+            <i data-feather="settings"></i>
+        </div>
+        <div class="customizer-contain custom-scrollbar">
+            <div class="setting-back">
+                <i data-feather="x"></i>
+            </div>
+            <div class="layouts-settings">
+                <div class="customizer-title">
+                    <h6 class="color-2">Layout type</h6>
+                </div>
+                <div class="option-setting">
+                    <span>Light</span>
+                    <label class="switch">
+                        <input type="checkbox" name="chk1" value="option" class="setting-check"><span class="switch-state"></span>
+                    </label>
+                    <span>Dark</span>
+                </div>
+            </div>
+            <div class="layouts-settings">
+                <div class="customizer-title">
+                    <h6 class="color-2">Layout Direction</h6>
+                </div>
+                <div class="option-setting">
+                    <span>LTR</span>
+                    <label class="switch">
+                        <input type="checkbox" name="chk2" value="option" class="setting-check1"><span class="switch-state"></span>
+                    </label>
+                    <span>RTL</span>
+                </div>
+            </div>
+            <div class="layouts-settings">
+                <div class="customizer-title">
+                    <h6 class="color-2">Unlimited Color</h6>
+                </div>
+                <div class="option-setting unlimited-color-layout">
+                    <div class="form-group">
+                        <label for="ColorPicker3">color 3</label>
+                        <input id="ColorPicker3" type="color" value="#ff5c41" name="Default">
+                    </div> 
+                    <div class="form-group">
+                        <label for="ColorPicker4">color 4</label>
+                        <input id="ColorPicker4" type="color" value="#ff8c41" name="Default">
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- customizer end -->
+
+    <!-- latest jquery-->
+    <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
+
+    <!-- popper js-->
+    <script src="{% static 'js/popper.min.js'%}"></script>
+
+    <!-- Bootstrap js-->
+    <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+
+    <!-- feather icon js-->
+    <script src="{% static 'js/feather-icon/feather.min.js'%}"></script>
+    <script src="{% static 'js/feather-icon/feather-icon.js'%}"></script>
+
+    <!-- slick js -->
+    <script src="{% static 'js/slick.js'%}"></script>
+    <script src="{% static 'js/slick-animation.min.js'%}"></script>
+    <script src="{% static 'js/custom-slick.js'%}"></script>
+
+    <!-- sweetalert js -->
+    <script src="{% static 'js/sweetalert.min.js'%}"></script>
+
+    <!-- notify js -->
+    <script src="{% static 'js/bootstrap-notify.min.js'%}"></script>
+
+    <!-- wizard js -->
+    <script src="{% static 'js/signup-wizard.js'%}"></script>
+
+    <!-- login js -->
+    <script src="{% static 'js/login.js'%}"></script>
+
+    <!-- Template js-->
+    <script src="{% static 'js/script.js'%}"></script>
+
+    <!-- Customizer js-->
+    <script src="{% static 'js/customizer.js'%}"></script>
+
+    <!-- Color-picker js-->
+    <script src="{% static 'js/color/single-property.js'%}"></script>
+
+</body>
+
+</html>
