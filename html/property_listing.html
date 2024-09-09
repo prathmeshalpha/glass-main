@@ -10,7 +10,7 @@
     <meta name="description" content="Sheltos - Property Listing left sidebar page">
     <meta name="keywords" content="sheltos">
     <meta name="author" content="sheltos">
-    <link rel="icon" href="static/images/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="{% static 'images/favicon.png'%}" type="image/x-icon" />
     <title>Sheltos - Property Listing left sidebar page</title>
 
    <!--Google font-->
@@ -21,23 +21,23 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i" rel="stylesheet">
 
     <!-- magnific css -->
-    <link rel="stylesheet" type="text/css" href="static/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css'%}">
 
     <!-- range slider css -->
-    <link rel="stylesheet" type="text/css" href="static/css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.css'%}">
 
     <!-- animate css -->
-    <link rel="stylesheet" type="text/css" href="static/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css'%}">
 
     <!-- Template css -->
-    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="static/css/color1.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/color1.css'%}">
 
     <script>
       
         // Function to load the header component
         function loadHeader() {
-            fetch("headerall.html")
+            fetch("{% url 'header'%}")
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('header-container').innerHTML = data;
@@ -70,7 +70,7 @@
     <div class="loader-wrapper">
         <div class="row loader-img">
             <div class="col-12">
-                <img src="static/images/loader/loader-2.gif" class="img-fluid" alt="">
+                <img src="{% static 'images/loader/loader-2.gif'%}" class="img-fluid" alt="">
             </div>
         </div>
     </div>
@@ -83,7 +83,7 @@
 
     <!-- breadcrumb start -->
     <section class="breadcrumb-section p-0">
-        <img src="static/images/inner-background.jpg" class="bg-img img-fluid" alt="">
+        <img src="{% static 'images/inner-background.jpg'%}" class="bg-img img-fluid" alt="">
         <div class="container">
             <div class="breadcrumb-content">
                 <div>
@@ -273,7 +273,7 @@
                                     <ul>
                                         <li>
                                             <div class="media">
-                                                <img src="static/images/property/9.jpg" class="img-fluid" alt="">
+                                                <img src="{% static 'images/property/9.jpg'%}" class="img-fluid" alt="">
                                                 <div class="media-body">
                                                     <h5>Sea Breezes</h5>
                                                     <span>$9800 / <span>Month</span></span>
@@ -282,7 +282,7 @@
                                         </li>
                                         <li>
                                             <div class="media">
-                                                <img src="static/images/property/10.jpg" class="img-fluid" alt="">
+                                                <img src="{% static 'images/property/10.jpg'%}" class="img-fluid" alt="">
                                                 <div class="media-body">
                                                     <h5>Orchard House</h5>
                                                     <span>$7500 / <span>Month</span></span>
@@ -291,7 +291,7 @@
                                         </li>
                                         <li>
                                             <div class="media">
-                                                <img src="static/images/property/11.jpg" class="img-fluid" alt="">
+                                                <img src="{% static 'images/property/11.jpg'%}" class="img-fluid" alt="">
                                                 <div class="media-body">
                                                     <h5>Neverland</h5>
                                                     <span>$5000 / <span>Month</span></span>
@@ -327,9 +327,9 @@
                                 </li>
                                 <li class="collection-grid-view">
                                     <ul>
-                                        <li><img src="static/images/icon/2.png" alt="" class="product-2-layout-view"></li>
-                                        <li><img src="static/images/icon/3.png" alt="" class="product-3-layout-view"></li>
-                                        <li><img src="static/images/icon/4.png" alt="" class="product-4-layout-view"></li>
+                                        <li><img src="{% static 'images/icon/2.png'%}" alt="" class="product-2-layout-view"></li>
+                                        <li><img src="{% static 'images/icon/3.png'%}" alt="" class="product-3-layout-view"></li>
+                                        <li><img src="{% static 'images/icon/4.png'%}" alt="" class="product-4-layout-view"></li>
                                     </ul>
                                 </li>
                                 <li class="grid-btn">
@@ -358,18 +358,18 @@
                                     <div class="property-image">
                                         <div class="property-slider">
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/10.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/10.jpg'%}" class="bg-img" alt="">
                                             </a>
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/5.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/5.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/3.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/3.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/4.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/4.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                         </div>
@@ -416,19 +416,19 @@
                                     <div class="property-image">
                                         <div class="property-slider">
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/11.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/11.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/4.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/4.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/6.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/6.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/2.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/2.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                         </div>
@@ -474,19 +474,19 @@
                                     <div class="property-image">
                                         <div class="property-slider">
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/14.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/14.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/6.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/6.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/10.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/10.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/9.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/9.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                         </div>
@@ -534,19 +534,19 @@
                                     <div class="property-image">
                                         <div class="property-slider">
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/15.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/15.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/4.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/4.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/6.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/6.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                             <a href="javascript:void(0)">
-                                                <img src="static/images/property/9.jpg" class="bg-img" alt="">
+                                                <img src="{% static 'images/property/9.jpg'%}" class="bg-img" alt="">
                                                 
                                             </a>
                                         </div>
@@ -680,46 +680,46 @@
     <!-- customizer end -->
 
     <!-- latest jquery-->
-    <script src="static/js/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
 
     <!-- popper js-->
-    <script src="static/js/popper.min.js"></script>
+    <script src="{% static 'js/popper.min.js'%}"></script>
 
     <!-- magnific js -->
-    <script src="static/js/jquery.magnific-popup.js"></script>
-    <script src="static/js/zoom-gallery.js"></script>
+    <script src="{% static 'js/jquery.magnific-popup.js'%}"></script>
+    <script src="{% static 'js/zoom-gallery.js'%}"></script>
 
     <!-- Bootstrap js-->
-    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
 
     <!-- feather icon js-->
-    <script src="static/js/feather-icon/feather.min.js"></script>
-    <script src="static/js/feather-icon/feather-icon.js"></script>
+    <script src="{% static 'js/feather-icon/feather.min.js'%}"></script>
+    <script src="{% static 'js/feather-icon/feather-icon.js'%}"></script>
 
     <!-- range slider js -->
-    <script src="static/js/jquery-ui.js"></script>
-    <script src="static/js/jquery.ui.touch-punch.min.js"></script>
-    <script src="static/js/range-slider.js"></script>
+    <script src="{% static 'js/jquery-ui.js'%}"></script>
+    <script src="{% static 'js/jquery.ui.touch-punch.min.js'%}"></script>
+    <script src="{% static 'js/range-slider.js'%}"></script>
 
     <!-- slick js -->
-    <script src="static/js/slick.js"></script>
-    <script src="static/js/slick-animation.min.js"></script>
-    <script src="static/js/custom-slick.js"></script>
+    <script src="{% static 'js/slick.js'%}"></script>
+    <script src="{% static 'js/slick-animation.min.js'%}"></script>
+    <script src="{% static 'js/custom-slick.js'%}"></script>
 
     <!-- wow js-->
-    <script src="static/js/wow.min.js"></script>
+    <script src="{% static 'js/wow.min.js'%}"></script>
 
     <!--grid js -->
-    <script src="static/js/grid-list.js"></script>
+    <script src="{% static 'js/grid-list.js'%}"></script>
 
     <!-- Template js-->
-    <script src="static/js/script.js"></script>
+    <script src="{% static 'js/script.js'%}"></script>
 
     <!-- Customizer js-->
-    <script src="static/js/customizer.js"></script>
+    <script src="{% static 'js/customizer.js'%}"></script>
 
     <!-- Color-picker js-->
-    <script src="static/js/color/template-color.js"></script>
+    <script src="{% static 'js/color/template-color.js'%}"></script>
 
 </body>
 
