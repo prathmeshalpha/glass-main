@@ -51,8 +51,8 @@
                                             <a href="#" class="nav-link menu-title">Home</a>  
                                         </li>
                                         <li class="dropdown">
-                                            <a href="javascript:void(0)" class="nav-link menu-title">Listing</a>
-                                            <ul class="nav-submenu menu-content">
+                                            <a href="list-left-sidebar.html" class="nav-link menu-title">Listing</a>
+                                            <!-- <ul class="nav-submenu menu-content">
                                                 <li>
                                                     <a href="javascript:void(0)" class="menu-title-level1">Grid view</a>
                                                     <ul class="nav-sub-childmenu level1">
@@ -101,9 +101,9 @@
                                                         
                                                     </ul>
                                                 </li>
-                                            </ul>
+                                            </ul> -->
                                         </li>
-                                        <li class="dropdown">
+                                        <!-- <li class="dropdown">
                                             <a href="javascript:void(0)" class="nav-link menu-title">property</a>
                                             <ul class="nav-submenu menu-content">
                                                 
@@ -112,8 +112,8 @@
                                                 <li><a href="templates/single-property-8.html">image box</a></li>
                                                 
                                             </ul>
-                                        </li>
-                                        <li class="mega-menu">
+                                        </li> -->
+                                        <!-- <li class="mega-menu">
                                             <a href="javascript:void(0)" class="nav-link menu-title">
                                                 pages
                                             </a>
@@ -186,7 +186,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li> -->
                                         <!-- <li class="dropdown">
                                             <a href="javascript:void(0)" class="nav-link menu-title">Modules</a>
                                             <ul class="nav-submenu menu-content">
@@ -220,7 +220,7 @@
                                                 </li>
                                             </ul>
                                         </li> -->
-                                        <li class="dropdown">
+                                        <!-- <li class="dropdown">
                                             <a href="javascript:void(0)" class="nav-link menu-title">agent</a>
                                             <ul class="nav-submenu menu-content">
                                                 <li><a href="templates/agent-profile.html">Agent Profile</a></li>
@@ -228,14 +228,17 @@
                                                 <li><a href="templates/agent-list.html">Agent List</a></li>
                                                 <li><a href="templates/submit-property.html">Submit property <span class="label">New</span></a></li>
                                             </ul>
-                                        </li>
+                                        </li> -->
                                         <li class="dropdown">
-                                            <a href="javascript:void(0)" class="nav-link menu-title">Contact</a>
-                                            <ul class="nav-submenu menu-content">
+                                            <a href="contact-2.html" class="nav-link menu-title">Contact</a>
+                                            <!-- <ul class="nav-submenu menu-content">
                                                 <li><a href="templates/contact-1.html">Contact us 1</a></li>
                                                 <li><a href="templates/contact-2.html">Contact us 2</a></li>
                                                 <li><a href="templates/contact-3.html">Contact us 3</a></li>
-                                            </ul>
+                                            </ul> -->
+                                        </li>
+                                        <li>
+                                            <a href="about-us.html" class="nav-link menu-title">About us</a>                                                                    
                                         </li>
                                     </ul>
                                 </div>
@@ -265,7 +268,7 @@
                                         <i data-feather="user"></i> Profile
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="profile.html">View Profile</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'agent-profile' %}">View Profile</a></li>
                                         <li><a class="dropdown-item" href="{% url 'logout' %}" id="logoutButton">Logout</a></li>
                                     </ul>
                                 </li>
