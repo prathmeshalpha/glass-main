@@ -57,7 +57,7 @@
                                             <a href="#" class="nav-link menu-title">Home</a>  
                                         </li>
                                         <li class="dropdown">
-                                            <a href="list-left-sidebar.html" class="nav-link menu-title">Listing</a>
+                                            <a href="{% url 'property-listing' %}" class="nav-link menu-title">Listing</a>
                                             <!-- <ul class="nav-submenu menu-content">
                                                 <li>
                                                     <a href="javascript:void(0)" class="menu-title-level1">Grid view</a>
@@ -236,7 +236,7 @@
                                             </ul>
                                         </li> -->
                                         <li class="dropdown">
-                                            <a href="contact-2.html" class="nav-link menu-title">Contact</a>
+                                            <a href="{% url 'contact' %}" class="nav-link menu-title">Contact</a>
                                             <!-- <ul class="nav-submenu menu-content">
                                                 <li><a href="templates/contact-1.html">Contact us 1</a></li>
                                                 <li><a href="templates/contact-2.html">Contact us 2</a></li>
@@ -245,7 +245,7 @@
                                         </li>
                                         <!-- i want drop down for city here -->
                                         <li>
-                                            <a href="about-us.html" class="nav-link menu-title">About us</a>                                                                    
+                                            <a href="{% url 'about' %}" class="nav-link menu-title">About us</a>                                                                    
                                         </li>
                                         <li>
                                             <!-- Single searchable dropdown -->
@@ -289,7 +289,7 @@
                             </li>
                             <li>
                                 
-                                <a href="submit-property"><i class="fas fa-home white-icon" ></i></a>
+                                <a href="{% url 'submit_property' %}"><i class="fas fa-home white-icon" ></i></a>
                             </li>
                             
                             {% if user.is_authenticated %}
