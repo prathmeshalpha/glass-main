@@ -16,7 +16,6 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),
     path('update-profile/', views.update_profile, name='update-profile'),
-    path('update-profile1/', views.update_profile1, name='update-profile1'),
     path('submit_property/',views.submit_property ,name='submit_property'),
     path('profile/',views.user_profile ,name='profile'),
     path('property-listing/',views.property_listing ,name='property-listing'),

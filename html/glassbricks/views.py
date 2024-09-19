@@ -66,7 +66,7 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 # View for property submission
-
+@login_required
 def submit_property(request):
     if request.method == 'POST':
         property_form = PropertyForm(request.POST, request.FILES)
@@ -129,7 +129,7 @@ def submit_property(request):
 def home(request):
     return render(request, 'index.html')
 
-
+@login_required
 def user_profile(request):
     return render(request, 'user-profile.html')
 
@@ -141,16 +141,17 @@ def about(request):
     return render(request, 'about-us.html')
 
 
+@login_required
 def update_profile(request):
     return render(request, 'update-profile.html')
 
 
+@login_required
 def property_listing(request):
     return render(request, 'property_listing.html')
 
 
-def update_profile1(request):
-    return render(request, 'update-profile-demo.html')
+
 
 # View for the header
 def header(request):
@@ -180,6 +181,7 @@ def signin(request):
     return render(request, 'signin.html', {'form': form})
 
 # View for user logout
+@login_required
 def user_logout(request):
     logout(request)
     return redirect('signin')
