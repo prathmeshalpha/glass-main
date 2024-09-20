@@ -61,6 +61,30 @@
         });
         
             </script> 
+
+ <!-- jQuery UI CSS (for slider styles) -->
+ <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+ <!-- Basic inline CSS for slider visibility -->
+ <style>
+     .theme-range-2 {
+         width: 100%; /* Ensure the slider takes full width */
+         margin: 20px 0;
+     }
+     .ui-slider-horizontal {
+         height: 10px; /* Custom height for slider track */
+         background: #ddd; /* Lighter background */
+         border-radius: 5px;
+     }
+     .ui-slider-handle {
+         height: 20px; /* Handle height */
+         width: 20px;  /* Handle width */
+         background-color: #007bff; /* Blue handle color */
+         border-radius: 50%; /* Circular handle */
+         border: none;
+     }
+ </style>
+
 </head>
 
 <body>
@@ -242,18 +266,56 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="price-range">
-                                            <label for="amount">Price : </label>
-                                            <input type="text" id="amount" readonly>
-                                            <div id="slider-range" class="theme-range-2"></div>
+                                            <label for="price-amount">Price: </label>
+                                            <input type="text" id="price-amount" readonly style="border:0; font-weight:bold;">
+                                            <div id="price-slider" class="theme-range-2"></div>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-12">
                                         <div class="price-range">
-                                            <label for="amount">Area : </label>
-                                            <input type="text" id="amount1" readonly>
-                                            <div id="slider-range1" class="theme-range-2"></div>
+                                            <label for="area-amount">Area: </label>
+                                            <input type="text" id="area-amount" readonly style="border:0; font-weight:bold;">
+                                            <div id="area-slider" class="theme-range-2"></div>
                                         </div>
                                     </div>
+                                    
+                                    <!-- jQuery and jQuery UI -->
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+                                    
+                                    <script>
+                                        // Price Range Slider
+                                        $(function() {
+                                            $("#price-slider").slider({
+                                                range: true,
+                                                min: 0,
+                                                max: 1000000, // Adjust as needed
+                                                values: [200000, 800000], // Default starting values
+                                                slide: function(event, ui) {
+                                                    $("#price-amount").val("₹" + ui.values[0].toLocaleString() + " - ₹" + ui.values[1].toLocaleString());
+                                                }
+                                            });
+                                            $("#price-amount").val("₹" + $("#price-slider").slider("values", 0).toLocaleString() +
+                                                " - ₹" + $("#price-slider").slider("values", 1).toLocaleString());
+                                        });
+                                    
+                                        // Area Range Slider
+                                        $(function() {
+                                            $("#area-slider").slider({
+                                                range: true,
+                                                min: 0,
+                                                max: 5000, // Adjust as needed for area
+                                                values: [500, 2500], // Default starting values
+                                                slide: function(event, ui) {
+                                                    $("#area-amount").val(ui.values[0] + " sq ft - " + ui.values[1] + " sq ft");
+                                                }
+                                            });
+                                            $("#area-amount").val($("#area-slider").slider("values", 0) + " sq ft - " +
+                                                $("#area-slider").slider("values", 1) + " sq ft");
+                                        });
+                                    </script>
+                                    
                                     <div class="col-12">
                                         <a href="list-right-sidebar.html" class="btn btn-gradient color-2 btn-block btn-pill mt-2">Search </a>
                                     </div>
