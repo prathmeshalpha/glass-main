@@ -176,12 +176,15 @@
                                 <h2>General</h2>
                                 <p class="font-roboto">Basic information about property</p>
                                 <div class="row gx-3">
-                                    
+                                    <div class="form-group col-sm-12">  
+                                        <label>Property Name <span class="required">*</span></label>
+                                        <input type="text" class="form-control" name="property_name" id="property_name" placeholder="Property Name" required>
+                                    </div>
                                     <div class="form-group col-sm-6">
                                         <label>You are looking for</label>
                                         <div class="toggle-buttons">
-                                            <button type="button" id="Rent" class="btn btn-outline-primary active">Rent / Lease</button>
-                                            <button type="button" id="Sale" class="btn btn-outline-primary">Sale</button>
+                                            <button type="button" style="border-radius: 0;" id="Rent" class="btn btn-outline-primary active">Rent / Lease</button>
+                                            <button type="button" style="border-radius: 0;" id="Sale" class="btn btn-outline-primary">Sale</button>
                                             <input type="hidden" name="post_type" id="post_type" value="Rent">
                                         </div>
                                     </div>
@@ -189,8 +192,8 @@
                                     <div class="form-group col-sm-6">
                                         <label>And it's a</label>
                                         <div class="toggle-buttons d-flex">
-                                            <button type="button" id="Residential" class="btn btn-outline-primary active me-2">Residential</button>
-                                            <button type="button" id="Commercial" class="btn btn-outline-primary">Commercial</button>
+                                            <button type="button" style="border-radius: 0;" id="Residential" class="btn btn-outline-primary active me-2">Residential</button>
+                                            <button type="button" style="border-radius: 0;" id="Commercial" class="btn btn-outline-primary">Commercial</button>
                                             <input type="hidden" name="property_type1" id="property_type1" value="Residential">
                                         </div>
                                     </div>
@@ -198,18 +201,18 @@
                                     <div class="form-group col-sm-12">
                                         <div id="property-type-buttons">
                                             <div id="residential-options" class="toggle-buttons d-flex">
-                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Apartment" class="btn btn-outline-primary me-2">Apartment</button>
-                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Villa" class="btn btn-outline-primary me-2">Villa</button>
-                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Builder Floor" class="btn btn-outline-primary me-2">Builder Floor</button>
-                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Residential New Project" class="btn btn-outline-primary me-2">New Project</button>
-                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Weekend Homes" class="btn btn-outline-primary">Weekend Homes</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;border-radius: 0px;" type="button" id="Apartment" class="btn btn-outline-primary me-2">Apartment</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;border-radius: 0px;" type="button" id="Villa" class="btn btn-outline-primary me-2">Villa</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;border-radius: 0px;" type="button" id="Builder Floor" class="btn btn-outline-primary me-2">Builder Floor</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;border-radius: 0px;" type="button" id="Residential New Project" class="btn btn-outline-primary me-2">New Project</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;border-radius: 0px;" type="button" id="Weekend Homes" class="btn btn-outline-primary">Weekend Homes</button>
                                                 
                                                 <input type="hidden" name="specific_type1" id="specific_type1" value="Apartment">
                                             </div>
                                             <div id="commercial-options" class="toggle-buttons d-flex d-none">
-                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Office" class="btn btn-outline-primary me-2">Office</button>
-                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Retail" class="btn btn-outline-primary me-2 ">Retail</button>
-                                                <button style="font-size: 13px;padding: 3px 5px 3px;" type="button" id="Commercial New Project" class="btn btn-outline-primary">New Project</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;border-radius: 0px;" type="button" id="Office" class="btn btn-outline-primary me-2">Office</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;border-radius: 0px;" type="button" id="Retail" class="btn btn-outline-primary me-2 ">Retail</button>
+                                                <button style="font-size: 13px;padding: 3px 5px 3px;border-radius: 0px;" type="button" id="Commercial New Project" class="btn btn-outline-primary">New Project</button>
                                                 
                                                 <input type="hidden" name="specific_type2" id="specific_type2" value="Office">
                                             </div>
@@ -288,8 +291,8 @@
                                     <div class="form-group col-sm-5">
                                         <label>Ownership Details <span class="required">*</span></label>
                                         <div class="toggle-buttons" id="poster_detail">
-                                            <button type="button" id="owner" class="btn btn-outline-primary active">Owner</button>
-                                            <button type="button" id="agent" class="btn btn-outline-primary">Agent</button>
+                                            <button type="button" style="border-radius: 0px;" id="owner" class="btn btn-outline-primary active">Owner</button>
+                                            <button type="button" style="border-radius: 0px;" id="agent" class="btn btn-outline-primary">Agent</button>
                                             <input type="hidden" name="ownership" id="poster" value="owner">
                                         </div>
                                     </div>
@@ -357,9 +360,20 @@
                                 
                             </div>
                             <div class="wizard-step-3 d-none">
-                                <h2>Gallery</h2>
+                                <label>Gallery</label>
                                 <p class="font-roboto">Add your property Media</p>
                                 <label>Images</label>
+                                <div class="dropzone" id="form3"  >
+                                    
+                                    <div class="dz-message needsclick">
+                                    <h6>Drop files here or click to upload.</h6>
+                                    <input type="file" name="images" id="images" class="form-control" multiple>
+                                    </div>
+                                </div>
+                                <br>
+                                <label>Floor Plan</label>
+                                <p class="font-roboto">Add your property floor plan</p>
+                                <label>Floor Plan</label>
                                 <div class="dropzone" id="form3"  >
                                     
                                     <div class="dz-message needsclick">
