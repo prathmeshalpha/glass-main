@@ -99,6 +99,7 @@
     </section>
     <!-- breadcrumb end -->
 
+
     <!-- property grid start -->
     <section class="property-section">
         <div class="container">
@@ -115,14 +116,7 @@
                             <div class="advance-card">
                                 <h6>filter</h6>
                                 <div class="row gx-2">
-                                    <div class="col-12">
-                                        <label>You are looking for</label>
-                                        <div class="toggle-buttons">
-                                            <button type="button" style="border-radius: 0;" id="Rent" class="btn btn-outline-primary active">Rent / Lease</button>
-                                            <button type="button" style="border-radius: 0;" id="Sale" class="btn btn-outline-primary">Sale</button>
-                                            <input type="hidden" name="post_type" id="post_type" value="Rent">
-                                        </div>
-                                    </div>
+                                     
                                     <div class="col-12">
                                         <div class="dropdown">
                                             <span class="dropdown-toggle font-rubik"
@@ -143,26 +137,52 @@
                                             <div class="dropdown-menu text-start">
                                                 <a class="dropdown-item" href="javascript:void(0)">Property Type</a>
                                                 <a class="dropdown-item" href="javascript:void(0)">Apartment</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Family House</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Cottage</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Condominium</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Office</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Weekend Home</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Building Floor</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Co -Working Spaces</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">New Project</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Property Location</span> <i
-                                                    class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Property Location</a>
+                                            <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown">
+                                                <span>Property Location</span> <i class="fas fa-angle-down"></i>
+                                            </span>
+                                            <div class="dropdown-menu text-start" id="locationDropdown">
+                                                <!-- Search input inside the dropdown -->
+                                                <input type="text" class="form-control" id="locationSearch" placeholder="Search location..." onkeyup="filterLocations()">
+                                                
+                                                <!-- Dropdown options -->
                                                 <a class="dropdown-item" href="javascript:void(0)">Austria</a>
                                                 <a class="dropdown-item" href="javascript:void(0)">Brazil</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">New york</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">New York</a>
                                                 <a class="dropdown-item" href="javascript:void(0)">USA</a>
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    <script>
+                                        function filterLocations() {
+                                            var input, filter, dropdown, items, i;
+                                            input = document.getElementById("locationSearch");
+                                            filter = input.value.toUpperCase();
+                                            dropdown = document.getElementById("locationDropdown");
+                                            items = dropdown.getElementsByClassName("dropdown-item");
+                                    
+                                            // Loop through all dropdown items and filter based on search query
+                                            for (i = 0; i < items.length; i++) {
+                                                let itemText = items[i].textContent || items[i].innerText;
+                                                if (itemText.toUpperCase().indexOf(filter) > -1) {
+                                                    items[i].style.display = ""; // Show matching items
+                                                } else {
+                                                    items[i].style.display = "none"; // Hide non-matching items
+                                                }
+                                            }
+                                        }
+                                    </script>
+                                    
                                     <div class="col-12">
                                         <div class="dropdown">
                                             <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Max
@@ -173,36 +193,36 @@
                                                 <a class="dropdown-item" href="javascript:void(0)">2</a>
                                                 <a class="dropdown-item" href="javascript:void(0)">3</a>
                                                 <a class="dropdown-item" href="javascript:void(0)">4</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">5</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">6</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">5+</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Studio</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <div class="dropdown">
                                             <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Bed</span> <i
+                                                data-bs-toggle="dropdown"><span>Possession</span> <i
                                                     class="fas fa-angle-down"></i></span>
                                             <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Bed</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">1</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">2</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">3</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">4</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Possession</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Under Construction</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Ready to move</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">One month</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Three month</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <div class="dropdown">
                                             <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Bath</span> <i
+                                                data-bs-toggle="dropdown"><span>Floor</span> <i
                                                     class="fas fa-angle-down"></i></span>
                                             <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Bath</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">1</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">2</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">3</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">4</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Floor</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Ground</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Lower</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Middle</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">High</a>
                                             </div>
                                         </div>
                                     </div>
@@ -259,56 +279,8 @@
                                 </div>
                             </div>
                             
-                            <div class="advance-card">
-                                <h6>Contact Info</h6>
-                                <div class="category-property">
-                                    <ul>
-                                        <li>
-                                            <i data-feather="map-pin" class="me-2"></i>A-32, Albany, Newyork.
-                                        </li>
-                                        <li>
-                                            <i data-feather="phone-call" class="me-2"></i>(+066) 518 - 457 - 5181
-                                        </li>
-                                        <li>
-                                            <i data-feather="mail" class="me-2"></i>Contact@gmail.com
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="advance-card">
-                                <h6>Recently Added</h6>
-                                <div class="recent-property">
-                                    <ul>
-                                        <li>
-                                            <div class="media">
-                                                <img src="{% static 'images/property/9.jpg'%}" class="img-fluid" alt="">
-                                                <div class="media-body">
-                                                    <h5>Sea Breezes</h5>
-                                                    <span>$9800 / <span>Month</span></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="media">
-                                                <img src="{% static 'images/property/10.jpg'%}" class="img-fluid" alt="">
-                                                <div class="media-body">
-                                                    <h5>Orchard House</h5>
-                                                    <span>$7500 / <span>Month</span></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="media">
-                                                <img src="{% static 'images/property/11.jpg'%}" class="img-fluid" alt="">
-                                                <div class="media-body">
-                                                    <h5>Neverland</h5>
-                                                    <span>$5000 / <span>Month</span></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -622,6 +594,7 @@
         </div>
     </section>
     <!-- property grid end -->
+    
 
   <!-- footer start -->
   <div id="footer-container"></div>
@@ -636,7 +609,7 @@
     <!-- tap to top end -->
 
     <!-- customizer start -->
-    <div class="customizer-wrap">
+    <!-- <div class="customizer-wrap">
         <div class="customizer-links">
             <i data-feather="settings"></i>
         </div>
@@ -684,7 +657,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- customizer end -->
 
     <!-- latest jquery-->
