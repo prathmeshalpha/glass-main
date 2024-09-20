@@ -146,7 +146,7 @@ def update_profile(request):
     return render(request, 'update-profile.html')
 
 
-@login_required
+
 def property_listing(request):
     return render(request, 'property_listing.html')
 

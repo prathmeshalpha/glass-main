@@ -66,13 +66,13 @@
 <body>
 
     <!-- Loader start -->
-    <div class="loader-wrapper">
+    <!-- <div class="loader-wrapper">
         <div class="row loader-img">
             <div class="col-12">
                 <img src="{% static 'images/loader/loader-2.gif'%}" class="img-fluid" alt="">
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Loader end -->
 
       <!-- header start -->
@@ -115,6 +115,14 @@
                             <div class="advance-card">
                                 <h6>filter</h6>
                                 <div class="row gx-2">
+                                    <div class="col-12">
+                                        <label>You are looking for</label>
+                                        <div class="toggle-buttons">
+                                            <button type="button" style="border-radius: 0;" id="Rent" class="btn btn-outline-primary active">Rent / Lease</button>
+                                            <button type="button" style="border-radius: 0;" id="Sale" class="btn btn-outline-primary">Sale</button>
+                                            <input type="hidden" name="post_type" id="post_type" value="Rent">
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div class="dropdown">
                                             <span class="dropdown-toggle font-rubik"
