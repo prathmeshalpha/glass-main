@@ -10,6 +10,7 @@ class CustomUser(AbstractUser):
         return self.username
 
 class Property(models.Model):
+    property_name = models.CharField(max_length=255)
     post_type = models.CharField(max_length=10)
     property_type1 = models.CharField(max_length=15)
     specific_type1 = models.CharField(max_length=20, null=True, blank=True)
@@ -22,16 +23,17 @@ class Property(models.Model):
     bathrooms = models.IntegerField(null=True, blank=True)
     status = models.CharField(max_length=20, blank=True, null=True)
     ownership = models.CharField(max_length=10)
-    city = models.CharField(max_length=100)
-    locality = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
-    address = models.TextField()
-    appartment = models.CharField(max_length=50, null=True, blank=True)
+    city = models.CharField(max_length=255)
+    locality = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    address = models.TextField(max_length=500)
+    appartment = models.CharField(max_length=100, null=True, blank=True)
     zip_code = models.CharField(max_length=10)
-    landmark = models.CharField(max_length=100, null=True, blank=True)
-    images = models.ImageField(upload_to='property_images/',null=True, blank=True)  # Store paths of images as comma-separated values
-    videos = models.FileField(upload_to='property_videos/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['mp4', 'mov'])])  # Store paths of videos as comma-separated values
+    landmark = models.CharField(max_length=255, null=True, blank=True)
+    floor_plan = models.ImageField(max_length=3000,upload_to='property_floor_plan/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png','jpeg'])])  # Store paths of images as comma-separated values
+    images = models.ImageField(max_length=3000,upload_to='property_images/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png','jpeg'])])  # Store paths of images as comma-separated values
+    videos = models.FileField(max_length=3000,upload_to='property_videos/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['mp4', 'mov'])])  # Store paths of videos as comma-separated values
     
     # Feature columns as individual boolean fields
     security = models.BooleanField(default=False)

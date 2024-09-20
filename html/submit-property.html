@@ -167,7 +167,7 @@
                     {% endif %}
                
 
-                    <form class="wizard-form-details col-xxl-9 col-lg-8" action="/submit-property/" method="POST" enctype="multipart/form-data">
+                    <form class="wizard-form-details col-xxl-9 col-lg-8" action="/submit_property/" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     
                     <div>
@@ -360,35 +360,35 @@
                                 
                             </div>
                             <div class="wizard-step-3 d-none">
-                                <label>Gallery</label>
+                                <h6>Gallery</h6>
                                 <p class="font-roboto">Add your property Media</p>
-                                <label>Images</label>
                                 <div class="dropzone" id="form3"  >
                                     
                                     <div class="dz-message needsclick">
-                                    <h6>Drop files here or click to upload.</h6>
+                                    <h5>Property Images</h5>
+                                    <h6>Drop images here or click to upload.</h6>
                                     <input type="file" name="images" id="images" class="form-control" multiple>
                                     </div>
                                 </div>
                                 <br>
-                                <label>Floor Plan</label>
-                                <p class="font-roboto">Add your property floor plan</p>
-                                <label>Floor Plan</label>
+                                <p class="font-roboto"></p>
                                 <div class="dropzone" id="form3"  >
                                     
                                     <div class="dz-message needsclick">
-                                    <h6>Drop files here or click to upload.</h6>
-                                    <input type="file" name="images" id="images" class="form-control" multiple>
+                                    <h5>Property Floor Plan</h5>
+                                    <h6>Drop images here or click to upload.</h6>
+                                    <input type="file" name="floor_plan" id="floor_plan" class="form-control" multiple>
                                     </div>
                                 </div>
-                                <label>Video</label>
+                                <br><br>
                                 <div class="dropzone" id="form3"  >
                                     
                                     <div class="dz-message needsclick">
-                                    <h6>Drop files here or click to upload.</h6>
+                                    <h5>Property Videos</h5>
+                                    <h6>Drop videos here or click to upload.</h6>
                                     <input type="file" name="videos" id="videos" class="form-control" multiple>
                                     </div>
-                                </div>
+                                </div><br><br>
                                 <div class="row gx-3" id="form4">
                                         <div class="form-group col-sm-12">
                                             <label>Additional features</label>
