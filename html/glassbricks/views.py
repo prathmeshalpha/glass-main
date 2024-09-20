@@ -148,7 +148,51 @@ def update_profile(request):
 
 
 def property_listing(request):
-    return render(request, 'property_listing.html')
+    # Get filter values from GET request
+    status = request.GET.get('status')
+    property_type = request.GET.get('property_type')
+    location = request.GET.get('location')
+    max_rooms = request.GET.get('max_rooms')
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+    min_area = request.GET.get('min_area')
+    max_area = request.GET.get('max_area')
+
+    # Filter properties based on the inputs
+    properties = Property.objects.all()
+
+    if status:
+        properties = properties.filter(status=status)
+    if property_type:
+        properties = properties.filter(property_type=property_type)
+    if location:
+        properties = properties.filter(city__icontains=location)  # Assuming 'city' is the column name for location
+    if max_rooms:
+        properties = properties.filter(rooms__lte=max_rooms)
+    if min_price and max_price:
+        properties = properties.filter(price__gte=min_price, price__lte=max_price)
+    if min_area and max_area:
+        properties = properties.filter(area__gte=min_area, area__lte=max_area)
+    
+    for property in properties:
+        if property.images:
+            property.image_list = property.images.split(',')[:4]  # Only take the first four images
+        else:
+            property.image_list = []
+
+
+    # Fetch distinct cities from the Property model to populate the location filter
+    distinct_cities = Property.objects.values_list('city', flat=True).distinct()
+
+    context = {
+        'properties': properties,
+        'distinct_cities': distinct_cities  # Pass distinct cities to the template
+    }
+
+    return render(request, 'property_listing.html', context)
+
+    
+    
 
 
 

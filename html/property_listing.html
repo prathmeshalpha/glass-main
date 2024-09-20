@@ -147,11 +147,11 @@
                                                 data-bs-toggle="dropdown"><span>Property Status</span> <i
                                                     class="fas fa-angle-down"></i></span>
                                             <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Property Status</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">For Rent</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">For Sale</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('status', 'For Rent')">For Rent</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('status', 'For Sale')">For Sale</a>
                                             </div>
                                         </div>
+                                        <input type="hidden" id="status" name="status">
                                     </div>
                                     <div class="col-12">
                                         <div class="dropdown">
@@ -160,31 +160,32 @@
                                                     class="fas fa-angle-down"></i></span>
                                             <div class="dropdown-menu text-start">
                                                 <a class="dropdown-item" href="javascript:void(0)">Property Type</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Apartment</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Office</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Weekend Home</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Building Floor</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Co -Working Spaces</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">New Project</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('property_type', 'Apartment')">Apartment</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('property_type', 'Office')">Office</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('property_type', 'Weekend Home')">Weekend Home</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('property_type', 'Building Floor')">Building Floor</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('property_type', 'Co -Working Spaces')">Co -Working Spaces</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('property_type', 'New Project')">New Project</a>
                                             </div>
                                         </div>
+                                        <input type="hidden" id="property_type" name="property_type">
                                     </div>
                                     <div class="col-12">
                                         <div class="dropdown">
                                             <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown">
-                                                <span>Property Location</span> <i class="fas fa-angle-down"></i>
+                                                <span id="selected-location">Property Location</span> <i class="fas fa-angle-down"></i>
                                             </span>
                                             <div class="dropdown-menu text-start" id="locationDropdown">
                                                 <!-- Search input inside the dropdown -->
                                                 <input type="text" class="form-control" id="locationSearch" placeholder="Search location..." onkeyup="filterLocations()">
                                                 
                                                 <!-- Dropdown options -->
-                                                <a class="dropdown-item" href="javascript:void(0)">Austria</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Brazil</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">New York</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">USA</a>
+                                                {% for city in distinct_cities %}
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setLocation('{{ city }}')">{{ city }}</a>
+                                                {% endfor %}
                                             </div>
                                         </div>
+                                        <input type="hidden" id="location" name="location">
                                     </div>
                                     
                                     <script>
@@ -205,6 +206,11 @@
                                                 }
                                             }
                                         }
+
+                                        function setLocation(location) {
+                                            document.getElementById('selected-location').textContent = location;
+                                            document.getElementById('location').value = location;
+                                        }
                                     </script>
                                     
                                     <div class="col-12">
@@ -212,15 +218,13 @@
                                             <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Max
                                                     Rooms</span> <i class="fas fa-angle-down"></i></span>
                                             <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Max Rooms</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">1</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">2</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">3</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">4</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">5+</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Studio</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('max_rooms', '1')">1</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('max_rooms', '2')">2</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('max_rooms', '3')">3</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('max_rooms', '4')">4</a>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="max_rooms" placeholder="Max Rooms" id="max_rooms" class="form-control">
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="dropdown">
@@ -228,15 +232,13 @@
                                                 data-bs-toggle="dropdown"><span>Possession</span> <i
                                                     class="fas fa-angle-down"></i></span>
                                             <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Possession</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Under Construction</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Ready to move</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">One month</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Three month</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('possession', 'Under Construction')">Under Construction</a>
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('possession', 'Ready to move')">Ready to move</a>
                                             </div>
                                         </div>
+                                        <input type="hidden" id="possession" name="possession">
                                     </div>
-                                    <div class="col-sm-12">
+                                    <!--<div class="col-sm-12">
                                         <div class="dropdown">
                                             <span class="dropdown-toggle font-rubik"
                                                 data-bs-toggle="dropdown"><span>Floor</span> <i
@@ -249,8 +251,8 @@
                                                 <a class="dropdown-item" href="javascript:void(0)">High</a>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
+                                    </div>-->
+                                    <!--<div class="col-12">
                                         <div class="dropdown">
                                             <span class="dropdown-toggle font-rubik"
                                                 data-bs-toggle="dropdown"><span>Agencies</span> <i
@@ -263,12 +265,14 @@
                                                 <a class="dropdown-item" href="javascript:void(0)">Premiere</a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="col-12">
                                         <div class="price-range">
                                             <label for="price-amount">Price: </label>
                                             <input type="text" id="price-amount" readonly style="border:0; font-weight:bold;">
                                             <div id="price-slider" class="theme-range-2"></div>
+                                            <input type="hidden" id="min_price" name="min_price">
+                                            <input type="hidden" id="max_price" name="max_price">
                                         </div>
                                     </div>
                                     
@@ -277,6 +281,8 @@
                                             <label for="area-amount">Area: </label>
                                             <input type="text" id="area-amount" readonly style="border:0; font-weight:bold;">
                                             <div id="area-slider" class="theme-range-2"></div>
+                                            <input type="hidden" id="min_area" name="min_area">
+                                            <input type="hidden" id="max_area" name="max_area">
                                         </div>
                                     </div>
                                     
@@ -285,6 +291,9 @@
                                     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
                                     
                                     <script>
+                                        function setFilter(inputId, value) {
+                                            document.getElementById(inputId).value = value;
+                                        }
                                         // Price Range Slider
                                         $(function() {
                                             $("#price-slider").slider({
@@ -294,14 +303,16 @@
                                                 values: [200000, 800000], // Default starting values
                                                 slide: function(event, ui) {
                                                     $("#price-amount").val("₹" + ui.values[0].toLocaleString() + " - ₹" + ui.values[1].toLocaleString());
+                                                    $("#min_price").val(ui.values[0]);
+                                                    $("#max_price").val(ui.values[1]);
                                                 }
                                             });
                                             $("#price-amount").val("₹" + $("#price-slider").slider("values", 0).toLocaleString() +
                                                 " - ₹" + $("#price-slider").slider("values", 1).toLocaleString());
-                                        });
+                                        
                                     
                                         // Area Range Slider
-                                        $(function() {
+                                        
                                             $("#area-slider").slider({
                                                 range: true,
                                                 min: 0,
@@ -309,6 +320,8 @@
                                                 values: [500, 2500], // Default starting values
                                                 slide: function(event, ui) {
                                                     $("#area-amount").val(ui.values[0] + " sq ft - " + ui.values[1] + " sq ft");
+                                                    $("#min_area").val(ui.values[0]);
+                                                    $("#max_area").val(ui.values[1]);
                                                 }
                                             });
                                             $("#area-amount").val($("#area-slider").slider("values", 0) + " sq ft - " +
@@ -317,7 +330,7 @@
                                     </script>
                                     
                                     <div class="col-12">
-                                        <a href="list-right-sidebar.html" class="btn btn-gradient color-2 btn-block btn-pill mt-2">Search </a>
+                                        <button type="submit" class="btn btn-gradient color-2 btn-block btn-pill mt-2">Search </button>
                                     </div>
                                 </div>
                             </div>
@@ -395,241 +408,59 @@
                     </div>
                     <div class="property-wrapper-grid list-view">
                         <div class="property-2 row column-sm zoom-gallery property-label property-grid list-view">
+                            {% for property in properties %}
                             <div class="col-md-6 col-md-12 wow fadeInUp">
                                 <div class="property-box">
                                     <div class="property-image">
-                                        <div class="property-slider">
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/10.jpg'%}" class="bg-img" alt="">
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/5.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/3.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/4.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
+                                        <div id="propertySlider{{ property.id }}" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                {% for image in property.image_list %}
+                                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                                    <img src="{{ image }}" class="d-block w-100" alt="{{ property.title }}">
+                                                </div>
+                                            </div>
+                                            <button class="carousel-control-prev" type="button" data-bs-target="#propertySlider{{ property.id }}" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button" data-bs-target="#propertySlider{{ property.id }}" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
                                         </div>
                                         <div class="labels-left">
                                             <div>
-                                                <span class="label label-shadow">sale</span>
+                                                <span class="label label-shadow">{{ property.status }}</span>
                                             </div>
                                         </div>
                                         <div class="seen-data">
                                             <i data-feather="camera"></i>
-                                            <span>25</span>
-                                        </div>                 
-                                        <div class="overlay-property-box">
-                                            <a href="compare.html" class="effect-round" data-bs-toggle="tooltip" data-bs-placement="left" title="Compare"> 
-                                                <i data-feather="shuffle"></i>
-                                            </a>
-                                            <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
-                                                <i data-feather="heart"></i>                                                                               
-                                            </a>
+                                            <span>4</span>
                                         </div>
                                     </div>
 
                                     <div class="property-details">
-                                        <span class="font-roboto">France</span>
-                                        <a href="single-property-8.html">
-                                            <h3>Little Acorn Farm</h3>
+                                        <span class="font-roboto">{{ property.city }}</span>
+                                        <a href="{% url 'single-property' property.id %}">
+                                            <h3>{{ property.title }}</h3>
                                         </a>
-                                        <h6>$6558.00*</h6>
-                                        <p class="font-roboto">The most common and most absolute type of estate, the tenant enjoys the greatest discretion over the disposal of the property.</p>
+                                        <h6>₹{{ property.price }}</h6>
+                                        <p class="font-roboto">{{ property.description|truncatewords:20 }}</p>
                                         <ul>
-                                            <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bed : 4</li>
-                                            <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Baths : 4</li>
-                                            <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">Sq Ft : 5000</li>
+                                            <li>Bed: {{ property.beds }}</li>
+                                            <li>Baths: {{ property.baths }}</li>
+                                            <li>Sq Ft: {{ property.area }}</li>
                                         </ul>
                                         <div class="property-btn d-flex">
-                                            <span>August 4, 2022</span>
-                                            <button type="button"  onclick="document.location='single-property-8.html'" class="btn btn-dashed btn-pill color-2">Details</button>
+                                            <span>{{ property.date_posted|date:"F j, Y" }}</span>
+                                            <a href="{% url 'single-property' property.id %}" class="btn btn-dashed btn-pill color-2">Details</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-md-12 wow fadeInUp">
-                                <div class="property-box">
-                                    <div class="property-image">
-                                        <div class="property-slider">
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/11.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/4.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/6.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/2.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                        </div>
-                                        <div class="labels-left">
-                                            <div>
-                                                <span class="label label-shadow">sale</span>
-                                            </div>
-                                        </div>
-                                        <div class="seen-data">
-                                            <i data-feather="camera"></i>
-                                            <span>09</span>
-                                        </div>                 
-                                        <div class="overlay-property-box">
-                                            <a href="compare.html" class="effect-round" data-bs-toggle="tooltip" data-bs-placement="left" title="Compare"> 
-                                                <i data-feather="shuffle"></i>
-                                            </a>
-                                            <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
-                                                <i data-feather="heart"></i>                                                                               
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="property-details">
-                                        <span class="font-roboto">France</span>
-                                        <a href="single-property-8.html">
-                                            <h3>Allen's Across Way</h3>
-                                        </a>
-                                        <h6>$6558.00*</h6>
-                                        <p class="font-roboto">An interior designer is someone who plans,researches,coordinates,management and manages such enhancement projects.</p>
-                                        <ul>
-                                            <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bed : 4</li>
-                                            <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Baths : 4</li>
-                                            <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">Sq Ft : 5000</li>
-                                        </ul>
-                                        <div class="property-btn d-flex">
-                                            <span>June 20, 2022</span>
-                                            <button type="button"  onclick="document.location='single-property-8.html'" class="btn btn-dashed btn-pill color-2">Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-md-12 wow fadeInUp">
-                                <div class="property-box">
-                                    <div class="property-image">
-                                        <div class="property-slider">
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/14.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/6.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/10.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/9.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                        </div>
-                                        <div class="labels-left">
-                                            <div>
-                                                <span class="label label-dark">no fees</span>
-                                            </div>
-                                            <span class="label label-success">open house</span>
-                                        </div>
-                                        <div class="seen-data">
-                                            <i data-feather="camera"></i>
-                                            <span>25</span>
-                                        </div>                 
-                                        <div class="overlay-property-box">
-                                            <a href="compare.html" class="effect-round" data-bs-toggle="tooltip" data-bs-placement="left" title="Compare"> 
-                                                <i data-feather="shuffle"></i>
-                                            </a>
-                                            <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
-                                                <i data-feather="heart"></i>                                                                               
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="property-details">
-                                        <span class="font-roboto">brazil</span>
-                                        <a href="single-property-8.html">
-                                            <h3>Hidden Spring Hideway</h3>
-                                        </a>
-                                        <h6>$9554.00*</h6>
-                                        <p class="font-roboto">Elegant retreat in a quiet Coral Gables setting. This home provides wonderful entertaining spaces with a chef
-                                            kitchen opening…</p>
-                                        <ul>
-                                            <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bed : 4</li>
-                                            <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Baths : 4</li>
-                                            <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">Sq Ft : 5000</li>
-                                        </ul>
-                                        <div class="property-btn d-flex">
-                                            <span>July 18, 2022</span>
-                                            <button type="button"  onclick="document.location='single-property-8.html'" class="btn btn-dashed btn-pill color-2">Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-md-12 wow fadeInUp">
-                                <div class="property-box">
-                                    <div class="property-image">
-                                        <div class="property-slider">
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/15.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/4.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/6.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="{% static 'images/property/9.jpg'%}" class="bg-img" alt="">
-                                                
-                                            </a>
-                                        </div>
-                                        <div class="labels-left">
-                                            <div>
-                                                <span class="label label-shadow">sale</span>
-                                            </div>
-                                        </div>
-                                        <div class="seen-data">
-                                            <i data-feather="camera"></i>
-                                            <span>25</span>
-                                        </div>                 
-                                        <div class="overlay-property-box">
-                                            <a href="compare.html" class="effect-round" data-bs-toggle="tooltip" data-bs-placement="left" title="Compare"> 
-                                                <i data-feather="shuffle"></i>
-                                            </a>
-                                            <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
-                                                <i data-feather="heart"></i>                                                                               
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="property-details">
-                                        <span class="font-roboto">usa</span>
-                                        <a href="single-property-8.html">
-                                            <h3>Home in Merrick Way</h3>
-                                        </a>
-                                        <h6>$4513.00*</h6>
-                                        <p class="font-roboto">This home provides wonderful entertaining spaces with a chef
-                                            kitchen opening. Elegant retreat in a quiet Coral Gables setting.</p>
-                                        <ul>
-                                            <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bed : 4</li>
-                                            <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Baths : 4</li>
-                                            <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">Sq Ft : 5000</li>
-                                        </ul>
-                                        <div class="property-btn d-flex">
-                                            <span>January 6, 2022</span>
-                                            <button type="button"  onclick="document.location='single-property-8.html'" class="btn btn-dashed btn-pill color-2">Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% empty %}
+                            <p>No properties found matching your criteria.</p>
+                            {% endfor %}
                         </div>
                     </div>
                     <nav class="theme-pagination">
