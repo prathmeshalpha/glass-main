@@ -57,24 +57,23 @@
                 <div class="single-title">
                     <div class="left-single">
                         <div class="d-flex">
-                            <h2 class="mb-0">Orchard House </h2>
+                            <h2 class="mb-0">{{ property.property_name }} </h2>
                             <span><span class="label label-shadow ms-2">For
-                                    Sale</span></span>
+                                {{ property.post_type }}</span></span>
                         </div>
-                        <p class="mt-1">Mina Road, Bur Dubai, Dubai, United
-                            Arab
-                            Emirates</p>
+                        <p class="mt-1">{{ property.locality }}, {{ property.city }}, {{ property.state }}, {{ property.country }}
+                            {{ property.zip_code }}</p>
                         <ul>
                             <li>
                                 <div>
                                     <img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">
-                                    <span>4 Bedrooms</span>
+                                    <span>{{ property.bedrooms }} Bedrooms</span>
                                 </div>
                             </li>
                             <li>
                                 <div>
                                     <img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">
-                                    <span>4 Bathrooms</span>
+                                    <span>{{ property.bathrooms }} Bathrooms</span>
                                 </div>
                             </li>
                             <li>
@@ -86,7 +85,7 @@
                             <li>
                                 <div>
                                     <img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">
-                                    <span>5000 Sq ft</span>
+                                    <span>{{ property.property_area }} Sq ft</span>
                                 </div>
                             </li>
                             <li>
@@ -129,7 +128,7 @@
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
                         </div>
-                        <h2 class="price">$20,45,472 <span>/ start From</span></h2>
+                        <h2 class="price">₹{{ property.property_price }} <span>/ start From</span></h2>
                         <div class="feature-label">
                             <span class="btn btn-dashed color-2 btn-pill">Wi-fi</span>
                             <span class="btn btn-dashed color-2 ms-1 btn-pill">Swimming Pool</span>
@@ -198,24 +197,24 @@
                                         <div class="row">
                                             <div class="col-md-6 col-xl-4">
                                                 <ul class="property-list-details">
-                                                    <li><span>Property Type :</span> House</li>
+                                                    <li><span>Property Type :</span> {{ property.specific_type1 }}</li>
                                                     <li><span>Property ID :</span> ZOEA245</li>
-                                                    <li><span>Property status :</span> For sale</li>
+                                                    <li><span>Property status :</span> For {{ property.post_type }}</li>
                                                     <li><span>Operating Since :</span> 2008</li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-6 col-xl-4">
                                                 <ul class="property-list-details">
-                                                    <li><span>Price :</span> $ 1,50,000</li>
-                                                    <li><span>Property Size :</span> 1730 sq / ft</li>
-                                                    <li><span>Balcony :</span> 2</li>
+                                                    <li><span>Price :</span> ₹ {{ property.property_price }}</li>
+                                                    <li><span>Property Size :</span> {{ property.property_area }} sq / ft</li>
+                                                    <li><span>Balcony :</span> {{ property.balconies }}</li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-6 col-xl-4">
                                                 <ul class="property-list-details">
-                                                    <li><span>City :</span> Newyork</li>
-                                                    <li><span>Bedrooms :</span> 8</li>
-                                                    <li><span>Bathrooms :</span> 4</li>
+                                                    <li><span>City :</span> {{ property.city }}</li>
+                                                    <li><span>Bedrooms :</span> {{ property.bedrooms }}</li>
+                                                    <li><span>Bathrooms :</span> {{ property.bathrooms }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -241,48 +240,57 @@
                                         <h4 class="content-title">features</h4>
                                         <div class="single-feature row">
                                             <div class="col-xl-3 col-6">
-                                                <ul>
+                                                <ul>{% if features.wifi %}
                                                     <li>
                                                         <i class="fas fa-wifi"></i> Free Wi-Fi
                                                     </li>
+                                                    {% endif %}
+                                                    {% if features.elevator %}
                                                     <li>
                                                         <i class="fas fa-hands"></i> Elevator Lift
                                                     </li>
+                                                    {% endif %}
+                                                    {% if features.powerbackup %}
                                                     <li>
                                                         <i class="fas fa-power-off"></i> Power Backup
                                                     </li>
+                                                    {% endif %}
+                                                    {% if features.parking %}
                                                     <li>
-                                                        <i class="fas fa-monument"></i> Laundry Service
+                                                        <i class="fas fa-car "></i> Parking
                                                     </li>
+                                                    {% endif %}
                                                 </ul>
                                             </div>
                                             <div class="col-xl-3 col-6">
-                                                <ul>
+                                                <ul>{% if features.gym %}
                                                     <li>
-                                                        <i class="fas fa-user-shield"></i> Security Guard
+                                                        <i class="fas fa-first_aid"></i> Gym
                                                     </li>
+                                                    {% endif %}
+                                                    {% if features.club %}
                                                     <li>
-                                                        <i class="fas fa-video"></i> CCTV
+                                                        <i class="fas fa-monument "></i> Clubhouse
                                                     </li>
-                                                    <li>
-                                                        <i class="fas fa-door-open"></i> Emergency Exit
-                                                    </li>
-                                                    <li>
-                                                        <i class="fas fa-first-aid"></i> Doctor On Call
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-xl-3 col-6">
-                                                <ul>
-                                                    <li>
-                                                        <i class="fas fa-shower"></i> Shower
-                                                    </li>
-                                                    <li>
-                                                        <i class="fas fa-car"></i> free Parking in the area
-                                                    </li>
+                                                    {% endif %}
+                                                    {% if features.ac %}
                                                     <li>
                                                         <i class="fas fa-fan"></i> Air Conditioning
                                                     </li>
+                                                    {% endif %}
+                                                    {% if features.pool %}
+                                                    <li>
+                                                        <i class="fas fa-water"></i> Pool
+                                                    </li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+                                            <div class="col-xl-3 col-6">
+                                                <ul>{% if features.security %}
+                                                    <li>
+                                                        <i class="fas fa-user-shield"></i> Security
+                                                    </li>
+                                                    {% endif %}
                                                 </ul>
                                             </div>
                                         </div>
@@ -293,58 +301,22 @@
                                             <div class="gallery-for">
                                                 <div>
                                                     <div class="bg-size">
-                                                        <img src="{% static 'images/property/4.jpg'%}" class="bg-img"
-                                                            alt="">
+                                                        {% if images %}
+                                                            <img src="{{ images.0.image.url }}" class="bg-img"
+                                                                alt="">
+                                                        
+                                                        {% endif %}
                                                     </div>
                                                 </div>
                                                 <div>
                                                     <div class="bg-size">
-                                                        <img src="{% static 'images/property/3.jpg'%}" class="bg-img"
-                                                            alt="">
+                                                        {% for image in images %}
+                                                            <img src="{{ image.image.url }}" class="bg-img"
+                                                                alt="">
+                                                            {% endfor %}
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <div class="bg-size">
-                                                        <img src="{% static 'images/property/14.jpg'%}" class="bg-img"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="bg-size">
-                                                        <img src="{% static 'images/property/11.jpg'%}" class="bg-img"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="bg-size">
-                                                        <img src="{% static 'images/property/12.jpg'%}" class="bg-img"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="bg-size">
-                                                        <img src="{% static 'images/property/4.jpg'%}" class="bg-img"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="bg-size">
-                                                        <img src="{% static 'images/property/3.jpg'%}" class="bg-img"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="bg-size">
-                                                        <img src="{% static 'images/property/11.jpg'%}" class="bg-img"
-                                                            alt="">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="bg-size">
-                                                        <img src="{% static 'images/property/12.jpg'%}" class="bg-img"
-                                                            alt="">
-                                                    </div>
-                                                </div>
+                                                ]
                                             </div>
                                             <div class="gallery-nav">
                                                 <div>

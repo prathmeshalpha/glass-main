@@ -14,7 +14,7 @@ class Property(models.Model):
     post_type = models.CharField(max_length=10)
     property_type1 = models.CharField(max_length=15)
     specific_type1 = models.CharField(max_length=20, null=True, blank=True)
-    specific_type2 = models.CharField(max_length=20, null=True, blank=True)
+    
     maharera_number = models.CharField(max_length=50, blank=True, null=True)
     property_price = models.DecimalField(max_digits=12, decimal_places=2)
     property_area = models.DecimalField(max_digits=10, decimal_places=2)

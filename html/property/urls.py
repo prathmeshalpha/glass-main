@@ -19,7 +19,7 @@ urlpatterns = [
     path('submit_property/',views.submit_property ,name='submit_property'),
     path('profile/',views.user_profile ,name='profile'),
     path('property-listing/',views.property_listing ,name='property-listing'),
-    path('property/',views.property ,name='property'),
+    path('property/<int:property_id>',views.property ,name='property'),
 
     # Password reset URLs
     path('password_reset/', 

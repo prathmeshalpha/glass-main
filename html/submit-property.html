@@ -214,7 +214,7 @@
                                                 <button style="font-size: 13px;padding: 3px 5px 3px;border-radius: 0px;" type="button" id="Retail" class="btn btn-outline-primary me-2 ">Retail</button>
                                                 <button style="font-size: 13px;padding: 3px 5px 3px;border-radius: 0px;" type="button" id="Commercial New Project" class="btn btn-outline-primary">New Project</button>
                                                 
-                                                <input type="hidden" name="specific_type2" id="specific_type2" value="Office">
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -239,7 +239,7 @@
                                                 <a class="dropdown-item" id="Bedrooms-1" href="javascript:void(0)">1</a>
                                                 <a class="dropdown-item" id="Bedrooms-2" href="javascript:void(0)">2</a>
                                                 <a class="dropdown-item" id="Bedrooms-3" href="javascript:void(0)">3</a>
-                                                <a class="dropdown-item" id="Bedrooms-4+" href="javascript:void(0)">4+</a>
+                                                <a class="dropdown-item" id="Bedrooms-4+" href="javascript:void(0)">4</a>
                                                 
                                             </div>
                                             <input type="hidden" name="bedrooms" id="bedrooms-count" value="">
@@ -253,7 +253,9 @@
                                             <div class="dropdown-menu text-start">
                                                 <a class="dropdown-item" id="Balconies-1" href="javascript:void(0)">1</a>
                                                 <a class="dropdown-item" id="Balconies-2" href="javascript:void(0)">2</a>
-                                                <a class="dropdown-item" id="Balconies-3+" href="javascript:void(0)">3+</a>
+                                                <a class="dropdown-item" id="Balconies-3+" href="javascript:void(0)">3</a>
+                                                <a class="dropdown-item" id="Balconies-3+" href="javascript:void(0)">4</a>
+
                                                 
                                             </div>
                                             <input type="hidden" name="balconies" id="balconies-count" value="">
@@ -268,7 +270,7 @@
                                                 <a class="dropdown-item" id="Bathrooms-1" href="javascript:void(0)">1</a>
                                                 <a class="dropdown-item" id="Bathrooms-2" href="javascript:void(0)">2</a>
                                                 <a class="dropdown-item" id="Bathrooms-3" href="javascript:void(0)">3</a>
-                                                <a class="dropdown-item" id="Bathrooms-3+" href="javascript:void(0)">3+</a>
+                                                <a class="dropdown-item" id="Bathrooms-3+" href="javascript:void(0)">4</a>
                                                 
                                             </div>
                                             <input type="hidden" name="bathrooms" id="bathrooms-count" value="">
@@ -468,7 +470,7 @@
         // Toggle button functionality for "property_type"
         document.getElementById('Residential').addEventListener('click', function() {
             document.getElementById('property_type1').value = 'Residential';
-            document.getElementById('specific_type2').value = '';
+            
             this.classList.add('active');
             document.getElementById('Commercial').classList.remove('active');
             document.getElementById('residential-options').classList.remove('d-none');
@@ -479,7 +481,7 @@
 
         document.getElementById('Commercial').addEventListener('click', function() {
             document.getElementById('property_type1').value = 'Commercial';
-            document.getElementById('specific_type1').value = '';
+            
             this.classList.add('active');
             document.getElementById('Residential').classList.remove('active');
             document.getElementById('residential-options').classList.add('d-none');
@@ -530,20 +532,20 @@
             document.getElementById('Apartment').classList.remove('active');
         });
         document.getElementById('Office').addEventListener('click', function() {
-            document.getElementById('specific_type2').value = 'Office';
+            document.getElementById('specific_type1').value = 'Office';
             this.classList.add('active');
             document.getElementById('Retail').classList.remove('active');
             document.getElementById('Commercial New Project').classList.remove('active');
         });
         document.getElementById('Retail').addEventListener('click', function() {
-            document.getElementById('specific_type2').value = 'Retail';
+            document.getElementById('specific_type1').value = 'Retail';
             this.classList.add('active');
             document.getElementById('Office').classList.remove('active');
             document.getElementById('Commercial New Project').classList.remove('active');
             
         });
         document.getElementById('Commercial New Project').addEventListener('click', function() {
-            document.getElementById('specific_type2').value = 'Commercial New Project';
+            document.getElementById('specific_type1').value = 'Commercial New Project';
             this.classList.add('active');
             document.getElementById('Retail').classList.remove('active');
             document.getElementById('Office').classList.remove('active');

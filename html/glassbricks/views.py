@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.tokens import default_token_generator
@@ -135,8 +135,29 @@ def contact(request):
 def about(request):
     return render(request, 'about-us.html')
 
-def property(request):
-    return render(request, 'property.html')
+def property(request,property_id):
+    property_instance = get_object_or_404(Property,id=property_id)
+    images = PropertyImage.objects.filter(property=property_instance)  # Fetch related images
+    videos = PropertyVideo.objects.filter(property=property_instance)  # Fetch related videos
+    features = {
+        'security': property_instance.security,
+        'ac': property_instance.ac,
+        'club': property_instance.club,
+        'elevator': property_instance.elevator,
+        'pool': property_instance.pool,
+        'wifi': property_instance.wifi,
+        'parking': property_instance.parking,
+        'gym': property_instance.gym,
+        'powerbackup': property_instance.powerbackup,
+        
+    }
+    context = {
+        'property': property_instance,
+        'images': images,
+        'videos': videos,
+        'features': features,
+    }
+    return render(request, 'property.html',context)
 
 
 @login_required

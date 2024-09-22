@@ -57,7 +57,7 @@ class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
         fields = [ 
-            'property_name','post_type', 'property_type1', 'specific_type1', 'specific_type2', 'maharera_number', 
+            'property_name','post_type', 'property_type1', 'specific_type1',  'maharera_number', 
             'property_price', 'property_area', 'bedrooms', 'balconies', 
             'bathrooms', 'status', 'ownership', 'city', 'locality', 'state', 
             'country', 'address', 'appartment', 'zip_code', 'landmark', 
