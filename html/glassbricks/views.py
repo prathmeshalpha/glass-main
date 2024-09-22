@@ -135,8 +135,8 @@ def contact(request):
 def about(request):
     return render(request, 'about-us.html')
 
-def single_property(request):
-    return render(request, 'single-property.html')
+def property(request):
+    return render(request, 'property.html')
 
 
 @login_required
