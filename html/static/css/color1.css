@@ -4842,7 +4842,8 @@ input[type='radio'].radio_animated {
           font-size: 12px;
           color: #ffffff;
           border: 1px solid;
-          border-radius: 100%; }
+          border-radius: 100%;
+           }
         .property-section .property-box .property-image .property-slider .slick-dots li.slick-active button::before {
           color: var(--theme-default3); }
     .property-section .property-box .property-image .labels-left {

@@ -1,7 +1,7 @@
 from django import forms
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm as DjangoPasswordResetForm
-from .models import CustomUser, Property
+from .models import CustomUser, Property, PropertyImage, PropertyVideo, PropertyFloorPlan
 from django.core.validators import FileExtensionValidator
 
 class SignUpForm(UserCreationForm):
@@ -31,6 +31,7 @@ class SignUpForm(UserCreationForm):
                 'required': 'required',
             }),
         }
+        
 
 class PasswordResetForm(DjangoPasswordResetForm):
     email = forms.EmailField(label='Email', max_length=254, required=True, widget=forms.EmailInput(attrs={
@@ -51,8 +52,7 @@ class PropertyForm(forms.ModelForm):
     gym = forms.BooleanField(required=False)
     club = forms.BooleanField(required=False)
 
-    images = forms.FileField(required=False, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png', 'jpeg'])])
-    videos = forms.FileField(required=False, validators=[FileExtensionValidator(allowed_extensions=['mp4', 'mov'])])    
+    
 
     class Meta:
         model = Property
@@ -62,5 +62,25 @@ class PropertyForm(forms.ModelForm):
             'bathrooms', 'status', 'ownership', 'city', 'locality', 'state', 
             'country', 'address', 'appartment', 'zip_code', 'landmark', 
             'security', 'powerbackup', 'wifi', 'elevator', 
-            'parking', 'ac', 'pool', 'gym', 'club', 'images', 'videos','floor_plan'
+            'parking', 'ac', 'pool', 'gym', 'club'
         ]
+        
+class PropertyImageForm(forms.ModelForm):
+    class Meta:
+        model = PropertyImage
+        fields = ['image']
+        
+
+
+class PropertyVideoForm(forms.ModelForm):
+    class Meta:
+        model = PropertyVideo
+        fields = ['video']
+        
+
+
+class PropertyFloorPlanForm(forms.ModelForm):
+    class Meta:
+        model = PropertyFloorPlan
+        fields = ['floor_plan']
+        

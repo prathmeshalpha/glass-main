@@ -413,18 +413,18 @@
                     </div>
                     <div class="property-wrapper-grid list-view">
                         <div class="property-2 row column-sm zoom-gallery property-label property-grid list-view">
+                            <!-- Django template loop for fetching each property -->
                             {% for property in properties %}
                             <div class="col-md-6 col-md-12 wow fadeInUp">
                                 <div class="property-box">
                                     <div class="property-image">
-                                        <div class="property-slider1">
-                                            <div id="propertyImages{{ property.id }}">
-                                                {% for image_path in property.image_list %}
-                                                    <a href="javascript:void(0)">
-                                                        <img src="{{ MEDIA_URL }}{{ image_path }}" class="d-block w-100" alt="Property Image">
-                                                    </a>
-                                                {% endfor %}
-                                            </div>
+                                        <div class="property-slider">
+                                            <!-- Looping through the images for the property -->
+                                            {% if property.first_image_url %}
+                                                <a href="javascript:void(0)">
+                                                    <img src="{{ property.first_image_url }}" class="d-block w-100" alt="Property Image">
+                                                </a>
+                                            {% endif %}
                                         </div>
                                         <div class="labels-left">
                                             <div>
@@ -433,36 +433,33 @@
                                         </div>
                                         <div class="seen-data">
                                             <i data-feather="camera"></i>
-                                            <span>{{ property.image_list|length }}</span>
+                                            <span>1</span>
+                                        </div>
+                                        <div class="overlay-property-box">
+                                            <a href="compare.html" class="effect-round" data-bs-toggle="tooltip" data-bs-placement="left" title="Compare"> 
+                                                <i data-feather="shuffle"></i>
+                                            </a>
+                                            <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
+                                                <i data-feather="heart"></i>                                                                               
+                                            </a>
                                         </div>
                                     </div>
-                                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-                                    <script>
-                                        $(document).ready(function(){
-                                            $('.property-slider1').slick({
-                                                dots: true,
-                                                infinite: true,
-                                                speed: 300,
-                                                slidesToShow: 1,
-                                                adaptiveHeight: true
-                                            });
-                                        });
-                                    </script>
+                    
                                     <div class="property-details">
                                         <span class="font-roboto">{{ property.city }}</span>
-                                        <a href="{% url 'single_property' property.id %}">
-                                            <h3>{{ property.property_name }}</h3>
-                                        </a>
-                                        <h6>₹{{ property.price }}</h6>
-                                        
+                                            <a href="{% url 'single_property' property.id %}">
+                                                <h3>{{ property.property_name }}</h3>
+                                            </a>
+                                        <h6>₹{{ property.property_price }}</h6>
+                                        <p class="font-roboto">{{ property.description|truncatechars:150 }}</p>
                                         <ul>
-                                            <li>Bed: {{ property.bedrooms }}</li>
-                                            <li>Baths: {{ property.bathrooms }}</li>
-                                            <li>Sq Ft: {{ property.property_area }}</li>
+                                            <li><img src="{% static 'images/svg/icon/double-bed.svg' %}" class="img-fluid" alt=""> Bed: {{ property.bedrooms }}</li>
+                                            <li><img src="{% static 'images/svg/icon/bathroom.svg' %}" class="img-fluid" alt=""> Baths: {{ property.bathrooms }}</li>
+                                            <li><img src="{% static 'images/svg/icon/square-ruler-tool.svg' %}" class="img-fluid" alt=""> Sq Ft: {{ property.property_area }}</li>
                                         </ul>
                                         <div class="property-btn d-flex">
                                             <span>{{ property.date_posted|date:"F j, Y" }}</span>
-                                            <a href="{% url 'single_property' property.id %}" class="btn btn-dashed btn-pill color-2">Details</a>
+                                            <button type="button" class="btn btn-dashed btn-pill color-2">Details</button>
                                         </div>
                                     </div>
                                 </div>
@@ -472,6 +469,22 @@
                             {% endfor %}
                         </div>
                     </div>
+                    
+                    <!-- Include Slick JS (Or any slider you're using) -->
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+                    
+                    <!-- Initialize Slider -->
+                    <script>
+                        $(document).ready(function(){
+                            $('.property-slider').slick({
+                                dots: true,
+                                infinite: true,
+                                speed: 300,
+                                slidesToShow: 1,
+                                adaptiveHeight: true
+                            });
+                        });
+                    </script>
                     <nav class="theme-pagination">
                         <ul class="pagination">
                             <li class="page-item">

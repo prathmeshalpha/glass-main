@@ -9,8 +9,8 @@ from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.urls import reverse
-from .forms import SignUpForm, PasswordResetForm, PropertyForm
-from .models import Property
+from .forms import SignUpForm, PasswordResetForm, PropertyForm, PropertyImageForm, PropertyVideoForm, PropertyFloorPlanForm
+from .models import Property, PropertyImage, PropertyVideo, PropertyFloorPlan
 import random
 import os
 
@@ -74,7 +74,7 @@ def submit_property(request):
         if property_form.is_valid():
             property_instance = property_form.save(commit=False)
             property_instance.posted_by = request.user  # Automatically assign the current user
-            
+            property_instance.save()
             # Handle multiple image uploads
             images = request.FILES.getlist('images')
             if images:
@@ -82,15 +82,17 @@ def submit_property(request):
             else:
                 print("No images uploaded")  # Debugging line
 
-            image_paths = []
             for image in images:
-                image_path = os.path.join('property_images', image.name)
-                full_path = os.path.join(settings.MEDIA_ROOT, image_path)
-                with open(full_path, 'wb+') as destination:
-                    for chunk in image.chunks():
-                        destination.write(chunk)
-                image_paths.append(image_path)
-            property_instance.images = ','.join(image_paths)
+                PropertyImage.objects.create(property=property_instance, image=image)
+            
+            
+            floor_plans = request.FILES.getlist('floor_plans')
+            if images:
+                print(f"Images uploaded: {[image.name for image in images]}")  # Debugging line
+            else:
+                print("No images uploaded")  # Debugging line
+            for floor_plan in floor_plans:
+                PropertyFloorPlan.objects.create(property=property_instance, floor_plan=floor_plan)
 
             # Handle multiple video uploads
             videos = request.FILES.getlist('videos')
@@ -99,17 +101,10 @@ def submit_property(request):
             else:
                 print("No videos uploaded")  # Debugging line
 
-            video_paths = []
             for video in videos:
-                video_path = os.path.join('property_videos', video.name)
-                full_path = os.path.join(settings.MEDIA_ROOT, video_path)
-                with open(full_path, 'wb+') as destination:
-                    for chunk in video.chunks():
-                        destination.write(chunk)
-                video_paths.append(video_path)
-            property_instance.videos = ','.join(video_paths)
+                PropertyVideo.objects.create(property=property_instance, video=video)
 
-            property_instance.save()
+            
             return redirect('home')  # Redirect to a success page after saving
         else:
             # Print form errors for debugging
@@ -179,10 +174,12 @@ def property_listing(request):
     
     for property in properties:
         # Split the comma-separated image paths into a list
-        if property.images and isinstance(property.images, str):
-            property.image_list = property.images.split(',')[:4]  # Display the first 4 images
+        first_image = property.images.first()
+        if first_image:
+            
+            property.first_image_url = first_image.image.url# Display the first 4 images
         else:
-            property.image_list = []  # Handle case when no images are available
+            property.first_image_url = None  # Handle case when no images are available
 
 
     # Fetch distinct cities from the Property model to populate the location filter

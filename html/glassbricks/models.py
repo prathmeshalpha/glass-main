@@ -31,9 +31,7 @@ class Property(models.Model):
     appartment = models.CharField(max_length=100, null=True, blank=True)
     zip_code = models.CharField(max_length=10)
     landmark = models.CharField(max_length=255, null=True, blank=True)
-    floor_plan = models.TextField(max_length=3000,null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png','jpeg'])])  # Store paths of images as comma-separated values
-    images = models.TextField(max_length=3000,null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png','jpeg'])])  # Store paths of images as comma-separated values
-    videos = models.TextField(max_length=3000,null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['mp4', 'mov'])])  # Store paths of videos as comma-separated values
+ # Store paths of videos as comma-separated values
     
     # Feature columns as individual boolean fields
     security = models.BooleanField(default=False)
@@ -53,3 +51,25 @@ class Property(models.Model):
 
     def __str__(self):
         return f"{self.property_type1} - {self.city} ({self.post_type})"
+
+
+class PropertyImage(models.Model):
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='property_images/')
+
+    def __str__(self):
+        return f"Image for {self.property.property_name}"
+    
+class PropertyVideo(models.Model):
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='videos')
+    video = models.FileField(upload_to='property_videos/')
+
+    def __str__(self):
+        return f"Video for {self.property.property_name}"
+    
+class PropertyFloorPlan(models.Model):
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='floor_plans')
+    floor_plan = models.FileField(upload_to='property_floor_plan/')
+
+    def __str__(self):
+        return f"Image for {self.property.property_name}"
