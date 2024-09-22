@@ -64,7 +64,10 @@
 
  <!-- jQuery UI CSS (for slider styles) -->
  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+ <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+ <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+ 
  <!-- Basic inline CSS for slider visibility -->
  <style>
      .theme-range-2 {
@@ -327,6 +330,8 @@
                                             $("#area-amount").val($("#area-slider").slider("values", 0) + " sq ft - " +
                                                 $("#area-slider").slider("values", 1) + " sq ft");
                                         });
+
+                                        
                                     </script>
                                     
                                     <div class="col-12">
@@ -412,21 +417,14 @@
                             <div class="col-md-6 col-md-12 wow fadeInUp">
                                 <div class="property-box">
                                     <div class="property-image">
-                                        <div id="propertySlider{{ property.id }}" class="carousel slide" data-bs-ride="carousel">
-                                            <div class="carousel-inner">
-                                                {% for image in property.image_list %}
-                                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                                    <img src="{{ image }}" class="d-block w-100" alt="{{ property.title }}">
-                                                </div>
+                                        <div class="property-slider1">
+                                            <div id="propertyImages{{ property.id }}">
+                                                {% for image_path in property.image_list %}
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{{ MEDIA_URL }}{{ image_path }}" class="d-block w-100" alt="Property Image">
+                                                    </a>
+                                                {% endfor %}
                                             </div>
-                                            <button class="carousel-control-prev" type="button" data-bs-target="#propertySlider{{ property.id }}" data-bs-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Previous</span>
-                                            </button>
-                                            <button class="carousel-control-next" type="button" data-bs-target="#propertySlider{{ property.id }}" data-bs-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Next</span>
-                                            </button>
                                         </div>
                                         <div class="labels-left">
                                             <div>
@@ -435,25 +433,36 @@
                                         </div>
                                         <div class="seen-data">
                                             <i data-feather="camera"></i>
-                                            <span>4</span>
+                                            <span>{{ property.image_list|length }}</span>
                                         </div>
                                     </div>
-
+                                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+                                    <script>
+                                        $(document).ready(function(){
+                                            $('.property-slider1').slick({
+                                                dots: true,
+                                                infinite: true,
+                                                speed: 300,
+                                                slidesToShow: 1,
+                                                adaptiveHeight: true
+                                            });
+                                        });
+                                    </script>
                                     <div class="property-details">
                                         <span class="font-roboto">{{ property.city }}</span>
-                                        <a href="{% url 'single-property' property.id %}">
-                                            <h3>{{ property.title }}</h3>
+                                        <a href="{% url 'single_property' property.id %}">
+                                            <h3>{{ property.property_name }}</h3>
                                         </a>
                                         <h6>₹{{ property.price }}</h6>
-                                        <p class="font-roboto">{{ property.description|truncatewords:20 }}</p>
+                                        
                                         <ul>
-                                            <li>Bed: {{ property.beds }}</li>
-                                            <li>Baths: {{ property.baths }}</li>
-                                            <li>Sq Ft: {{ property.area }}</li>
+                                            <li>Bed: {{ property.bedrooms }}</li>
+                                            <li>Baths: {{ property.bathrooms }}</li>
+                                            <li>Sq Ft: {{ property.property_area }}</li>
                                         </ul>
                                         <div class="property-btn d-flex">
                                             <span>{{ property.date_posted|date:"F j, Y" }}</span>
-                                            <a href="{% url 'single-property' property.id %}" class="btn btn-dashed btn-pill color-2">Details</a>
+                                            <a href="{% url 'single_property' property.id %}" class="btn btn-dashed btn-pill color-2">Details</a>
                                         </div>
                                     </div>
                                 </div>

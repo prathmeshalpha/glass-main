@@ -31,9 +31,9 @@ class Property(models.Model):
     appartment = models.CharField(max_length=100, null=True, blank=True)
     zip_code = models.CharField(max_length=10)
     landmark = models.CharField(max_length=255, null=True, blank=True)
-    floor_plan = models.ImageField(max_length=3000,upload_to='property_floor_plan/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png','jpeg'])])  # Store paths of images as comma-separated values
-    images = models.ImageField(max_length=3000,upload_to='property_images/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png','jpeg'])])  # Store paths of images as comma-separated values
-    videos = models.FileField(max_length=3000,upload_to='property_videos/',null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['mp4', 'mov'])])  # Store paths of videos as comma-separated values
+    floor_plan = models.TextField(max_length=3000,null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png','jpeg'])])  # Store paths of images as comma-separated values
+    images = models.TextField(max_length=3000,null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png','jpeg'])])  # Store paths of images as comma-separated values
+    videos = models.TextField(max_length=3000,null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['mp4', 'mov'])])  # Store paths of videos as comma-separated values
     
     # Feature columns as individual boolean fields
     security = models.BooleanField(default=False)

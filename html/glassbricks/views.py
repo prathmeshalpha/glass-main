@@ -140,6 +140,9 @@ def contact(request):
 def about(request):
     return render(request, 'about-us.html')
 
+def single_property(request):
+    return render(request, 'single-property.html')
+
 
 @login_required
 def update_profile(request):
@@ -175,10 +178,11 @@ def property_listing(request):
         properties = properties.filter(area__gte=min_area, area__lte=max_area)
     
     for property in properties:
-        if property.images:
-            property.image_list = property.images.split(',')[:4]  # Only take the first four images
+        # Split the comma-separated image paths into a list
+        if property.images and isinstance(property.images, str):
+            property.image_list = property.images.split(',')[:4]  # Display the first 4 images
         else:
-            property.image_list = []
+            property.image_list = []  # Handle case when no images are available
 
 
     # Fetch distinct cities from the Property model to populate the location filter
@@ -186,7 +190,8 @@ def property_listing(request):
 
     context = {
         'properties': properties,
-        'distinct_cities': distinct_cities  # Pass distinct cities to the template
+        'distinct_cities': distinct_cities,  # Pass distinct cities to the template
+        'MEDIA_URL': settings.MEDIA_URL,
     }
 
     return render(request, 'property_listing.html', context)
