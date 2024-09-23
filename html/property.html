@@ -103,13 +103,16 @@
                                 <div class="share-hover">
                                     <ul>
                                         <li>
-                                            <a href="https://www.facebook.com/" class="icon-facebook"><i data-feather="facebook"></i></a>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="icon-facebook" target="_blank"><i data-feather="facebook"></i></a>
                                         </li>
                                         <li>
-                                            <a href="https://twitter.com/" class="icon-twitter"><i data-feather="twitter"></i></a>
+                                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check out this amazing property!" class="icon-twitter" target="_blank"><i data-feather="twitter"></i></a>
                                         </li>
                                         <li>
                                             <a href="https://www.instagram.com/" class="icon-instagram"><i data-feather="instagram"></i></a>
+                                        </li>
+                                        <li></li>
+                                            <a href="{% url 'send_property_pdf_via_email' property.id %}" class="icon-mail"><i data-feather="mail"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -311,7 +314,7 @@
                                                 <div>
                                                     <div class="bg-size">
                                                         {% for image in images %}
-                                                            <img src="{{ image.image.url }}" class="bg-img"
+                                                            <img src="{{ image.image_url }}" class="bg-img"
                                                                 alt="">
                                                             {% endfor %}
                                                     </div>
@@ -358,14 +361,11 @@
                                         <h4 class="content-title">video</h4>
                                         <div class="play-bg-image">
                                             <div class="bg-size">
-                                                <img src="{% static 'images/property/11.jpg'%}" class="bg-img" alt="">
+                                                {% for video in videos %}
+                                                    <a src="{{ video.video_url }}" class="bg-img" alt="hii">Watch </a>
+                                                {% endfor %}
                                             </div>
-                                            <div class="icon-video">
-                                                <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                    data-bs-target="#videomodal">
-                                                    <i class="fas fa-play"></i>
-                                                </a>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="tab-pane fade page-section" id="floor_plan">

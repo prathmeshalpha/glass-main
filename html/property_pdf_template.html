@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details</title>
+    <!-- Bootstrap CSS (CDN) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="display-4">{{ property.property_name }}</h1>
+                <p class="lead">{{ property.city }}, {{ property.country }}</p>
+                <h2 class="text-success">Price: ₹{{ property.property_price }}</h2>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Property Details</h3>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Bedrooms:</strong> {{ property.bedrooms }}</li>
+                    <li class="list-group-item"><strong>Bathrooms:</strong> {{ property.bathrooms }}</li>
+                    <li class="list-group-item"><strong>Area:</strong> {{ property.property_area }} sq. ft.</li>
+                    <li class="list-group-item"><strong>Status:</strong> {{ property.status }}</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h3>Features</h3>
+                <ul class="list-group">
+                    <!-- Example of how to display features -->
+                    <li class="list-group-item" {% if property.has_garage %} class="text-success" {% else %} class="text-muted" {% endif %}><strong>Garage:</strong> {% if property.has_garage %}Yes{% else %}No{% endif %}</li>
+                    <li class="list-group-item" {% if property.has_garden %} class="text-success" {% else %} class="text-muted" {% endif %}><strong>Garden:</strong> {% if property.has_garden %}Yes{% else %}No{% endif %}</li>
+                    <!-- Add more features dynamically -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <h4>Posted on {{ property.date_posted|date:"F j, Y" }}</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (CDN) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

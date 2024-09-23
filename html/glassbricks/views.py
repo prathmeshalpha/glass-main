@@ -2,17 +2,21 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
-from django.template.loader import render_to_string
+from django.template.loader import render_to_string, get_template
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.http import HttpResponse
+from xhtml2pdf import pisa
 from django.urls import reverse
 from .forms import SignUpForm, PasswordResetForm, PropertyForm, PropertyImageForm, PropertyVideoForm, PropertyFloorPlanForm
 from .models import Property, PropertyImage, PropertyVideo, PropertyFloorPlan
 import random
 import os
+from io import BytesIO
+
 
 # Function to send OTP via email
 def send_otp(email):
@@ -44,6 +48,46 @@ def otp_verification(request):
         return render(request, 'otp_verification.html', {'error': 'Invalid OTP'})
     
     return render(request, 'otp_verification.html')
+
+def property_pdf(request, property_id):
+    property_obj = get_object_or_404(Property, id=property_id)
+    template = get_template('property_pdf_template.html')
+    html = template.render({'property': property_obj})
+
+    # Generate PDF from HTML
+    pdf_file = BytesIO()
+    HTML(string=html).write_pdf(pdf_file)
+
+    # Create HTTP response
+    response = HttpResponse(pdf_file.getvalue(), content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="property_{property_id}.pdf"'
+    return response
+
+def send_property_pdf_via_email(request, property_id):
+    property_instance = get_object_or_404(Property, id=property_id)
+    template = render_to_string('property_pdf_template.html', {'property': property_instance})
+
+    buffer = BytesIO()
+    pisa_status = pisa.CreatePDF(template, dest=buffer)
+
+    
+
+    # If there is an error in creating the PDF
+    if pisa_status.err:
+        return HttpResponse('Error generating PDF')
+
+    # Prepare the email
+    email = EmailMessage(
+        'Property Details',
+        'Please find attached the property details.',
+        'shreyashshinde2608@gmail.com',
+        ['shreyashshindejj@gmail.com'],
+    )
+    
+    email.attach(f'property_{property_instance.id}.pdf', buffer.getvalue(), 'application/pdf')
+    email.send()
+    
+    return HttpResponse('Email Sent Successfully')
 
 # View for user signup
 def signup(request):

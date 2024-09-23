@@ -20,7 +20,8 @@ urlpatterns = [
     path('profile/',views.user_profile ,name='profile'),
     path('property-listing/',views.property_listing ,name='property-listing'),
     path('property/<int:property_id>',views.property ,name='property'),
-
+    path('property/<int:property_id>/pdf/', views.property_pdf, name='generate_property_pdf'),
+    path('property/<int:property_id>/send_email/', views.send_property_pdf_via_email, name='send_property_pdf_via_email'),
     # Password reset URLs
     path('password_reset/', 
          auth_views.PasswordResetView.as_view(
