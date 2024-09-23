@@ -57,7 +57,7 @@ def property_pdf(request, property_id):
     # Generate PDF from HTML
     pdf_file = BytesIO()
     HTML(string=html).write_pdf(pdf_file)
-
+    
     # Create HTTP response
     response = HttpResponse(pdf_file.getvalue(), content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="property_{property_id}.pdf"'
