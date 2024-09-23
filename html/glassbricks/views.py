@@ -18,37 +18,6 @@ import os
 from io import BytesIO
 
 
-# Function to send OTP via email
-def send_otp(email):
-    otp = str(random.randint(100000, 999999))  # Ensure OTP is a string for comparison
-    subject = "Your OTP Code"
-    message = f"Your OTP code is {otp}"
-    send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email], fail_silently=False)
-    return otp
-
-# View for OTP verification
-def otp_verification(request):
-    if request.method == 'POST':
-        entered_otp = request.POST.get('otp')
-        stored_otp = request.session.get('otp')
-        
-        if entered_otp == stored_otp:
-            user_data = request.session.get('user_data')
-            if user_data:
-                user = get_user_model().objects.create_user(
-                    username=user_data['username'],
-                    email=user_data['email'],
-                    password=user_data['password'],
-                )
-                user.save()
-                login(request, user)
-                request.session.pop('otp', None)
-                request.session.pop('user_data', None)
-                return redirect('home')
-        return render(request, 'otp_verification.html', {'error': 'Invalid OTP'})
-    
-    return render(request, 'otp_verification.html')
-
 def property_pdf(request, property_id):
     property_obj = get_object_or_404(Property, id=property_id)
     template = get_template('property_pdf_template.html')
@@ -57,7 +26,7 @@ def property_pdf(request, property_id):
     # Generate PDF from HTML
     pdf_file = BytesIO()
     HTML(string=html).write_pdf(pdf_file)
-    
+
     # Create HTTP response
     response = HttpResponse(pdf_file.getvalue(), content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="property_{property_id}.pdf"'
@@ -94,19 +63,22 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            user_data = {
-                'username': form.cleaned_data.get('username'),
-                'email': form.cleaned_data.get('email'),
-                'password': form.cleaned_data.get('password1'),
-            }
-            request.session['user_data'] = user_data
-            otp = send_otp(user_data['email'])
-            request.session['otp'] = otp
-            return redirect('otp_verification')
+            user = form.save()  # Save the new user to the database
+            
+            # Authenticate the user to get the backend and login
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+
+            # If the user is authenticated, log them in with the correct backend
+            if user is not None:
+                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                return redirect('home')
         else:
             print(form.errors)  # Debugging; remove in production
     else:
         form = SignUpForm()
+
     return render(request, 'signup.html', {'form': form})
 
 # View for property submission
@@ -171,6 +143,8 @@ def home(request):
 @login_required
 def user_profile(request):
     return render(request, 'user-profile.html')
+
+
 
 
 def contact(request):

@@ -12,6 +12,7 @@ urlpatterns = [
     path('signin/', views.signin, name='signin'),
     path('logout/', views.user_logout, name='logout'),
     path('header/', views.header, name='header'),
+    
     path('footer/', views.footer, name='footer'),
     path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),
@@ -44,7 +45,7 @@ urlpatterns = [
              template_name='password_reset_complete.html'  # Ensure this template exists
          ), 
          name='password_reset_complete'),
-    path('otp_verification/', views.otp_verification, name='otp_verification'),
+    
     
     path('auth/', include('social_django.urls', namespace='social')),
     
