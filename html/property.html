@@ -32,6 +32,37 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/color1.css'%}">
 
+
+    <script>
+      
+        // Function to load the header component
+        function loadHeader() {
+            fetch("{% url 'header'%}")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        }
+        
+        // Function to load the footer component
+        function loadFooter() {
+            fetch("{% url 'footer'%}")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+        }
+        
+        // Call the loadHeader and loadFooter functions when the DOM content is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHeader();
+            loadFooter();
+        });
+        
+            </script>
+
 </head>
 
 <body>
@@ -47,7 +78,9 @@
     <!-- Loader end -->
 
     <!-- header start -->
-    
+     <!-- header start -->
+     <div id="header-container"></div>
+     <!--  header end -->
     <!--  header end -->
 
     <!-- single property header start -->
@@ -131,11 +164,11 @@
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
                         </div>
-                        <h2 class="price">₹{{ property.property_price }} <span>/ start From</span></h2>
-                        <div class="feature-label">
+                        <h2 class="price">₹{{ property.property_price }} <span></span></h2>
+                        <!-- <div class="feature-label">
                             <span class="btn btn-dashed color-2 btn-pill">Wi-fi</span>
                             <span class="btn btn-dashed color-2 ms-1 btn-pill">Swimming Pool</span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -150,7 +183,7 @@
                 <div class="col-xl-9 col-lg-8">
                     <div class="description-section tab-description">
                         <div class="description-details">
-                            <div class="image_section row zoom-gallery-multiple gx-3">
+                            <!-- <div class="image_section row zoom-gallery-multiple gx-3">
                                 <div class="col-sm-8">
                                     <a href="{% static 'images/parallax/4.jpg'%}">
                                         <img src="{% static 'images/parallax/4.jpg'%}" class="img-fluid bg-img" alt="">
@@ -174,7 +207,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="desc-box">
                                 <ul class="nav nav-tabs line-tab" id="top-tab" role="tablist">
                                     <li class="nav-item"><a data-bs-toggle="tab" class="nav-link active"
@@ -201,9 +234,9 @@
                                             <div class="col-md-6 col-xl-4">
                                                 <ul class="property-list-details">
                                                     <li><span>Property Type :</span> {{ property.specific_type1 }}</li>
-                                                    <li><span>Property ID :</span> ZOEA245</li>
+                                                    <!-- <li><span>Property ID :</span> ZOEA245</li> -->
                                                     <li><span>Property status :</span> For {{ property.post_type }}</li>
-                                                    <li><span>Operating Since :</span> 2008</li>
+                                                    <!-- <li><span>Operating Since :</span> 2008</li> -->
                                                 </ul>
                                             </div>
                                             <div class="col-md-6 col-xl-4">
@@ -380,80 +413,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="desc-box">
-                                <div class="page-section">
-                                    <h4 class="content-title">Reviews</h4>
-                                    <div class="review">
-                                        <div class="review-box">
-                                            <div class="media">
-                                                <img src="{% static 'images/avatar/3.jpg'%}" class="img-70" alt="">
-                                                <div class="media-body">
-                                                    <h6>Olive Yew</h6>
-                                                    <p>Sep 13, 2022</p>
-                                                    <p class="mb-0">The location, view from the rooms are just awesome. Very cool landscaping has been done Around the hotel. 
-                                                        There are small activities that you can indulge with your family.</p>
-                                                </div>
-                                                <div class="rating">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="review-box review-child">
-                                            <div class="media">
-                                                <img src="{% static 'images/avatar/4.jpg'%}" class="img-70" alt="">
-                                                <div class="media-body">
-                                                    <h6>Allie Grater</h6>
-                                                    <p>Sep 25, 2022</p>
-                                                    <p class="mb-0">We were there for 3 nights and hotel was too good. Greenery was flaunting everywhere. There were games kept for our
-                                                        entertainment.</p>
-                                                </div>
-                                                <div class="rating">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="review-box">
-                                            <div class="media">
-                                                <img src="{% static 'images/avatar/2.jpg'%}" class="img-70" alt="">
-                                                <div class="media-body">
-                                                    <h6>Walter Melon</h6>
-                                                    <p>Oct 20, 2022</p>
-                                                    <p class="mb-0"> There are small activities that you can indulge with your family. Very cool landscaping has been done Around the hotel. The location, view from the rooms are just awesome.</p>
-                                                </div>
-                                                <div class="rating">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <h4 class="content-title">Write a Review</h4>
-                                    <form class="review-form">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Name" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Email" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea class="form-control" placeholder="Comment"></textarea>
-                                        </div>
-                                        <button type="submit" onclick="document.location='submit-property.html'" class="btn btn-gradient color-2 btn-pill">Submit</button>
-                                    </form>
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
                     <div class="property-section p-t-40">
@@ -758,188 +718,9 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="advance-card">
-                                <h6>filter</h6>
-                                <div class="row gx-2">
-                                    <div class="col-12">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Property
-                                                    Status</span> <i class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Property Status</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">For Rent</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">For Sale</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Property
-                                                    Type</span> <i class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Property Type</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Apartment</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Family House</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Cottage</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Condominium</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Property
-                                                    Location</span> <i class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Property Location</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Austria</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Brazil</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">New york</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">USA</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Max
-                                                    Rooms</span> <i class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Max Rooms</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">1</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">2</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">3</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">4</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">5</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">6</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Bed</span>
-                                                <i class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Bed</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">1</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">2</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">3</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">4</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Bath</span> <i
-                                                    class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Bath</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">1</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">2</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">3</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">4</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Agencies</span> <i
-                                                    class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Agencies</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Lincoln</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Blue Sky</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Zephyr</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Premiere</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="price-range">
-                                            <label for="amount">Price : </label>
-                                            <input type="text" id="amount" readonly>
-                                            <div id="slider-range" class="theme-range-2"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="price-range">
-                                            <label for="amount">Area : </label>
-                                            <input type="text" id="amount1" readonly>
-                                            <div id="slider-range1" class="theme-range-2"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <a href="list-left-sidebar.html" class="btn btn-gradient color-2 btn-block btn-pill mt-2">Search </a>
-                                    </div>
-                                </div>
-                            </div>
-                           <div class="advance-card feature-card">
-                                <h6>Featured</h6>
-                                <div class="feature-slider">
-                                    <div>
-                                        <img src="{% static 'images/property/4.jpg'%}" class="bg-img" alt="">
-                                        <div class="bottom-feature">
-                                            <h5>Neverland</h5>
-                                            <h6>$13,000 <small>/ start from</small></h6>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <img src="{% static 'images/property/16.jpg'%}" class="bg-img" alt="">
-                                        <div class="bottom-feature">
-                                            <h5>Neverland</h5>
-                                            <h6>$13,000 <small>/ start from</small></h6>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <img src="{% static 'images/property/14.jpg'%}" class="bg-img" alt="">
-                                        <div class="bottom-feature">
-                                            <h5>Neverland</h5>
-                                            <h6>$13,000 <small>/ start from</small></h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="labels-left">
-                                    <span class="label label-success">featured</span>
-                                </div>
-                            </div>
-                            <div class="advance-card">
-                                <h6>Recently Added</h6>
-                                <div class="recent-property">
-                                    <ul>
-                                        <li>
-                                            <div class="media">
-                                                <img src="{% static 'images/property/9.jpg'%}" class="img-fluid" alt="">
-                                                <div class="media-body">
-                                                    <h5>Sea Breezes</h5>
-                                                    <span>$9800 / <span>Month</span></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="media">
-                                                <img src="{% static 'images/property/10.jpg'%}" class="img-fluid" alt="">
-                                                <div class="media-body">
-                                                    <h5>Orchard House</h5>
-                                                    <span>$7500 / <span>Month</span></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="media">
-                                                <img src="{% static 'images/property/11.jpg'%}" class="img-fluid" alt="">
-                                                <div class="media-body">
-                                                    <h5>Neverland</h5>
-                                                    <span>$5000 / <span>Month</span></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                           
+                          
+                           
                             <div class="advance-card">
                                 <h6>Mortgage</h6>
                                 <div class="category-property">
@@ -973,7 +754,9 @@
     <!-- single property end -->
 
     <!-- footer start -->
-    
+     <!-- footer start -->
+     <div id="footer-container"></div>
+     <!-- footer end -->
     <!-- footer end -->
 
     <!-- video modal start -->
