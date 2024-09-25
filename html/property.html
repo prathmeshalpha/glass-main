@@ -6,11 +6,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sheltos - Without top property details page">
-    <meta name="keywords" content="sheltos">
-    <meta name="author" content="sheltos">
+    <meta name="description" content="Glassbrix">
+    <meta name="keywords" content="Glassbrix">
+    <meta name="author" content="Glassbrix">
     <link rel="icon" href="{% static 'images/favicon.png'%}" type="image/x-icon" />
-    <title>Sheltos - Without top property details page</title>
+    <title>Glassbrix</title>
 
    <!--Google font-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800,800i"
@@ -84,7 +84,7 @@
     <!--  header end -->
 
     <!-- single property header start -->
-    <section class="without-top property-main small-section">
+    <!-- <section class="without-top property-main small-section">
         <div class="single-property-section">
             <div class="container">
                 <div class="single-title">
@@ -165,31 +165,30 @@
                             <i class="far fa-star"></i>
                         </div>
                         <h2 class="price">₹{{ property.property_price }} <span></span></h2>
-                        <!-- <div class="feature-label">
-                            <span class="btn btn-dashed color-2 btn-pill">Wi-fi</span>
-                            <span class="btn btn-dashed color-2 ms-1 btn-pill">Swimming Pool</span>
-                        </div> -->
+                     
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- single property header end -->
 
     <!-- single property start -->
+    
+     <br>
     <section class="single-property mt-0 pt-0">
         <div class="container">
             <div class="row ratio_55">
                 <div class="col-xl-9 col-lg-8">
                     <div class="description-section tab-description">
                         <div class="description-details">
-                            <!-- <div class="image_section row zoom-gallery-multiple gx-3">
-                                <div class="col-sm-8">
-                                    <a href="{% static 'images/parallax/4.jpg'%}">
-                                        <img src="{% static 'images/parallax/4.jpg'%}" class="img-fluid bg-img" alt="">
+                            <div class="image_section row zoom-gallery-multiple gx-3">
+                                <div class="col-sm-12">
+                                    <a href="{{ images.0.image.url }}">
+                                        <img src="{{ images.0.image.url }}" class="img-fluid bg-img" alt="">
                                     </a>
                                 </div>
-                                <div class="col-sm-4">
+                                <div style="display: none;" class="col-sm-4">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="img-property">
@@ -207,22 +206,43 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="desc-box">
                                 <ul class="nav nav-tabs line-tab" id="top-tab" role="tablist">
-                                    <li class="nav-item"><a data-bs-toggle="tab" class="nav-link active"
-                                            href="#about">about</a></li>
-                                    <li class="nav-item"><a data-bs-toggle="tab" class="nav-link"
-                                            href="#feature">feature</a></li>
-                                    <li class="nav-item"><a data-bs-toggle="tab" class="nav-link"
-                                            href="#gallery">gallery</a></li>
-                                    <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#video">video</a>
+                                    <li class="nav-item">
+                                        <a data-bs-toggle="tab" class="nav-link active" href="#about">about</a>
                                     </li>
-                                    <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#floor_plan">Floor
-                                            plan</a></li>
-                                    <li class="nav-item"><a data-bs-toggle="tab" class="nav-link"
-                                            href="#location-map">location</a></li>
+                                    <li class="nav-item">
+                                        <a data-bs-toggle="tab" class="nav-link" href="#feature">feature</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-bs-toggle="tab" class="nav-link" href="#gallery">gallery</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-bs-toggle="tab" class="nav-link" href="#video">video</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-bs-toggle="tab" class="nav-link" href="#floor_plan">Floor plan</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-bs-toggle="tab" class="nav-link" href="#location-map">location</a>
+                                    </li>
                                 </ul>
+                                
+                                <!-- CSS to force black underline for active tab -->
+                                <style>
+                                    /* Force black underline for the active tab */
+                                    .nav-tabs .nav-link.active {
+                                        border-color: black !important; /* Set black underline for active tab */
+                                        color: black !important; /* Ensure active tab text color is black */
+                                    }
+                                
+                                    /* Optional: Set hover effect to match */
+                                    .nav-tabs .nav-link:hover {
+                                        border-color: black !important; /* Black underline on hover */
+                                    }
+                                </style>
+                                
                                 <div class=" tab-content" id="top-tabContent">
                                     <div class="tab-pane fade show active about page-section" id="about">
                                         <h4 class="content-title">Property Details
@@ -667,13 +687,24 @@
                     <div class="left-sidebar sticky-cls single-sidebar">
                         <div class="filter-cards">
                             <div class="advance-card">
-                                <h6>Contact Info</h6>
-                                <div class="category-property">
+                                <div class="right-single">
+                                
+                                    <div class="d-flex">
+                                        <span><span class="label label-shadow ms-0">For
+                                            {{ property.post_type }}</span></span>
+                                    </div>
+                                    <br>
+                                <h4 style="font-size: 22px;"><b>{{ property.property_name }}</b></h4>
+                                <h5 style="font-size: 15px;font-weight: 400;"><b>{{ property.locality }}, {{ property.city }}</b></h5>
+                                <br>
+                                <h5 style="font-size: 15px;font-weight: 400;"><b>₹{{ property.property_price }} </b></h5>
+                                <h5 style="font-size: 15px;font-weight: 400;"> {{ property.property_area }} Sq ft</h5>
+                                <!-- <div class="category-property">
                                     <div class="agent-info">
                                         <div class="media">
                                             <img src="{% static 'images/testimonial/3.png'%}" class="img-50" alt="">
                                             <div class="media-body ms-2">
-                                                <h6>Jonathan Scott</h6>
+                                                <h6>{{ property.property_name }} </h6>
                                                 <p>Contact@gmail.com</p>
                                             </div>
                                         </div>
@@ -686,9 +717,105 @@
                                             <i data-feather="phone-call" class="me-2"></i>(+066) 518 - 457 - 5181
                                         </li>
                                     </ul>
+                                </div> -->
+                            </div>
+                          
+                            <!--<style>
+                                .containerxx {
+                                    display: grid;
+                                    grid-template-columns: repeat(4, 1fr);
+                                    gap: 05px;
+                                }
+                                
+                            </style>
+                        
+                            <div class="containerxx">
+                                <div ><b><a style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link2">Floorplan</a></b></div>
+                                <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link3">Map</a></b></div>
+                                <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link4">Brochure</a></b></div>
+                                <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link1">Epc</a></b></div>
+                            </div>
+                            <br> -->
+                            <div class="share-buttons">
+                                <div class="d-inline-block share-container">
+                                    <!-- Social Media Icons Only -->
+                                    <ul>
+                                        <!-- Facebook Share Button -->
+                                        <li>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="icon-facebook" target="_blank">
+                                                <i data-feather="facebook" style="width: 18px;height: 18px;"></i>
+                                            </a>
+                                        </li>
+                                        <!-- Twitter Share Button -->
+                                        <li>
+                                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check out this amazing property!" class="icon-twitter" target="_blank">
+                                                <i data-feather="twitter" style="width: 18px;height: 18px;"></i>
+                                            </a>
+                                        </li>
+                                        <!-- Instagram Button -->
+                                        <li>
+                                            <a href="https://www.instagram.com/" class="icon-instagram" target="_blank">
+                                                <i data-feather="instagram" style="width: 18px;height: 18px;"></i>
+                                            </a>
+                                        </li>
+                                        <!-- Email Button -->
+                                        <li>
+                                            <a href="{% url 'send_property_pdf_via_email' property.id %}" class="icon-mail">
+                                                <i data-feather="mail" style="width: 18px;height: 18px;"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="advance-card">
+                            </div>  
+                            <!-- Feather Icons Script -->
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+                                    feather.replace(); // Ensure feather icons are rendered
+                                });
+                            </script>
+                            
+                            <!-- CSS to reduce the size of the icons -->
+                            <style>
+                                /* Style the feather icons to be black and reduce size */
+                                .share-container i {
+                                    stroke: black; /* Change the icon color to black */
+                                    width: 5px; /* Reduce icon width */
+                                    height: 5px; /* Reduce icon height */
+                                    stroke-width: 2; /* Optional: Adjust the stroke width if needed */
+                                }
+                            
+                                /* Optional: Make icons slightly bigger or adjust on hover */
+                                .share-container ul li a i {
+                                    transition: transform 0.3s ease, stroke 0.3s ease;
+                                }
+                            
+                                .share-container ul li a i:hover {
+                                    transform: scale(1.1); /* Optional: Slightly scale up on hover */
+                                    stroke: black; /* Keep icon black even on hover */
+                                }
+                            
+                                /* Basic layout styling */
+                                .share-container ul {
+                                    list-style: none;
+                                    padding: 0;
+                                    margin: 0;
+                                    display: flex;
+                                    gap: 10px; /* Space between icons */
+                                }
+                            
+                                .share-container ul li {
+                                    display: inline-block;
+                                }
+                            
+                                .share-container ul li a {
+                                    color: black;
+                                    font-size: 1.2rem;
+                                }
+                            </style>
+                            
+                            
+                            <div style="padding-top:10px ;" class="advance-card">
                                 <h6>Request exploration</h6>
                                 <div class="category-property">
                                     <form>
@@ -711,9 +838,9 @@
                                             required="">
                                         </div>
                                         <div class="form-group">
-                                            <textarea placeholder="Message" class="form-control" rows="3"></textarea>
+                                            <textarea placeholder="Message" class="form-control" rows="1"></textarea>
                                         </div>
-                                        <button type="submit" onclick="document.location='user-listing.html'" class="btn btn-gradient color-2 btn-block btn-pill">Submit
+                                        <button type="submit" style="border-radius: 0px;" onclick="document.location='user-listing.html'" class="btn btn-outline-dark">Submit
                                             Request</button>
                                     </form>
                                 </div>
@@ -782,55 +909,7 @@
     <!-- tap to top end -->
 
     <!-- customizer start -->
-    <div class="customizer-wrap">
-        <div class="customizer-links">
-            <i data-feather="settings"></i>
-        </div>
-        <div class="customizer-contain custom-scrollbar">
-            <div class="setting-back">
-                <i data-feather="x"></i>
-            </div>
-            <div class="layouts-settings">
-                <div class="customizer-title">
-                    <h6 class="color-2">Layout type</h6>
-                </div>
-                <div class="option-setting">
-                    <span>Light</span>
-                    <label class="switch">
-                        <input type="checkbox" name="chk1" value="option" class="setting-check"><span class="switch-state"></span>
-                    </label>
-                    <span>Dark</span>
-                </div>
-            </div>
-            <div class="layouts-settings">
-                <div class="customizer-title">
-                    <h6 class="color-2">Layout Direction</h6>
-                </div>
-                <div class="option-setting">
-                    <span>LTR</span>
-                    <label class="switch">
-                        <input type="checkbox" name="chk2" value="option" class="setting-check1"><span class="switch-state"></span>
-                    </label>
-                    <span>RTL</span>
-                </div>
-            </div>
-            <div class="layouts-settings">
-                <div class="customizer-title">
-                    <h6 class="color-2">Unlimited Color</h6>
-                </div>
-                <div class="option-setting unlimited-color-layout">
-                    <div class="form-group">
-                        <label for="ColorPicker3">color 3</label>
-                        <input id="ColorPicker3" type="color" value="#ff5c41" name="Default">
-                    </div> 
-                    <div class="form-group">
-                        <label for="ColorPicker4">color 4</label>
-                        <input id="ColorPicker4" type="color" value="#ff8c41" name="Default">
-                    </div> 
-                </div>
-            </div>
-        </div>
-    </div>
+   
     <!-- customizer end -->
 
     <!-- latest jquery-->

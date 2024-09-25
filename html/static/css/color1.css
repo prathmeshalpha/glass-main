@@ -7565,7 +7565,7 @@ header {
     padding: 11px;
     position: relative; }
     header.header-4 .menu .header-right li > a::after {
-      background-color: var(--theme-default7);
+      
       opacity: 0.1;
       border-radius: 5px; }
     header.header-4 .menu .header-right li > a svg {

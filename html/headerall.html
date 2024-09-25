@@ -17,6 +17,10 @@
         <!-- Template css -->
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/color1.css' %}">
+    
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+        
 </head>
  <!-- feather icon js-->
  <script src="{% static 'js/feather-icon/feather.min.js' %}"></script>
@@ -276,42 +280,67 @@
                                 </div>
                             </div>
                         </nav>
+                        
                         <ul class="header-right">
-                            <li>
+                            <!-- <li>
                                 <div class="search-box">
-                                    <i class="fas fa-search search-icon"></i>
+                                    <i class="fas fa-search btn btn-outline-dark search-icon"></i>
                                     <span class="font-roboto">Search</span>
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Search here..">
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                             <li>
-                                
-                                <a href="{% url 'submit_property' %}"><i class="fas fa-home white-icon" ></i></a>
+                                <a href="{% url 'submit_property' %}"
+                                 style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent; ">
+                                    <i class="fas fa-home" style="color: black;background-color: transparent;"></i> <!-- Black Home icon from FontAwesome -->
+                                </a>
                             </li>
-                            
+                                                   
+                            <li>
+                                <style>
+                                    
+                                    .btn-transparent {
+                                        background-color: transparent;
+                                        border: 1px solid transparent; /* Optional: set border to transparent */
+                                        color: inherit; /* Maintain the text color */
+                                        padding: 0.5rem 1rem; /* Add some padding */
+                                        transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+                                    }
+                        
+                                    .btn-transparent:hover {
+                                        background-color: rgba(0, 0, 0, 0.1); /* Optional: Add a hover effect */
+                                        color: #000; /* Change text color on hover */
+                                    }
+                        
+                                    /* Ensure other button classes don't override your styles */
+                                    .btn {
+                                        display: inline-flex;
+                                        align-items: center; /* Center align the icon and text */
+                                        text-decoration: none; /* Remove underline */
+                                    }
+                                </style>
+                            </li>
+                        
                             {% if user.is_authenticated %}
-                            
-
                                 <!-- Profile Dropdown -->
-                                <li id="profile-dropdown" >
-                                    <a href="#" id="profileButton" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                <li id="profile-dropdown">
+                                    <a style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent; " href="#" id="profileButton" class="btn btn-outline-dark" data-bs-toggle="dropdown">
                                         <i data-feather="user"></i> Profile
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{% url 'profile' %}">View Profile</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'logout' %}" id="logoutButton">Logout</a></li>
+                                        <li><a style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent; " class="dropdown-item" href="{% url 'profile' %}">View Profile</a></li>
+                                        <li><a style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent; " class="dropdown-item" href="{% url 'logout' %}" id="logoutButton">Logout</a></li>
                                     </ul>
                                 </li>
                             {% else %}
                                 <li>
-                                    <a href="{% url 'signin' %}" class="btn btn-dashed btn-pill color-2"><i
-                                        class="fas fa-user white-icon"></i></a>
+                                    <a style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent; " href="{% url 'signin' %}" class="btn btn-outline-dark"><i class="fas fa-user white-icon"></i></a>
                                 </li>
                             {% endif %}
-                            
                         </ul>
+                        
                     
                     </div>
                 </div>
@@ -319,6 +348,21 @@
         </div>
 </header>
   <style>
+/* Default button style with outline */
+.btn-outline-dark {
+    color: black !important; /* Black icon */
+    border-color: black !important; /* Black border */
+    background-color: transparent !important; /* Transparent background */
+    transition: background-color 0.3s, color 0.3s !important; /* Smooth transition for hover */
+}
+
+/* Hover effect */
+.btn-outline-dark:hover {
+    background-color: black !important; /* Black background on hover */
+    color: white !important; /* White icon on hover */
+}
+
+    
     .white-icon {
   color: #dc3545;
 }   

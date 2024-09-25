@@ -411,6 +411,33 @@
                             </ul>
                         </div>
                     </div>
+                    <style>.property-box {
+                        height: 250px; /* Set the desired height for the card */
+                        display: flex;
+                        flex-direction: row; /* Make the image and content align horizontally */
+                    }
+                    
+                    .property-image {
+                        height: 100%; /* Ensures the image container is full height */
+                        width: 40%; /* Adjust the width of the image container */
+                        overflow: hidden;
+                    }
+                    
+                    .property-image img {
+                        height: 100%; /* Makes sure the image fills the container vertically */
+                        width: 100%; /* Makes sure the image fills the container horizontally */
+                        object-fit: cover; /* Crops the image to fit within the container */
+                    }
+                    
+                    .property-details {
+                        padding-left: 20px; /* Adjust the spacing between the image and content */
+                        flex-grow: 1; /* Ensures the details take up the remaining space */
+                        overflow: hidden;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center; /* Vertically centers the content */
+                    }
+                    </style>
                     <div class="property-wrapper-grid list-view">
                         <div class="property-2 row column-sm zoom-gallery property-label property-grid list-view">
                             <!-- Django template loop for fetching each property -->
@@ -432,10 +459,7 @@
                                                 <span class="label label-shadow">{{ property.status }}</span></a>
                                             </div>
                                         </div>
-                                        <div class="seen-data">
-                                            <i data-feather="camera"></i>
-                                            <span>1</span>
-                                        </div>
+                                        
                                         <div class="overlay-property-box">
                                             <a href="compare.html" class="effect-round" data-bs-toggle="tooltip" data-bs-placement="left" title="Compare"> 
                                                 <i data-feather="shuffle"></i>
