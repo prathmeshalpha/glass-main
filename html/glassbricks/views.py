@@ -140,15 +140,16 @@ def submit_property(request):
 def home(request):
     return render(request, 'index.html')
 
-@login_required
-def user_profile(request):
-    return render(request, 'user-profile.html')
 
 
 
 
 def contact(request):
     return render(request, 'contact-2.html')
+
+@login_required
+def profile(request):
+    return render(request, 'user-profile.html')
 
 def about(request):
     return render(request, 'about-us.html')
