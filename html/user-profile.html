@@ -101,19 +101,24 @@
                         <div class="sidebar-user sticky-cls">
                             <div class="user-profile">
                                 <div class="media">
-                                    <div class="change-pic">
-                                        <img src="{% static 'images/avatar/3.jpg" class="img-fluid update_img' %}" alt="">
-                                        <div class="change-hover">
-                                            <button type="button" class="btn"><i data-feather="camera"></i></button>
-                                            <input class="updateimg" type="file" name="img" onchange="readURL(this,0)">
+                                    <form method="POST" action="{% url 'update_profile_picture' %}" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="change-pic">
+                                            <img src="{{ user_profile.profile_picture.url }}" class="img-fluid update_img' %}" alt="">
+                                            <div class="change-hover">
+                                                <button type="submit" class="btn"><i data-feather="camera"></i></button>
+                                                <input class="updateimg" type="file" name="picture" onchange="readURL(this,0)">
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                     <div class="media-body">
-                                        <h5>Zack Lee</h5>
-                                        <h6 class="font-roboto">zackle@gmail.com</h6>
-                                        <h6 class="font-roboto mb-0">+91 846 - 547 - 210</h6>
+                                        <h5>{{ profile.first_name }} {{ profile.last_name }}</h5>
+                                        <h6 class="font-roboto">{{ profile.email }}</h6>
+                                        <h6 class="font-roboto mb-0">{{ profile.phone_number }}</h6>
                                     </div>
                                 </div>
+                                <button type="submit" class="btn btn-primary">Change Profile Picture</button>
+                                
                                 <div class="connected-social">                                    
                                     <ul class="agent-social">
                                         <li><a href="https://www.facebook.com/" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
@@ -260,9 +265,10 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form method="POST" action="{% url 'profile' %}" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="modal-body">
-                    <form method="POST" action="{% url 'update_profile' %}" enctype="multipart/form-data">
-                        {% csrf_token %}
+                        
                         <div class="row gx-3">
                             <div class="form-group col-md-6">
                                 <label for="first">first name</label>
@@ -294,15 +300,16 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="state">State</label>
-                                <input id="state" class="form-control" name="state" placeholder="State" value="{{ user_profile.state }}">
+                                <input type="text" id="state" class="form-control" name="state" placeholder="State" value="{{ user_profile.state }}">
                             </div>
                         </div>
-                    </form>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dashed color-2 btn-pill" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-gradient color-2 btn-pill" data-bs-dismiss="modal">Save changes</button>
+                    <button type="submit" class="btn btn-gradient color-2 btn-pill" data-bs-dismiss="modal">Save changes</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -596,7 +603,7 @@
 
        $('#datepicker').datepicker({
             uiLibrary: 'bootstrap4',
-            format: 'dd mmmm yy'
+            format: 'dd/mm/yyyy'
         });
 
     </script>

@@ -1,7 +1,7 @@
 from django import forms
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm as DjangoPasswordResetForm
-from .models import CustomUser, Property, PropertyImage, PropertyVideo, PropertyFloorPlan
+from .models import CustomUser, Property, PropertyImage, PropertyVideo, PropertyFloorPlan, UserProfile
 from django.core.validators import FileExtensionValidator
 
 class SignUpForm(UserCreationForm):
@@ -10,6 +10,7 @@ class SignUpForm(UserCreationForm):
         'placeholder': 'Email address',
         'required': 'required',
     }))
+    
 
     class Meta:
         model = CustomUser
@@ -32,6 +33,17 @@ class SignUpForm(UserCreationForm):
             }),
         }
         
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['first_name', 'last_name', 'gender', 'birthday', 'address', 'city', 'state']
+
+class ProfilePictureForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['profile_picture']
+
 
 class PasswordResetForm(DjangoPasswordResetForm):
     email = forms.EmailField(label='Email', max_length=254, required=True, widget=forms.EmailInput(attrs={

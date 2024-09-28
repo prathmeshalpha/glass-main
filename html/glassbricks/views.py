@@ -11,8 +11,8 @@ from django.conf import settings
 from django.http import HttpResponse
 from xhtml2pdf import pisa
 from django.urls import reverse
-from .forms import SignUpForm, PasswordResetForm, PropertyForm, PropertyImageForm, PropertyVideoForm, PropertyFloorPlanForm
-from .models import Property, PropertyImage, PropertyVideo, PropertyFloorPlan
+from .forms import UserProfileForm, ProfilePictureForm, SignUpForm, PasswordResetForm, PropertyForm, PropertyImageForm, PropertyVideoForm, PropertyFloorPlanForm
+from .models import UserProfile, Property, PropertyImage, PropertyVideo, PropertyFloorPlan
 import random
 import os
 from io import BytesIO
@@ -148,8 +148,36 @@ def contact(request):
     return render(request, 'contact-2.html')
 
 @login_required
-def profile(request):
-    return render(request, 'user-profile.html')
+def update_profile(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+
+    if request.method == 'Post':
+        form = UserProfileForm(request.POST, instance=user_profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=user_profile)
+        
+        
+    return render(request, 'user-profile.html', {
+        'form': form,
+        'user_profile': user_profile,
+    })
+
+@login_required
+def update_profile_picture(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        form = ProfilePictureForm(request.POST, request.FILES, instance=user_profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+
+    return render(request, 'user-profile.html', {
+        'user_profile': user_profile,
+    })
 
 def about(request):
     return render(request, 'about-us.html')
