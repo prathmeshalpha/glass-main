@@ -68,13 +68,13 @@
 <body>
 
     <!-- Loader start -->
-    <div class="loader-wrapper">
+    <!-- <div class="loader-wrapper">
         <div class="row loader-img">
             <div class="col-12">
                 <img src="{% static 'images/loader/loader-2.gif'%}" class="img-fluid" alt="">
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Loader end -->
 
     <!-- header start -->
@@ -208,7 +208,20 @@
                                 </div>
                             </div>
                             <div class="desc-box">
-                                <ul class="nav nav-tabs line-tab" id="top-tab" role="tablist">
+                                <h4 style="font-family: 'Times New Roman', Times, serif;font-style: italic;" >“A light-filled addition flows out onto a tranquil rear garden”</h4>
+                                <p style="padding-left: 35%;padding-right: 60px;font-size: 20px;line-height: 1.5;text-decoration: none;font-family: 'Times New Roman', Times, serif;">
+
+                                    Investing in property is one of the most reliable ways to build long-term wealth. Whether you're buying a home to live in or adding a rental property to your 
+                                    portfolio, real estate offers opportunities for consistent appreciation and passive income. With strategic planning, property investors can benefit from market
+                                     upswings and capital gains, while also enjoying various tax advantages. The value of real estate is often driven by location, property condition, and broader 
+                                     market trends, making it essential to research and understand the local area before committing to a purchase.<br><br>
+
+                                    Beyond financial benefits, property ownership can also offer a sense of security and stability. Unlike other investment options, real estate is a tangible 
+                                    asset that can provide utility and shelter. For those interested in the rental market, properties can generate a steady cash flow, offering a reliable income
+                                     stream over time. However, successful property investment requires careful management of maintenance, tenant relations, and market fluctuations. With the right
+                                      approach, owning property can be both a rewarding personal and financial experience.
+                                </p>
+                                <!-- <ul class="nav nav-tabs line-tab" id="top-tab" role="tablist">
                                     <li class="nav-item">
                                         <a data-bs-toggle="tab" class="nav-link active" href="#about">about</a>
                                     </li>
@@ -227,7 +240,7 @@
                                     <li class="nav-item">
                                         <a data-bs-toggle="tab" class="nav-link" href="#location-map">location</a>
                                     </li>
-                                </ul>
+                                </ul> -->
                                 
                                 <!-- CSS to force black underline for active tab -->
                                 <style>
@@ -243,8 +256,8 @@
                                     }
                                 </style>
                                 
-                                <div class=" tab-content" id="top-tabContent">
-                                    <div class="tab-pane fade show active about page-section" id="about">
+                                <div style="padding-bottom: 20px;" class=" tab-content" id="top-tabContent">
+                                    <!-- <div class="tab-pane fade show active about page-section" id="about">
                                         <h4 class="content-title">Property Details
                                             <a href="https://www.google.com/maps/place/New+York,+NY,+USA/@40.697488,-73.979681,8z/data=!4m5!3m4!1s0x89c24fa5d33f083b:0xc80b8f06e177fe62!8m2!3d40.7127753!4d-74.0059728?hl=en"
                                                 target="_blank">
@@ -254,9 +267,9 @@
                                             <div class="col-md-6 col-xl-4">
                                                 <ul class="property-list-details">
                                                     <li><span>Property Type :</span> {{ property.specific_type1 }}</li>
-                                                    <!-- <li><span>Property ID :</span> ZOEA245</li> -->
+                                                    <li><span>Property ID :</span> ZOEA245</li>
                                                     <li><span>Property status :</span> For {{ property.post_type }}</li>
-                                                    <!-- <li><span>Operating Since :</span> 2008</li> -->
+                                                    <li><span>Operating Since :</span> 2008</li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-6 col-xl-4">
@@ -291,7 +304,7 @@
                                                     for non-business purposes.</p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="tab-pane fade page-section" id="feature">
                                         <h4 class="content-title">features</h4>
                                         <div class="single-feature row">
@@ -684,21 +697,21 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-4">
-                    <div class="left-sidebar sticky-cls single-sidebar">
-                        <div class="filter-cards">
+                    <div style="margin-left: 30px; justify-content: center;align-items: center;display: flex;height: 80vh;flex-direction: column;" class="sticky-cls single-sidebar">
+                        <div style="text-align: left;" class="filter-cards">
                             <div class="advance-card">
                                 <div class="right-single">
                                 
-                                    <div class="d-flex">
+                                    <!-- <div class="d-flex">
                                         <span><span class="label label-shadow ms-0">For
                                             {{ property.post_type }}</span></span>
-                                    </div>
+                                    </div> -->
                                     <br>
-                                <h4 style="font-size: 22px;"><b>{{ property.property_name }}</b></h4>
-                                <h5 style="font-size: 15px;font-weight: 400;"><b>{{ property.locality }}, {{ property.city }}</b></h5>
+                                <h4 style="font-size: 04vh;font-family: 'Times New Roman', Times, serif;"><b>{{ property.property_name }}</b></h4>
+                                <h5 style="font-size: 15px;font-weight: 400;font-family: 'Times New Roman', Times, serif;"><b>{{ property.locality }}, {{ property.city }}</b></h5>
                                 <br>
-                                <h5 style="font-size: 15px;font-weight: 400;"><b>₹{{ property.property_price }} </b></h5>
-                                <h5 style="font-size: 15px;font-weight: 400;"> {{ property.property_area }} Sq ft</h5>
+                                <h5 style="font-size: 20px;font-weight: 400;font-family: 'Times New Roman', Times, serif;"><b>₹{{ property.property_price }} </b></h5>
+                                <h5 style="font-size: 15px;font-weight: 400;font-family: 'Times New Roman', Times, serif;"> {{ property.property_area }} Sq ft</h5>
                                 <!-- <div class="category-property">
                                     <div class="agent-info">
                                         <div class="media">
@@ -720,53 +733,9 @@
                                 </div> -->
                             </div>
                           
-                            <!--<style>
-                                .containerxx {
-                                    display: grid;
-                                    grid-template-columns: repeat(4, 1fr);
-                                    gap: 05px;
-                                }
-                                
-                            </style>
-                        
-                            <div class="containerxx">
-                                <div ><b><a style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link2">Floorplan</a></b></div>
-                                <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link3">Map</a></b></div>
-                                <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link4">Brochure</a></b></div>
-                                <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link1">Epc</a></b></div>
-                            </div>
-                            <br> -->
-                            <div class="share-buttons">
-                                <div class="d-inline-block share-container">
-                                    <!-- Social Media Icons Only -->
-                                    <ul>
-                                        <!-- Facebook Share Button -->
-                                        <li>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="icon-facebook" target="_blank">
-                                                <i data-feather="facebook" style="width: 18px;height: 18px;"></i>
-                                            </a>
-                                        </li>
-                                        <!-- Twitter Share Button -->
-                                        <li>
-                                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check out this amazing property!" class="icon-twitter" target="_blank">
-                                                <i data-feather="twitter" style="width: 18px;height: 18px;"></i>
-                                            </a>
-                                        </li>
-                                        <!-- Instagram Button -->
-                                        <li>
-                                            <a href="https://www.instagram.com/" class="icon-instagram" target="_blank">
-                                                <i data-feather="instagram" style="width: 18px;height: 18px;"></i>
-                                            </a>
-                                        </li>
-                                        <!-- Email Button -->
-                                        <li>
-                                            <a href="{% url 'send_property_pdf_via_email' property.id %}" class="icon-mail">
-                                                <i data-feather="mail" style="width: 18px;height: 18px;"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
+                            <br>
+                            
                             </div>  
                             <!-- Feather Icons Script -->
                             <script>
@@ -813,13 +782,29 @@
                                     font-size: 1.2rem;
                                 }
                             </style>
-                            
+                           
                             
                             <div style="padding-top:10px ;" class="advance-card">
-                                <h6>Request exploration</h6>
+                                <!-- <h6>Request exploration</h6> -->
                                 <div class="category-property">
+                                    <style>
+                                        .containerxx {
+                                            display: grid;
+                                            grid-template-columns: repeat(4, 1fr);
+                                            gap: 40px;
+                                            margin-bottom: 5px;
+                                        }
+                                        
+                                    </style>
+                                
+                                    <div class="containerxx">
+                                        <div ><b><a style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link2">Floorplan</a></b></div>
+                                        <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link3">Map</a></b></div>
+                                        <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link4">Brochure</a></b></div>
+                                        <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link1">Epc</a></b></div>
+                                    </div>
                                     <form>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Your Name" required>
                                         </div>
                                         <div class="form-group">
@@ -839,16 +824,52 @@
                                         </div>
                                         <div class="form-group">
                                             <textarea placeholder="Message" class="form-control" rows="1"></textarea>
-                                        </div>
-                                        <button type="submit" style="border-radius: 0px;" onclick="document.location='user-listing.html'" class="btn btn-outline-dark">Submit
-                                            Request</button>
+                                        </div> -->
+                                        <button style="width: 100%; border-radius: 0px; background-color: black !important; color: white !important;" type="submit" onclick="document.location='user-listing.html'" class="btn btn-outline-dark">
+    REQUEST VIEWING
+</button>
+
+                                        
+                                        
                                     </form>
                                 </div>
                             </div>
-                           
+                            <br>
+                            <div class="share-buttons">
+                                <h4 style="font-size: medium;">share on</h4>
+                                <div class="d-inline-block share-container">
+                                    <!-- Social Media Icons Only -->
+                                    <ul>
+                                        <!-- Facebook Share Button -->
+                                        <li>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="icon-facebook" target="_blank">
+                                                <i data-feather="facebook" style="width: 18px;height: 18px;"></i>
+                                            </a>
+                                        </li>
+                                        <!-- Twitter Share Button -->
+                                        <li>
+                                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check out this amazing property!" class="icon-twitter" target="_blank">
+                                                <i data-feather="twitter" style="width: 18px;height: 18px;"></i>
+                                            </a>
+                                        </li>
+                                        <!-- Instagram Button -->
+                                        <li>
+                                            <a href="https://www.instagram.com/" class="icon-instagram" target="_blank">
+                                                <i data-feather="instagram" style="width: 18px;height: 18px;"></i>
+                                            </a>
+                                        </li>
+                                        <!-- Email Button -->
+                                        <li>
+                                            <a href="{% url 'send_property_pdf_via_email' property.id %}" class="icon-mail">
+                                                <i data-feather="mail" style="width: 18px;height: 18px;"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                           
                            
-                            <div class="advance-card">
+                            <!-- <div class="advance-card">
                                 <h6>Mortgage</h6>
                                 <div class="category-property">
                                     <form>
@@ -871,7 +892,7 @@
                                         <button type="submit" class="btn btn-gradient color-2 btn-block btn-pill">Calculate</button>
                                     </form>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
