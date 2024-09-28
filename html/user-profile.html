@@ -265,10 +265,10 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="POST" action="{% url 'profile' %}" enctype="multipart/form-data">
-                {% csrf_token %}
+                
                 <div class="modal-body">
-                        
+                    <form method="POST" action="{% url 'profile' %}" enctype="multipart/form-data">
+                        {% csrf_token %}    
                         <div class="row gx-3">
                             <div class="form-group col-md-6">
                                 <label for="first">first name</label>
