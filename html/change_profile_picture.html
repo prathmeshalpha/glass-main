@@ -1,0 +1,8 @@
+<form method="POST" action="{% url 'update-profile-picture' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="profile_picture">Select a new profile picture</label>
+        <input type="file" class="form-control" id="profile_picture" name="profile_picture" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>

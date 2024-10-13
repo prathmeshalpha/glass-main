@@ -37,12 +37,9 @@ class SignUpForm(UserCreationForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['first_name', 'last_name', 'gender', 'birthday', 'address', 'city', 'state']
+        fields = ['first_name', 'last_name', 'gender', 'birthday', 'address', 'city', 'state','profile_picture']
+        
 
-class ProfilePictureForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ['profile_picture']
 
 
 class PasswordResetForm(DjangoPasswordResetForm):

@@ -11,7 +11,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from xhtml2pdf import pisa
 from django.urls import reverse
-from .forms import UserProfileForm, ProfilePictureForm, SignUpForm, PasswordResetForm, PropertyForm, PropertyImageForm, PropertyVideoForm, PropertyFloorPlanForm
+from .forms import UserProfileForm, SignUpForm, PasswordResetForm, PropertyForm, PropertyImageForm, PropertyVideoForm, PropertyFloorPlanForm
 from .models import UserProfile, Property, PropertyImage, PropertyVideo, PropertyFloorPlan
 import random
 import os
@@ -148,22 +148,30 @@ def contact(request):
     return render(request, 'contact-2.html')
 
 @login_required
-def update_profile(request):
+def profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'profile.html', {'user_profile': user_profile})
 
-    if request.method == 'Post':
-        form = UserProfileForm(request.POST, instance=user_profile)
+@login_required
+def update_profile(request):
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        print("POST data:", request.POST)          # Log POST data
+        print("FILES data:", request.FILES)        # Log FILES data
+
+        form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
-            form.save()
-            return redirect('profile')
+            print("Form is valid")
+            form.save()                            # Save the form
+            return redirect('profile')             # Redirect after saving
+        else:
+            print("Form errors:", form.errors)     # Log form errors
     else:
         form = UserProfileForm(instance=user_profile)
-        
-        
-    return render(request, 'user-profile.html', {
-        'form': form,
-        'user_profile': user_profile,
-    })
+
+    return render(request, 'change_profile.html', {'form': form, 'user_profile': user_profile})
+
 
 @login_required
 def update_profile_picture(request):
@@ -173,9 +181,13 @@ def update_profile_picture(request):
         form = ProfilePictureForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('update_profile')
+    
+    else:
+        form = ProfilePictureForm(instance=user_profile)
 
-    return render(request, 'user-profile.html', {
+    return render(request, 'change_profile_picture.html', {
+        'form': form,
         'user_profile': user_profile,
     })
 
@@ -207,9 +219,7 @@ def property(request,property_id):
     return render(request, 'property.html',context)
 
 
-@login_required
-def update_profile(request):
-    return render(request, 'update-profile.html')
+
 
 
 

@@ -100,14 +100,18 @@
                     <div class="col-lg-3">
                         <div class="sidebar-user sticky-cls">
                             <div class="user-profile">
-                                <div class="media">
+                                <div class="media">  
                                     <form method="POST" action="{% url 'update_profile_picture' %}" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         <div class="change-pic">
-                                            <img src="{{ user_profile.profile_picture.url }}" class="img-fluid update_img' %}" alt="">
+                                            {% if user_profile.profile_picture %}
+                                                <img src="{{ user_profile.profile_picture.url }}" class="img-fluid update_img' %}" alt="Profile Picture">
+                                            {% else %}
+                                                <img src="{% static 'images/default_profile.jpg' %}" class="img-fluid update_img' %}" alt="Default Profile Picture">
+                                            {% endif %}
                                             <div class="change-hover">
                                                 <button type="submit" class="btn"><i data-feather="camera"></i></button>
-                                                <input class="updateimg" type="file" name="picture" onchange="readURL(this,0)">
+                                                <input class="updateimg" type="file" name="profile_picture" onchange="this.form.submit()">
                                             </div>
                                         </div>
                                     </form>
@@ -117,7 +121,7 @@
                                         <h6 class="font-roboto mb-0">{{ profile.phone_number }}</h6>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Change Profile Picture</button>
+                                
                                 
                                 <div class="connected-social">                                    
                                     <ul class="agent-social">
@@ -135,7 +139,7 @@
                                     <li class="nav-item"><a class="nav-link" href="">create property</a></li>
                                     <li class="nav-item"><a class="nav-link active" href="user-profile.html">My profile</a></li>
                                     <li class="nav-item"><a class="nav-link" href="user-favourites.html">favourites</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{% url 'update-profile' %}">Update Profile</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'update_profile' %}">Update Profile</a></li>
                                     <li class="nav-item"><a class="nav-link" href="user-privacy.html">Privacy</a></li>
                                     <li class="nav-item"><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#logout" class="nav-link">Log out</a></li>
                                 </ul>
@@ -149,7 +153,7 @@
                                     <div class="common-card">
                                         <div class="user-name media">
                                             <div class="media-body">
-                                                <h5>Zack Lee <span class="label label-success">Real estate agent</span></h5>
+                                                <h5>{{ user_profile.first_name }} {{ user_profile.last_name }} <span class="label label-success">Real estate agent</span></h5>
                                                 <div class="rating">
                                                     <i class="fas fa-star"></i>
                                                     <i class="fas fa-star"></i>
@@ -163,7 +167,7 @@
                                         <ul class="user-detail">
                                             <li>
                                                 <i data-feather="map-pin"></i>
-                                                <span>Downers Grove, IL</span>
+                                                <span>{{ user_profile.address }}, {{ user_profile.city }}, {{ user_profile.state }}</span>
                                             </li>
                                             <li>
                                                 <i data-feather="mail"></i>
@@ -188,11 +192,11 @@
                                                         <ul>
                                                             <li>
                                                                 <span>Gender :</span>
-                                                                <p>Female</p>
+                                                                <p>{{ user_profile.gender }}</p>
                                                             </li>
                                                             <li>
                                                                 <span>Birthday :</span>
-                                                                <p>20/11/1995</p>
+                                                                <p>{{ user_profile.birthday }}</p>
                                                             </li>
                                                             <li>
                                                                 <span>Phone number :</span>
@@ -202,7 +206,7 @@
                                                             </li>
                                                             <li>
                                                                 <span>Address :</span>
-                                                                <p>549 Sulphur Springs Road, Downers, IL</p>
+                                                                <p>{{ user_profile.address }}, {{ user_profile.city }}, {{ user_profile.state }}</p>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -253,6 +257,15 @@
             <i class="fas fa-arrow-up"></i>
         </div>
     </div>
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    <li>{{ field }}: {{ errors }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
     <!-- tap to top end -->
 
     <!-- edit profile modal start -->
@@ -265,7 +278,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="POST" action="{% url 'profile' %}" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'update_profile' %}" enctype="multipart/form-data">
                         {% csrf_token %}
                 <div class="modal-body">
                         
@@ -287,7 +300,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>Birthday</label>
-                            <input type="text" class="form-control" name="birthday" placeholder="Birthday" id="datepicker" value="{{ user_profile.birthday }}">
+                            <input type="date" class="form-control" name="birthday" placeholder="Birthday" id="datepicker" value="{{ user_profile.birthday }}">
                         </div>
                         <div class="form-group col-12">
                             <label for="address">Address</label>
@@ -306,9 +319,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dashed color-2 btn-pill" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-gradient color-2 btn-pill" data-bs-dismiss="modal">Save changes</button>
+                    <button type="submit" class="btn btn-gradient color-2 btn-pill" >Save changes</button>
                 </div>
+
                 </form>
+                
             </div>
         </div>
     </div>
