@@ -1,0 +1,978 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Glassbrix">
+    <meta name="keywords" content="Glassbrix">
+    <meta name="author" content="Glassbrix">
+    <link rel="icon" href="{% static 'images/favicon.png'%}" type="image/x-icon" />
+    <title>Glassbrix</title>
+
+   <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,500i,600,600i,700,700i,800,800i"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i" rel="stylesheet">
+
+    <!-- magnific css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css'%}">
+
+    <!-- range slider css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.css'%}">
+
+    <!-- animate css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css'%}">
+
+    <!-- Template css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/color1.css'%}">
+
+
+    <script>
+      
+        // Function to load the header component
+        function loadHeader() {
+            fetch("{% url 'header'%}")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        }
+        
+        // Function to load the footer component
+        function loadFooter() {
+            fetch("{% url 'footer'%}")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+        }
+        
+        // Call the loadHeader and loadFooter functions when the DOM content is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHeader();
+            loadFooter();
+        });
+        
+            </script>
+
+</head>
+
+<body>
+
+    <!-- Loader start -->
+    <!-- <div class="loader-wrapper">
+        <div class="row loader-img">
+            <div class="col-12">
+                <img src="{% static 'images/loader/loader-2.gif'%}" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div> -->
+    <!-- Loader end -->
+
+    <!-- header start -->
+     <!-- header start -->
+     <div id="header-container"></div>
+     <!--  header end -->
+    <!--  header end -->
+
+    <!-- single property header start -->
+    <!-- <section class="without-top property-main small-section">
+        <div class="single-property-section">
+            <div class="container">
+                <div class="single-title">
+                    <div class="left-single">
+                        <div class="d-flex">
+                            <h2 class="mb-0">{{ property.property_name }} </h2>
+                            <span><span class="label label-shadow ms-2">For
+                                {{ property.post_type }}</span></span>
+                        </div>
+                        <p class="mt-1">{{ property.locality }}, {{ property.city }}, {{ property.state }}, {{ property.country }}
+                            {{ property.zip_code }}</p>
+                        <ul>
+                            <li>
+                                <div>
+                                    <img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">
+                                    <span>{{ property.bedrooms }} Bedrooms</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">
+                                    <span>{{ property.bathrooms }} Bathrooms</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/sofa.svg" class="img-fluid" alt="">
+                                    <span>2 Halls</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">
+                                    <span>{{ property.property_area }} Sq ft</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/garage.svg" class="img-fluid" alt="">
+                                    <span>1 Garage</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="share-buttons">
+                            <div class="d-inline-block">
+                                <a href="javascript:void(0)" class="btn btn-gradient btn-pill color-2"><i class="far fa-share-square"></i>
+                                    share
+                                </a>
+                                <div class="share-hover">
+                                    <ul>
+                                        <li>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="icon-facebook" target="_blank"><i data-feather="facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check out this amazing property!" class="icon-twitter" target="_blank"><i data-feather="twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.instagram.com/" class="icon-instagram"><i data-feather="instagram"></i></a>
+                                        </li>
+                                        <li></li>
+                                            <a href="{% url 'send_property_pdf_via_email' property.id %}" class="icon-mail"><i data-feather="mail"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0)" class="btn btn-dashed btn-pill color-2 ms-md-2 ms-1 save-btn"><i class="far fa-heart"></i>
+                                Save</a>
+                            <a href="javascript:void(0)" class="btn btn-dashed btn-pill color-2 ms-md-2 ms-1" onclick="myFunction()"><i data-feather="printer"></i>
+                                Print</a>
+                        </div>
+                    </div>
+                    <div class="right-single">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <h2 class="price">₹{{ property.property_price }} <span></span></h2>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- single property header end -->
+
+    <!-- single property start -->
+    
+     <br>
+    <section class="single-property mt-0 pt-0">
+        <div class="container">
+            <div class="row ratio_55">
+                <div class="col-xl-9 col-lg-8">
+                    <div class="description-section tab-description">
+                        <div class="description-details">
+                            <div class="image_section row zoom-gallery-multiple gx-3">
+                                <div class="col-sm-12">
+                                    <a href="{{ images.0.image.url }}">
+                                        <img src="{{ images.0.image.url }}" class="img-fluid bg-img" alt="">
+                                    </a>
+                                </div>
+                                <div style="display: none;" class="col-sm-4">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="img-property">
+                                                <a href="{% static 'images/property/15.jpg'%}">
+                                                    <img src="{% static 'images/property/15.jpg'%}" class="img-fluid bg-img" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="img-property">
+                                                <a href="{% static 'images/property/14.jpg'%}">
+                                                    <img src="{% static 'images/property/14.jpg'%}" class="img-fluid bg-img" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="desc-box">
+                                <h4 style="font-family: 'Times New Roman', Times, serif;font-style: italic;" >“A light-filled addition flows out onto a tranquil rear garden”</h4>
+                                <p style="padding-left: 35%;padding-right: 60px;font-size: 20px;line-height: 1.5;text-decoration: none;font-family: 'Times New Roman', Times, serif;">
+
+                                    Investing in property is one of the most reliable ways to build long-term wealth. Whether you're buying a home to live in or adding a rental property to your 
+                                    portfolio, real estate offers opportunities for consistent appreciation and passive income. With strategic planning, property investors can benefit from market
+                                     upswings and capital gains, while also enjoying various tax advantages. The value of real estate is often driven by location, property condition, and broader 
+                                     market trends, making it essential to research and understand the local area before committing to a purchase.<br><br>
+
+                                    Beyond financial benefits, property ownership can also offer a sense of security and stability. Unlike other investment options, real estate is a tangible 
+                                    asset that can provide utility and shelter. For those interested in the rental market, properties can generate a steady cash flow, offering a reliable income
+                                     stream over time. However, successful property investment requires careful management of maintenance, tenant relations, and market fluctuations. With the right
+                                      approach, owning property can be both a rewarding personal and financial experience.
+                                </p>
+                                <!-- <ul class="nav nav-tabs line-tab" id="top-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a data-bs-toggle="tab" class="nav-link active" href="#about">about</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-bs-toggle="tab" class="nav-link" href="#feature">feature</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-bs-toggle="tab" class="nav-link" href="#gallery">gallery</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-bs-toggle="tab" class="nav-link" href="#video">video</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-bs-toggle="tab" class="nav-link" href="#floor_plan">Floor plan</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a data-bs-toggle="tab" class="nav-link" href="#location-map">location</a>
+                                    </li>
+                                </ul> -->
+                                
+                                <!-- CSS to force black underline for active tab -->
+                                <style>
+                                    /* Force black underline for the active tab */
+                                    .nav-tabs .nav-link.active {
+                                        border-color: black !important; /* Set black underline for active tab */
+                                        color: black !important; /* Ensure active tab text color is black */
+                                    }
+                                
+                                    /* Optional: Set hover effect to match */
+                                    .nav-tabs .nav-link:hover {
+                                        border-color: black !important; /* Black underline on hover */
+                                    }
+                                </style>
+                                
+                                <div style="padding-bottom: 20px;" class=" tab-content" id="top-tabContent">
+                                    <!-- <div class="tab-pane fade show active about page-section" id="about">
+                                        <h4 class="content-title">Property Details
+                                            <a href="https://www.google.com/maps/place/New+York,+NY,+USA/@40.697488,-73.979681,8z/data=!4m5!3m4!1s0x89c24fa5d33f083b:0xc80b8f06e177fe62!8m2!3d40.7127753!4d-74.0059728?hl=en"
+                                                target="_blank">
+                                                <i class="fa fa-map-marker-alt"></i> view on map</a>
+                                        </h4>
+                                        <div class="row">
+                                            <div class="col-md-6 col-xl-4">
+                                                <ul class="property-list-details">
+                                                    <li><span>Property Type :</span> {{ property.specific_type1 }}</li>
+                                                    <li><span>Property ID :</span> ZOEA245</li>
+                                                    <li><span>Property status :</span> For {{ property.post_type }}</li>
+                                                    <li><span>Operating Since :</span> 2008</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6 col-xl-4">
+                                                <ul class="property-list-details">
+                                                    <li><span>Price :</span> ₹ {{ property.property_price }}</li>
+                                                    <li><span>Property Size :</span> {{ property.property_area }} sq / ft</li>
+                                                    <li><span>Balcony :</span> {{ property.balconies }}</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6 col-xl-4">
+                                                <ul class="property-list-details">
+                                                    <li><span>City :</span> {{ property.city }}</li>
+                                                    <li><span>Bedrooms :</span> {{ property.bedrooms }}</li>
+                                                    <li><span>Bathrooms :</span> {{ property.bathrooms }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4 class="content-title mt-4">Attachments</h4>
+                                        <a href="javascript:void(0)" class="attach-file"><i class="far fa-file-pdf"></i>Demo Property
+                                            Document </a>
+                                        <h4 class="mt-4">Property Brief</h4>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <p class="font-roboto">Residences can be classified by and how they are connected residences and land. Different types 
+                                                    of housing tenure can be used for the same physical type.</p>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <p class="font-roboto">Connected residences owned by a single entity leased out, or owned separately with an agreement covering the relationship between units and common areas.</p>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <p class="font-roboto">Residential real estate may contain either a single family or multifamily structure that is available for occupation or 
+                                                    for non-business purposes.</p>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="tab-pane fade page-section" id="feature">
+                                        <h4 class="content-title">features</h4>
+                                        <div class="single-feature row">
+                                            <div class="col-xl-3 col-6">
+                                                <ul>{% if features.wifi %}
+                                                    <li>
+                                                        <i class="fas fa-wifi"></i> Free Wi-Fi
+                                                    </li>
+                                                    {% endif %}
+                                                    {% if features.elevator %}
+                                                    <li>
+                                                        <i class="fas fa-hands"></i> Elevator Lift
+                                                    </li>
+                                                    {% endif %}
+                                                    {% if features.powerbackup %}
+                                                    <li>
+                                                        <i class="fas fa-power-off"></i> Power Backup
+                                                    </li>
+                                                    {% endif %}
+                                                    {% if features.parking %}
+                                                    <li>
+                                                        <i class="fas fa-car "></i> Parking
+                                                    </li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+                                            <div class="col-xl-3 col-6">
+                                                <ul>{% if features.gym %}
+                                                    <li>
+                                                        <i class="fas fa-first_aid"></i> Gym
+                                                    </li>
+                                                    {% endif %}
+                                                    {% if features.club %}
+                                                    <li>
+                                                        <i class="fas fa-monument "></i> Clubhouse
+                                                    </li>
+                                                    {% endif %}
+                                                    {% if features.ac %}
+                                                    <li>
+                                                        <i class="fas fa-fan"></i> Air Conditioning
+                                                    </li>
+                                                    {% endif %}
+                                                    {% if features.pool %}
+                                                    <li>
+                                                        <i class="fas fa-water"></i> Pool
+                                                    </li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+                                            <div class="col-xl-3 col-6">
+                                                <ul>{% if features.security %}
+                                                    <li>
+                                                        <i class="fas fa-user-shield"></i> Security
+                                                    </li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade page-section ratio3_2" id="gallery">
+                                        <h4 class="content-title">gallery</h4>
+                                        <div class="single-gallery">
+                                            <div class="gallery-for">
+                                                <div>
+                                                    <div class="bg-size">
+                                                        {% if images %}
+                                                            <img src="{{ images.0.image.url }}" class="bg-img"
+                                                                alt="">
+                                                        
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="bg-size">
+                                                        {% for image in images %}
+                                                            <img src="{{ image.image_url }}" class="bg-img"
+                                                                alt="">
+                                                            {% endfor %}
+                                                    </div>
+                                                </div>
+                                                ]
+                                            </div>
+                                            <div class="gallery-nav">
+                                                <div>
+                                                    <img src="{% static 'images/property/4.jpg'%}" class="img-fluid" alt="">
+                                                </div>
+                                                <div>
+                                                    <img src="{% static 'images/property/3.jpg'%}" class="img-fluid" alt="">
+                                                </div>
+                                                <div>
+                                                    <img src="{% static 'images/property/14.jpg'%}" class="img-fluid"
+                                                        alt="">
+                                                </div>
+                                                <div>
+                                                    <img src="{% static 'images/property/11.jpg'%}" class="img-fluid"
+                                                        alt="">
+                                                </div>
+                                                <div>
+                                                    <img src="{% static 'images/property/12.jpg'%}" class="img-fluid"
+                                                        alt="">
+                                                </div>
+                                                <div>
+                                                    <img src="{% static 'images/property/4.jpg'%}" class="img-fluid" alt="">
+                                                </div>
+                                                <div>
+                                                    <img src="{% static 'images/property/3.jpg'%}" class="img-fluid" alt="">
+                                                </div>
+                                                <div>
+                                                    <img src="{% static 'images/property/11.jpg'%}" class="img-fluid"
+                                                        alt="">
+                                                </div>
+                                                <div>
+                                                    <img src="{% static 'images/property/12.jpg'%}" class="img-fluid"
+                                                        alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade page-section ratio_40" id="video">
+                                        <h4 class="content-title">video</h4>
+                                        <div class="play-bg-image">
+                                            <div class="bg-size">
+                                                {% for video in videos %}
+                                                    <a src="{{ video.video_url }}" class="bg-img" alt="hii">Watch </a>
+                                                {% endfor %}
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade page-section" id="floor_plan">
+                                        <h4 class="content-title">Floor plan</h4>
+                                        <img src="{% static 'images/single-property/floor-plan.png'%}" alt=""
+                                            class="img-fluid">
+                                    </div>
+                                    <div class="tab-pane fade page-section" id="location-map">
+                                        <h4 class="content-title">location</h4>
+                                        <iframe title="realestate location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.1583091352!2d-74.11976373946229!3d40.69766374859258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1563449626439!5m2!1sen!2sin"
+                                            allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="property-section p-t-40">
+                        <div class="title-3 text-start inner-title">
+                            <h2>Related Properties</h2>
+                        </div>
+                        <div class="row ratio_65">
+                            <div class="col-12 property-grid-2">
+                                <div class="property-2 row column-sm zoom-gallery property-label property-grid">
+                                    <div class="col-md-6">
+                                        <div class="property-box">
+                                            <div class="property-image">
+                                                <div class="property-slider">
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/10.jpg'%}" class="bg-img" alt="">
+                                                    </a>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/5.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/3.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/4.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                </div>
+                                                <div class="labels-left">
+                                                    <div>
+                                                        <span class="label label-shadow">sale</span>
+                                                    </div>
+                                                </div>
+                                                <div class="seen-data">
+                                                    <i data-feather="camera"></i>
+                                                    <span>25</span>
+                                                </div>                 
+                                                <div class="overlay-property-box">
+                                                    <a href="compare.html" class="effect-round" data-bs-toggle="tooltip" data-bs-placement="left" title="Compare"> 
+                                                        <i data-feather="shuffle"></i>
+                                                    </a>
+                                                    <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
+                                                        <i data-feather="heart"></i>                                                                               
+                                                    </a>
+                                                </div>
+                                            </div>
+            
+                                            <div class="property-details">
+                                                <span class="font-roboto">France</span>
+                                                <a href="single-property-8.html">
+                                                    <h3>Little Acorn Farm</h3>
+                                                </a>
+                                                <h6>$6558.00*</h6>
+                                                <p class="font-roboto">Real estate is divided into several categories, including residential property, commercial property and industrial property.</p>
+                                                <ul>
+                                                    <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bed : 4</li>
+                                                    <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Baths : 4</li>
+                                                    <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">Sq Ft : 5000</li>
+                                                </ul>
+                                                <div class="property-btn d-flex">
+                                                    <span>August 4, 2022</span>
+                                                    <button type="button"  onclick="document.location='single-property-8.html'" class="btn btn-dashed btn-pill color-2">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="property-box">
+                                            <div class="property-image">
+                                                <div class="property-slider">
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/14.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/6.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/10.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/9.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                </div>
+                                                <div class="labels-left">
+                                                    <div>
+                                                        <span class="label label-dark">no fees</span>
+                                                    </div>
+                                                    <span class="label label-success">open house</span>
+                                                </div>
+                                                <div class="seen-data">
+                                                    <i data-feather="camera"></i>
+                                                    <span>10</span>
+                                                </div>                 
+                                                <div class="overlay-property-box">
+                                                    <a href="compare.html" class="effect-round" data-bs-toggle="tooltip" data-bs-placement="left" title="Compare"> 
+                                                        <i data-feather="shuffle"></i>
+                                                    </a>
+                                                    <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
+                                                        <i data-feather="heart"></i>                                                                               
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="property-details">
+                                                <span class="font-roboto">brazil</span>
+                                                <a href="single-property-8.html">
+                                                    <h3>Hidden Spring Hideway</h3>
+                                                </a>
+                                                <h6>$9554.00*</h6>
+                                                <p class="font-roboto">An interior designer is someone who plans,researches,coordinates,management and manages such enhancement projects.</p>
+                                                <ul>
+                                                    <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bed : 4</li>
+                                                    <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Baths : 4</li>
+                                                    <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">Sq Ft : 5000</li>
+                                                </ul>
+                                                <div class="property-btn d-flex">
+                                                    <span>July 18, 2022</span>
+                                                    <button type="button"  onclick="document.location='single-property-8.html'" class="btn btn-dashed btn-pill color-2">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="property-box">
+                                            <div class="property-image">
+                                                <div class="property-slider">
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/12.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/10.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/6.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/9.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                </div>
+                                                <div class="labels-left">
+                                                    <div>
+                                                        <span class="label label-shadow">sale</span>
+                                                    </div>
+                                                </div>
+                                                <div class="seen-data">
+                                                    <i data-feather="camera"></i>
+                                                    <span>42</span>
+                                                </div>                 
+                                                <div class="overlay-property-box">
+                                                    <a href="compare.html" class="effect-round" data-bs-toggle="tooltip" data-bs-placement="left" title="Compare"> 
+                                                        <i data-feather="shuffle"></i>
+                                                    </a>
+                                                    <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
+                                                        <i data-feather="heart"></i>                                                                               
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="property-details">
+                                                <span class="font-roboto">usa</span>
+                                                <a href="single-property-8.html">
+                                                    <h3>Home in Merrick Way</h3>
+                                                </a>
+                                                <h6>$4513.00*</h6>
+                                                <p class="font-roboto">The most common and most absolute type of estate, the tenant enjoys the greatest discretion over the disposal of the property.</p>
+                                                <ul>
+                                                    <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bed : 4</li>
+                                                    <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Baths : 4</li>
+                                                    <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">Sq Ft : 5000</li>
+                                                </ul>
+                                                <div class="property-btn d-flex">
+                                                    <span>January 6, 2022</span>
+                                                    <button type="button"  onclick="document.location='single-property-8.html'" class="btn btn-dashed btn-pill color-2">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="property-box">
+                                            <div class="property-image">
+                                                <div class="property-slider">
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/16.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/5.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/4.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{% static 'images/property/3.jpg'%}" class="bg-img" alt="">
+                                                        
+                                                    </a>
+                                                </div>
+                                                <div class="labels-left">
+                                                    <div>
+                                                        <span class="label label-dark">no fees</span>
+                                                    </div>
+                                                    <span class="label label-success">open house</span>
+                                                </div>
+                                                <div class="seen-data">
+                                                    <i data-feather="camera"></i>
+                                                    <span>25</span>
+                                                </div>                 
+                                                <div class="overlay-property-box">
+                                                    <a href="compare.html" class="effect-round" data-bs-toggle="tooltip" data-bs-placement="left" title="Compare"> 
+                                                        <i data-feather="shuffle"></i>
+                                                    </a>
+                                                    <a href="user-favourites.html" class="effect-round like" data-bs-toggle="tooltip" data-bs-placement="left" title="wishlist">
+                                                        <i data-feather="heart"></i>                                                                               
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="property-details">
+                                                <span class="font-roboto">brazil</span>
+                                                <a href="single-property-8.html">
+                                                    <h3>Magnolia Ranch</h3>
+                                                </a>
+                                                <h6>$9554.00*</h6>
+                                                <p class="font-roboto">Elegant retreat in a quiet Coral Gables setting. This home provides wonderful entertaining spaces with a chef
+                                                    kitchen opening…</p>
+                                                <ul>
+                                                    <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bed : 4</li>
+                                                    <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Baths : 4</li>
+                                                    <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/square-ruler-tool.svg" class="img-fluid ruler-tool" alt="">Sq Ft : 5000</li>
+                                                </ul>
+                                                <div class="property-btn d-flex">
+                                                    <span>May 14, 2022</span>
+                                                    <button type="button"  onclick="document.location='single-property-8.html'" class="btn btn-dashed btn-pill color-2">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4">
+                    <div style="margin-left: 30px; justify-content: center;align-items: center;display: flex;height: 80vh;flex-direction: column;" class="sticky-cls single-sidebar">
+                        <div style="text-align: left;" class="filter-cards">
+                            <div class="advance-card">
+                                <div class="right-single">
+                                
+                                    <!-- <div class="d-flex">
+                                        <span><span class="label label-shadow ms-0">For
+                                            {{ property.post_type }}</span></span>
+                                    </div> -->
+                                    <br>
+                                <h4 style="font-size: 04vh;font-family: 'Times New Roman', Times, serif;"><b>{{ property.property_name }}</b></h4>
+                                <h5 style="font-size: 15px;font-weight: 400;font-family: 'Times New Roman', Times, serif;"><b>{{ property.locality }}, {{ property.city }}</b></h5>
+                                <br>
+                                <h5 style="font-size: 20px;font-weight: 400;font-family: 'Times New Roman', Times, serif;"><b>₹{{ property.property_price }} </b></h5>
+                                <h5 style="font-size: 15px;font-weight: 400;font-family: 'Times New Roman', Times, serif;"> {{ property.property_area }} Sq ft</h5>
+                                <!-- <div class="category-property">
+                                    <div class="agent-info">
+                                        <div class="media">
+                                            <img src="{% static 'images/testimonial/3.png'%}" class="img-50" alt="">
+                                            <div class="media-body ms-2">
+                                                <h6>{{ property.property_name }} </h6>
+                                                <p>Contact@gmail.com</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <i data-feather="map-pin" class="me-2"></i>A-32, Albany, Newyork.
+                                        </li>
+                                        <li>
+                                            <i data-feather="phone-call" class="me-2"></i>(+066) 518 - 457 - 5181
+                                        </li>
+                                    </ul>
+                                </div> -->
+                            </div>
+                          
+                            
+                            <br>
+                            
+                            </div>  
+                            <!-- Feather Icons Script -->
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+                                    feather.replace(); // Ensure feather icons are rendered
+                                });
+                            </script>
+                            
+                            <!-- CSS to reduce the size of the icons -->
+                            <style>
+                                /* Style the feather icons to be black and reduce size */
+                                .share-container i {
+                                    stroke: black; /* Change the icon color to black */
+                                    width: 5px; /* Reduce icon width */
+                                    height: 5px; /* Reduce icon height */
+                                    stroke-width: 2; /* Optional: Adjust the stroke width if needed */
+                                }
+                            
+                                /* Optional: Make icons slightly bigger or adjust on hover */
+                                .share-container ul li a i {
+                                    transition: transform 0.3s ease, stroke 0.3s ease;
+                                }
+                            
+                                .share-container ul li a i:hover {
+                                    transform: scale(1.1); /* Optional: Slightly scale up on hover */
+                                    stroke: black; /* Keep icon black even on hover */
+                                }
+                            
+                                /* Basic layout styling */
+                                .share-container ul {
+                                    list-style: none;
+                                    padding: 0;
+                                    margin: 0;
+                                    display: flex;
+                                    gap: 10px; /* Space between icons */
+                                }
+                            
+                                .share-container ul li {
+                                    display: inline-block;
+                                }
+                            
+                                .share-container ul li a {
+                                    color: black;
+                                    font-size: 1.2rem;
+                                }
+                            </style>
+                           
+                            
+                            <div style="padding-top:10px ;" class="advance-card">
+                                <!-- <h6>Request exploration</h6> -->
+                                <div class="category-property">
+                                    <style>
+                                        .containerxx {
+                                            display: grid;
+                                            grid-template-columns: repeat(4, 1fr);
+                                            gap: 40px;
+                                            margin-bottom: 5px;
+                                        }
+                                        
+                                    </style>
+                                
+                                    <div class="containerxx">
+                                        <div ><b><a style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link2">Floorplan</a></b></div>
+                                        <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link3">Map</a></b></div>
+                                        <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link4">Brochure</a></b></div>
+                                        <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link1">Epc</a></b></div>
+                                    </div>
+                                    <form>
+                                        <!-- <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Your Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Email Address" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input 
+                                            placeholder="phone number"
+                                            class="form-control" 
+                                            name="mobnumber" 
+                                            id="tbNumbers" 
+                                            oninput="maxLengthCheck(this)"
+                                            type = "tel"
+                                            onkeypress="javascript:return isNumber(event)"
+                                            maxlength = "9"
+                                            required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea placeholder="Message" class="form-control" rows="1"></textarea>
+                                        </div> -->
+                                        <button style="width: 100%; border-radius: 0px; background-color: black !important; color: white !important;" type="submit" onclick="document.location='user-listing.html'" class="btn btn-outline-dark">
+    REQUEST VIEWING
+</button>
+
+                                        
+                                        
+                                    </form>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="share-buttons">
+                                <h4 style="font-size: medium;">share on</h4>
+                                <div class="d-inline-block share-container">
+                                    <!-- Social Media Icons Only -->
+                                    <ul>
+                                        <!-- Facebook Share Button -->
+                                        <li>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="icon-facebook" target="_blank">
+                                                <i data-feather="facebook" style="width: 18px;height: 18px;"></i>
+                                            </a>
+                                        </li>
+                                        <!-- Twitter Share Button -->
+                                        <li>
+                                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check out this amazing property!" class="icon-twitter" target="_blank">
+                                                <i data-feather="twitter" style="width: 18px;height: 18px;"></i>
+                                            </a>
+                                        </li>
+                                        <!-- Instagram Button -->
+                                        <li>
+                                            <a href="https://www.instagram.com/" class="icon-instagram" target="_blank">
+                                                <i data-feather="instagram" style="width: 18px;height: 18px;"></i>
+                                            </a>
+                                        </li>
+                                        <!-- Email Button -->
+                                        <li>
+                                            <a href="{% url 'send_property_pdf_via_email' property.id %}" class="icon-mail">
+                                                <i data-feather="mail" style="width: 18px;height: 18px;"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                          
+                           
+                            <!-- <div class="advance-card">
+                                <h6>Mortgage</h6>
+                                <div class="category-property">
+                                    <form>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">$</span>
+                                            <input type="number" class="form-control" placeholder="Loan Amount" required>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">$</span>
+                                            <input type="number" class="form-control" placeholder="Down Payment" required>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">%</span>
+                                            <input type="number" class="form-control" placeholder="Rate of Interest" required>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">$</span>
+                                            <input type="number" class="form-control" placeholder="Number Of years" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-gradient color-2 btn-block btn-pill">Calculate</button>
+                                    </form>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- single property end -->
+
+    <!-- footer start -->
+     <!-- footer start -->
+     <div id="footer-container"></div>
+     <!-- footer end -->
+    <!-- footer end -->
+
+    <!-- video modal start -->
+    <div class="modal fade video-modal" id="videomodal">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <iframe title="realestate" src="https://www.youtube.com/embed/Sz_1tkcU0Co" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- video modal end -->
+
+    <!-- tap to top start -->
+    <div class="tap-top">
+        <div>
+            <i class="fas fa-arrow-up"></i>
+        </div>
+    </div>
+    <!-- tap to top end -->
+
+    <!-- customizer start -->
+   
+    <!-- customizer end -->
+
+    <!-- latest jquery-->
+    <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
+
+    <!-- popper js-->
+    <script src="{% static 'js/popper.min.js'%}"></script>
+
+    <!-- magnific js -->
+    <script src="{% static 'js/jquery.magnific-popup.js'%}"></script>
+    <script src="{% static 'js/zoom-gallery.js'%}"></script>
+    <script src="{% static 'js/zoom-gallery-multiple.js'%}"></script>
+
+    <!-- Bootstrap js-->
+    <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+
+    <!-- feather icon js-->
+    <script src="{% static 'js/feather-icon/feather.min.js'%}"></script>
+    <script src="{% static 'js/feather-icon/feather-icon.js'%}"></script>
+
+    <!-- range slider js -->
+    <script src="{% static 'js/jquery-ui.js'%}"></script>
+    <script src="{% static 'js/jquery.ui.touch-punch.min.js'%}"></script>
+    <script src="{% static 'js/range-slider.js'%}"></script>
+
+    <!-- slick js -->
+    <script src="{% static 'js/slick.js'%}"></script>
+    <script src="{% static 'js/slick-animation.min.js'%}"></script>
+    <script src="{% static 'js/custom-slick.js'%}"></script>
+
+    <!-- print js -->
+    <script src="{% static 'js/print.js'%}"></script>
+
+    <!-- Template js-->
+    <script src="{% static 'js/script.js'%}"></script>
+
+    <!-- Customizer js-->
+    <script src="{% static 'js/customizer.js'%}"></script>
+
+    <!-- Color-picker js-->
+    <script src="{% static 'js/color/single-property2.js'%}"></script>
+
+</body>
+
+</html>

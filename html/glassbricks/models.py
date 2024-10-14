@@ -4,6 +4,8 @@ from django.conf import settings
 from django.core.validators import FileExtensionValidator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.contrib.auth.models import User
+
 
 
 
@@ -67,6 +69,7 @@ class Property(models.Model):
     posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    approved = models.BooleanField(default=False)
 
 
     def __str__(self):

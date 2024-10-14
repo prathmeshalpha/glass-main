@@ -11,7 +11,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from xhtml2pdf import pisa
 from django.urls import reverse
-from .forms import UserProfileForm, SignUpForm, PasswordResetForm, PropertyForm, PropertyImageForm, PropertyVideoForm, PropertyFloorPlanForm
+from .forms import UserProfileForm, SignUpForm, PasswordResetForm, PropertyForm , CustomUserCreationForm
 from .models import UserProfile, Property, PropertyImage, PropertyVideo, PropertyFloorPlan
 import random
 import os
@@ -68,12 +68,25 @@ def signup(request):
             # Authenticate the user to get the backend and login
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
+            email = form.cleaned_data.get('email')
             user = authenticate(username=username, password=password)
 
+            allowed_domains = ['glassbrix.in', 'alphamotion.in']  # Add your company domains here
+            user_email_domain = email.split('@')[-1]
+            
+            if user_email_domain in allowed_domains:
+                user.is_staff = True  # Mark as staff for admin access
+                user.save()
+                
             # If the user is authenticated, log them in with the correct backend
             if user is not None:
                 login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                return redirect('home')
+                
+                
+                if user.is_staff:
+                    return redirect('admin_dashboard')  # Redirect staff to the admin dashboard
+                else:
+                    return redirect('home')
         else:
             print(form.errors)  # Debugging; remove in production
     else:
@@ -141,8 +154,36 @@ def home(request):
     return render(request, 'index.html')
 
 
+def signup_company(request):
+    if request.method == 'post':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.is_staff = True  # Mark this user as a staff member
+            user.save()
+            login(request, user)  # Log in the user after signup
+            return redirect('property_dashboard')  # Redirect to custom property dashboard    
+    else:
+        form = UserCreationForm()
+        
+    return render(request, 'signup.html',{'form':form})
 
 
+def signin_company(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None and user.is_staff:  # Only allow staff (Person 'A') to log in
+            login(request, user)
+            return redirect('property_dashboard')  # Redirect to the custom dashboard
+        else:
+            return render(request, 'signin.html', {'error': 'Invalid credentials or access denied'})
+    return render(request, 'signin.html')
+    
+    
+    
+    
 
 def contact(request):
     return render(request, 'contact-2.html')
@@ -151,6 +192,76 @@ def contact(request):
 def profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
     return render(request, 'profile.html', {'user_profile': user_profile})
+
+@login_required
+def approve_property_listing(request):
+    # Get filter values from GET request
+    status = request.GET.get('status')
+    property_type = request.GET.get('property_type')
+    location = request.GET.get('location')
+    max_rooms = request.GET.get('max_rooms')
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+    min_area = request.GET.get('min_area')
+    max_area = request.GET.get('max_area')
+
+    # Filter properties based on the inputs
+    properties = Property.objects.filter(approved=False)
+
+    if status:
+        properties = properties.filter(status=status)
+    if property_type:
+        properties = properties.filter(property_type=property_type)
+    if location:
+        properties = properties.filter(city__icontains=location)  # Assuming 'city' is the column name for location
+    if max_rooms:
+        properties = properties.filter(rooms__lte=max_rooms)
+    if min_price and max_price:
+        properties = properties.filter(price__gte=min_price, price__lte=max_price)
+    if min_area and max_area:
+        properties = properties.filter(area__gte=min_area, area__lte=max_area)
+    
+    for property in properties:
+        # Split the comma-separated image paths into a list
+        first_image = property.images.first()
+        if first_image:
+            
+            property.first_image_url = first_image.image.url# Display the first 4 images
+        else:
+            property.first_image_url = None  # Handle case when no images are available
+
+
+    # Fetch distinct cities from the Property model to populate the location filter
+    distinct_cities = Property.objects.values_list('city', flat=True).distinct()
+
+    context = {
+        'properties': properties,
+        'distinct_cities': distinct_cities,  # Pass distinct cities to the template
+        'MEDIA_URL': settings.MEDIA_URL,
+    }
+
+    return render(request, 'property_admin_listing.html', context)
+
+
+def admin_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None and user.is_staff:  # only allow staff users
+            login(request, user)
+            return redirect('admin_dashboard')
+        else:
+            return render(request, 'admin_login.html',{'error':'Invalid credentials or access denied'})
+    return render(request, 'admin_login.html')
+
+@login_required
+def admin_dashboard(request):
+    if request.user.is_staff:
+        properties = Property.objects.filter(approved=False)  # list unapproved properties
+        return render(request, 'admin_dashboard.html', {'properties': properties})
+    else:
+        return redirect('admin_login')
 
 @login_required
 def update_profile(request):
@@ -235,7 +346,7 @@ def property_listing(request):
     max_area = request.GET.get('max_area')
 
     # Filter properties based on the inputs
-    properties = Property.objects.all()
+    properties = Property.objects.filter(approved = True)
 
     if status:
         properties = properties.filter(status=status)
@@ -295,7 +406,18 @@ def signin(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                
+                email = user.email
+                allowed_domains = ['glassbrix.in', 'alphamotion.in']  # Allowed domains
+                user_email_domain = email.split('@')[-1]
+
+                if user_email_domain in allowed_domains:
+                    user.is_staff = True  # Ensure they are marked as staff for admin dashboard access
+                    user.save()
+                    return redirect('approve_property_listing')  # Redirect to admin dashboard
+                else:
+                    return redirect('home')
+                
             else:
                 form.add_error(None, 'Invalid username or password')
         else:
@@ -309,6 +431,14 @@ def signin(request):
 def user_logout(request):
     logout(request)
     return redirect('signin')
+
+@login_required
+def unapproved_property_list(request):
+    if request.user.is_staff:  # Only allow admin to view this
+        properties = Property.objects.filter(approved=False)
+        return render(request, 'property_listing.html', {'properties': properties})
+    else:
+        return redirect('home')  # Redirect non-admin users to the home page
 
 # View for forgot password
 def forgot_password(request):

@@ -3,6 +3,15 @@ from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm as DjangoPasswordResetForm
 from .models import CustomUser, Property, PropertyImage, PropertyVideo, PropertyFloorPlan, UserProfile
 from django.core.validators import FileExtensionValidator
+from django.contrib.auth.models import User
+
+
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, required=True, widget=forms.EmailInput(attrs={
@@ -10,6 +19,7 @@ class SignUpForm(UserCreationForm):
         'placeholder': 'Email address',
         'required': 'required',
     }))
+    
     
 
     class Meta:
