@@ -193,6 +193,42 @@ def profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
     return render(request, 'profile.html', {'user_profile': user_profile})
 
+def property_admin(request,property_id):
+    property_instance = get_object_or_404(Property,id=property_id)
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'approve':
+            property_instance.approved = True
+            property_instance.save()
+        elif action == 'deny':
+            property_instance.approved = False
+            property_instance.save()
+        return redirect('approve_property_listing')  # Redirect back to the unapproved properties list
+    images = PropertyImage.objects.filter(property=property_instance)  # Fetch related images
+    videos = PropertyVideo.objects.filter(property=property_instance)  # Fetch related videos
+    features = {
+        'security': property_instance.security,
+        'ac': property_instance.ac,
+        'club': property_instance.club,
+        'elevator': property_instance.elevator,
+        'pool': property_instance.pool,
+        'wifi': property_instance.wifi,
+        'parking': property_instance.parking,
+        'gym': property_instance.gym,
+        'powerbackup': property_instance.powerbackup,
+        
+    }
+    context = {
+        'property': property_instance,
+        'images': images,
+        'videos': videos,
+        'features': features,
+    }
+    return render(request, 'property_admin.html',context)
+
+
+
+
 @login_required
 def approve_property_listing(request):
     # Get filter values from GET request

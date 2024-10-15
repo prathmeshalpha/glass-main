@@ -207,6 +207,8 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            
                             <div class="desc-box">
                                 <h4 style="font-family: 'Times New Roman', Times, serif;font-style: italic;" >“A light-filled addition flows out onto a tranquil rear garden”</h4>
                                 <p style="padding-left: 35%;padding-right: 60px;font-size: 20px;line-height: 1.5;text-decoration: none;font-family: 'Times New Roman', Times, serif;">
@@ -573,6 +575,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-md-6">
                                         <div class="property-box">
                                             <div class="property-image">
@@ -712,6 +715,12 @@
                                 <br>
                                 <h5 style="font-size: 20px;font-weight: 400;font-family: 'Times New Roman', Times, serif;"><b>₹{{ property.property_price }} </b></h5>
                                 <h5 style="font-size: 15px;font-weight: 400;font-family: 'Times New Roman', Times, serif;"> {{ property.property_area }} Sq ft</h5>
+
+                                <form method="POST" action="{% url 'property_admin' property.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" name="action" value="approve" class="btn btn-success">Approve</button>
+                                    <button type="submit" name="action" value="deny" class="btn btn-danger">Deny</button>
+                                </form>
                                 <!-- <div class="category-property">
                                     <div class="agent-info">
                                         <div class="media">

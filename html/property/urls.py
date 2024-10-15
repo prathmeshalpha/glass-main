@@ -12,10 +12,9 @@ urlpatterns = [
     path('signin/', views.signin, name='signin'),
     path('logout/', views.user_logout, name='logout'),
     path('header/', views.header, name='header'),
-    path('', views.header, name='header'),
     
-    path('approve_property_listing/', views.approve_property_listing, name='property_listing_admin'),
-    
+    path('approve_property_listing/', views.approve_property_listing, name='approve_property_listing'),
+    path('property_admin/<int:property_id>', views.property_admin, name='property_admin'),
 
     path('footer/', views.footer, name='footer'),
     path('contact/', views.contact, name='contact'),

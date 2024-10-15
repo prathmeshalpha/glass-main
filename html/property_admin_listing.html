@@ -449,13 +449,13 @@
                                         <div class="property-slider">
                                             <!-- Looping through the images for the property -->
                                             {% if property.first_image_url %}
-                                                <a href="{% url 'property' property.id %}">
+                                                <a href="{% url 'property_admin' property.id %}">
                                                     <img src="{{ property.first_image_url }}" class="d-block w-100" alt="Property Image">
                                                 </a>
                                             {% endif %}
                                         </div>
                                         <div class="labels-left">
-                                            <div><a href="{% url 'property' property.id %}">
+                                            <div><a href="{% url 'property_admin' property.id %}">
                                                 <span class="label label-shadow">{{ property.status }}</span></a>
                                             </div>
                                         </div>
@@ -472,7 +472,7 @@
                     
                                     <div class="property-details">
                                         <span class="font-roboto">{{ property.city }}</span>
-                                            <a href="{% url 'property' property.id %}">
+                                            <a href="{% url 'property_admin' property.id %}">
                                                 <h3>{{ property.property_name }}</h3>
                                             </a>
                                         <h6>₹{{ property.property_price }}</h6>
@@ -484,7 +484,7 @@
                                         </ul>
                                         <div class="property-btn d-flex">
                                             <span>{{ property.date_posted|date:"F j, Y" }}</span>
-                                            <a href="{% url 'property' property.id %}"><button type="button" class="btn btn-dashed btn-pill color-2">Details</button></a>
+                                            <a href="{% url 'property_admin' property.id %}"><button type="button" class="btn btn-dashed btn-pill color-2">Details</button></a>
                                         </div>
                                     </div>
                                 </div>
