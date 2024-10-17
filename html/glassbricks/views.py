@@ -190,7 +190,12 @@ def contact(request):
 
 @login_required
 def profile(request):
-    user_profile = UserProfile.objects.get(user=request.user)
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        user_profile = UserProfile.objects.create(user=request.user)
+        
+    
     return render(request, 'profile.html', {'user_profile': user_profile})
 
 def property_admin(request,property_id):
