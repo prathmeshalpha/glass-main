@@ -78,7 +78,7 @@ Author URI: https://themeforest.net/user/pixelstrap
 
 body {
   margin: 0;
-  font-family: var(--bs-font-sans-serif);
+  font-family: 'Times New Roman', Times, serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -86,6 +86,10 @@ body {
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+.Tfont {
+  font-family: 'Times New Roman', Times, serif;
+}
 
 hr {
   margin: 1rem 0;
@@ -214,7 +218,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: var(--bs-font-monospace);
+  font-family: 'Times New Roman', Times, serif;
   font-size: 1em;
   direction: ltr /* rtl:ignore */;
   unicode-bidi: bidi-override; }
@@ -294,7 +298,7 @@ select,
 optgroup,
 textarea {
   margin: 0;
-  font-family: inherit;
+  font-family: 'Times New Roman', Times, serif;
   font-size: inherit;
   line-height: inherit; }
 
@@ -6374,7 +6378,7 @@ textarea.form-control-lg {
   padding-left: 3rem !important; }
 
 .font-monospace {
-  font-family: var(--bs-font-monospace) !important; }
+  font-family: 'Times New Roman', Times, serif;}
 
 .fs-1 {
   font-size: calc(1.375rem + 1.5vw) !important; }
@@ -8732,7 +8736,7 @@ textarea.form-control-lg {
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 @font-face {
-  font-family: 'Font Awesome 5 Free';
+  font-family: 'Times New Roman', Times, serif;
   font-style: normal;
   font-weight: 400;
   font-display: auto;
@@ -13137,7 +13141,7 @@ progress, sub, sup {
   vertical-align: baseline; }
 
 html {
-  font-family: sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%; }
@@ -13164,7 +13168,7 @@ hr {
   height: 0; }
 
 code, kbd, pre, samp {
-  font-family: monospace,monospace;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 1em; }
 
 a {
@@ -13217,7 +13221,7 @@ svg:not(:root) {
   overflow: hidden; }
 
 button, input, optgroup, select, textarea {
-  font-family: sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 100%;
   line-height: 1.15;
   margin: 0; }
@@ -13836,7 +13840,7 @@ summary {
 
 /* Icons */
 @font-face {
-  font-family: "slick";
+  font-family: 'Times New Roman', Times, serif;
   src: url("../fonts/slick.eot");
   src: url("../fonts/slickd41d.eot?#iefix") format("embedded-opentype"), url("../fonts/slick.woff") format("woff"), url("../fonts/slick.ttf") format("truetype"), url("../fonts/slick.svg#slick") format("svg");
   font-weight: normal;
@@ -13875,7 +13879,7 @@ summary {
     opacity: 0.25; }
   .slick-prev:before,
   .slick-next:before {
-    font-family: "slick";
+    font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
     line-height: 1;
     color: white;
@@ -13947,7 +13951,7 @@ summary {
         content: "•";
         width: 20px;
         height: 20px;
-        font-family: "slick";
+        font-family: 'Times New Roman', Times, serif;
         font-size: 6px;
         line-height: 20px;
         text-align: center;
@@ -14738,7 +14742,7 @@ body.swal2-no-backdrop .swal2-shown {
   padding: 1.25em;
   border-radius: 0.3125em;
   background: #fff;
-  font-family: inherit;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 1rem;
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
@@ -14880,7 +14884,7 @@ body.swal2-no-backdrop .swal2-shown {
     outline: initial;
     background: transparent;
     color: #cccccc;
-    font-family: serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 2.5em;
     line-height: 1.2;
     cursor: pointer;
@@ -16325,10 +16329,10 @@ label {
 /*====== Image-sizes css ends ======*/
 /*====== font family css starts ======*/
 .font-roboto {
-  font-family: Roboto, sans-serif; }
+  font-family: 'Times New Roman', Times, serif; }
 
 .font-rubik {
-  font-family: Rubik, sans-serif; }
+  font-family: 'Times New Roman', Times, serif; }
 
 /*====== font family css end ======*/
 /*====== image ratio css starts ======*/
@@ -16518,7 +16522,7 @@ label {
       content: "\f002";
       font-size: 16px;
       color: #959595;
-      font-family: "Font Awesome 5 free";
+      font-family: 'Times New Roman', Times, serif;
       font-weight: 600; }
     .page-wrapper .page-main-header .form-group input {
       border: none;
@@ -16952,7 +16956,7 @@ label {
       .page-header .breadcrumb a .fa {
         font-size: 14px; }
     .page-header .breadcrumb li {
-      font-family: Rubik, sans-serif;
+      font-family: 'Times New Roman', Times, serif;
       font-size: 14px; }
     .page-header .breadcrumb .breadcrumb-item.active {
       color: #1c2d3a; }
@@ -17257,7 +17261,7 @@ label {
 .label {
   border-radius: 5px;
   padding: 4px 15px 3px;
-  font-family: Roboto, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: 500;
   font-size: 14px;
   color: #ffffff;
@@ -17404,7 +17408,7 @@ input:focus {
 form label,
 form .form-control {
   font-size: 14px;
-  font-family: Rubik, sans-serif; }
+  font-family: 'Times New Roman', Times, serif; }
 
 form .form-control::-webkit-input-placeholder {
   text-transform: capitalize; }
@@ -17684,7 +17688,7 @@ input[type='radio'].radio_animated {
     margin-bottom: 10px; }
   .property-wizard.horizontal-wizard .wizard-box .wizard-step-container .input-data .account-content ul li {
     display: block;
-    font-family: Roboto, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     color: #586167; }
     .property-wizard.horizontal-wizard .wizard-box .wizard-step-container .input-data .account-content ul li span {
       color: var(--theme-default3); }
@@ -17769,7 +17773,7 @@ input[type='radio'].radio_animated {
     padding-right: 5px; }
   .log-in form .form-group .important-note {
     color: rgba(88, 97, 103, 0.4);
-    font-family: Rubik, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     padding-left: 35px;
     margin-top: 5px; }
 
@@ -18246,7 +18250,7 @@ input[type='radio'].radio_animated {
       border-radius: 30px; }
       .property-section .property-box:hover .property-image .property-slider .slick-prev::before {
         content: "\f053";
-        font-family: "Font Awesome 5 free";
+        font-family: 'Times New Roman', Times, serif;
         font-weight: 900;
         opacity: 1;
         line-height: 0.6;
@@ -18259,7 +18263,7 @@ input[type='radio'].radio_animated {
       border-radius: 30px; }
       .property-section .property-box:hover .property-image .property-slider .slick-next::before {
         content: "\f054";
-        font-family: "Font Awesome 5 free";
+        font-family: 'Times New Roman', Times, serif;
         font-weight: 900;
         opacity: 1;
         line-height: 0.6;
@@ -18293,7 +18297,7 @@ input[type='radio'].radio_animated {
         text-transform: uppercase;
         font-size: 10px;
         font-weight: 500;
-        font-family: Roboto, sans-serif; }
+        font-family: 'Times New Roman', Times, serif; }
       .property-section .property-box .property-image .labels-left > span {
         margin-top: 6px; }
     .property-section .property-box .property-image .seen-data {
@@ -19082,7 +19086,7 @@ input[type='radio'].radio_animated {
     .single-property .description-section .desc-box p {
       line-height: 1.5;
       color: #878787;
-      font-family: Roboto, sans-serif;
+      font-family: 'Times New Roman', Times, serif;
       margin-bottom: 5px;
       width: 100%; }
     .single-property .description-section .desc-box .feature-dec h4, .single-property .description-section .desc-box .feature-dec .h4,
@@ -19421,7 +19425,7 @@ input[type='radio'].radio_animated {
   margin-left: -15px; }
 
 .leaflet-popup-content .infoBox .marker-detail .detail-part span, .leaflet-popup-content .infoBox .marker-detail .detail-part a {
-  font-family: Montserrat, sans-serif; }
+  font-family: 'Times New Roman', Times, serif;}
 
 .leaflet-marker-icon.leaflet-interactive {
   width: 35px !important;
@@ -19471,7 +19475,7 @@ input[type='radio'].radio_animated {
     max-height: -moz-max-content !important;
     max-height: max-content !important;
     color: unset !important;
-    font-family: Roboto, sans-serif !important; }
+    font-family: 'Times New Roman', Times, serif; }
 
 .MicrosoftMap .infobox-close {
   z-index: 1; }
@@ -19567,7 +19571,7 @@ input[type='radio'].radio_animated {
   -webkit-transition: 0.5s;
   transition: 0.5s; }
   .feature-slider .slick-arrow:before, .grid-slider .slick-arrow:before, .slider-for .slick-arrow:before, .main-property-slider .slick-arrow:before {
-    font-family: "Font Awesome 5 free";
+    font-family: 'Times New Roman', Times, serif;
     font-weight: 900;
     font-size: 14px;
     opacity: 1; }
@@ -19589,7 +19593,7 @@ input[type='radio'].radio_animated {
   background-color: rgba(255, 255, 255, 0.1); }
 
 .arrow-light .slick-prev:before, .arrow-light .slick-next:before {
-  font-family: "Font Awesome 5 free";
+  font-family: 'Times New Roman', Times, serif;
   font-weight: 900;
   font-size: 14px;
   margin-left: 1px; }
@@ -19677,7 +19681,7 @@ input[type='radio'].radio_animated {
   -webkit-box-shadow: 0 0 75px rgba(0, 0, 0, 0.08);
           box-shadow: 0 0 75px rgba(0, 0, 0, 0.08); }
   .arrow-image .slick-arrow::before {
-    font-family: "Font Awesome 5 free";
+    font-family: 'Times New Roman', Times, serif;
     font-weight: 900;
     font-size: 18px;
     color: var(--theme-default5);
@@ -19758,7 +19762,7 @@ input[type='radio'].radio_animated {
     transition: 0.5s; }
     .arrow-gradient .slick-arrow::before {
       font-size: 16px;
-      font-family: "Font Awesome 5 free";
+      font-family: 'Times New Roman', Times, serif;
       font-weight: 900;
       opacity: 1;
       color: var(--theme-default6);
@@ -19952,7 +19956,7 @@ input[type='radio'].radio_animated {
       margin-top: 20px;
       padding-left: 15px; }
       .customizer-wrap .customizer-contain .option-setting span {
-        font-family: Rubik, sans-serif; }
+        font-family: 'Times New Roman', Times, serif; }
       .customizer-wrap .customizer-contain .option-setting label {
         margin: 0 10px 0; }
       .customizer-wrap .customizer-contain .option-setting .switch input:checked + .switch-state {
@@ -20088,11 +20092,11 @@ input[type='radio'].radio_animated {
     color: #89c826; }
 
 body {
-  font-family: Roboto, sans-serif; }
+  ffont-family: 'Times New Roman', Times, serif; }
 
 .btn {
   font-weight: 400;
-  font-family: Montserrat, sans-serif; }
+  font-family: 'Times New Roman', Times, serif; }
   .btn:focus, .btn.focus {
     -webkit-box-shadow: none;
             box-shadow: none; }
@@ -20187,7 +20191,7 @@ table tr td {
 .dropzone-admin {
   margin-bottom: 16px; }
   .dropzone-admin label {
-    font-family: Rubik, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 14px;
     color: #586167; }
 
@@ -20380,7 +20384,7 @@ footer {
         display: none;
         margin-bottom: 0; }
     .sales-details .bar-sales .apexcharts-tooltip .apexcharts-tooltip-text {
-      font-family: Roboto, sans-serif; }
+      ffont-family: 'Times New Roman', Times, serif; }
     .sales-details .bar-sales .apexcharts-tooltip .apexcharts-tooltip-series-group {
       padding-top: 4px; }
     .sales-details .bar-sales .apexcharts-tooltip .apexcharts-tooltip-marker {
@@ -20497,7 +20501,7 @@ footer {
   .properties-list .media .media-body ul {
     margin-bottom: 5px; }
     .properties-list .media .media-body ul li span {
-      font-family: Roboto, sans-serif; }
+      ffont-family: 'Times New Roman', Times, serif; }
     .properties-list .media .media-body ul li img {
       width: 18px;
       margin-right: 5px; }
@@ -20559,7 +20563,7 @@ footer {
 .property-admin .property-details {
   padding: 30px; }
   .property-admin .property-details h3, .property-admin .property-details .h3 {
-    font-family: Montserrat, sans-serif; }
+    font-family: 'Times New Roman', Times, serif; }
 
 .property-admin .property-btn {
   margin-bottom: -10px; }
@@ -20877,7 +20881,7 @@ footer {
   font-size: 11px;
   border-radius: 5px;
   padding: 4px 15px 3px;
-  font-family: Roboto, sans-serif;
+  ffont-family: 'Times New Roman', Times, serif;
   font-weight: 500;
   font-size: 12px;
   display: inline-block;
@@ -21700,7 +21704,7 @@ body {
   line-height: 1.4; }
 
 .ratio-card h5, .ratio-card .h5 {
-  font-family: Rubik, sans-serif; }
+  font-family: 'Times New Roman', Times, serif; }
 
 .ratio-card .card-body h5, .ratio-card .card-body .h5 {
   background: var(--theme-gradient7);
@@ -21716,7 +21720,7 @@ body {
   .ratio-card .card-body ul li {
     display: list-item; }
     .ratio-card .card-body ul li h6, .ratio-card .card-body ul li .h6 {
-      font-family: Rubik, sans-serif; }
+      font-family: 'Times New Roman', Times, serif; }
     .ratio-card .card-body ul li:last-child h6, .ratio-card .card-body ul li:last-child .h6 {
       margin-bottom: 0; }
 
@@ -22025,7 +22029,7 @@ body {
     margin: 30px 0 30px; }
     .pricing-section .pricing-box ul li {
       display: block;
-      font-family: Roboto, sans-serif;
+      ffont-family: 'Times New Roman', Times, serif;
       color: rgba(88, 97, 103, 0.5);
       font-size: 15px;
       text-transform: lowercase; }
@@ -22250,23 +22254,23 @@ body {
         font-weight: 300; }
         .subscribe-section .video-details .form-group input::-webkit-input-placeholder {
           color: var(--theme-default6);
-          font-family: Montserrat, sans-serif;
+          font-family: 'Times New Roman', Times, serif;
           font-weight: 300; }
         .subscribe-section .video-details .form-group input::-moz-placeholder {
           color: var(--theme-default6);
-          font-family: Montserrat, sans-serif;
+          font-family: 'Times New Roman', Times, serif;
           font-weight: 300; }
         .subscribe-section .video-details .form-group input:-ms-input-placeholder {
           color: var(--theme-default6);
-          font-family: Montserrat, sans-serif;
+          font-family: 'Times New Roman', Times, serif;
           font-weight: 300; }
         .subscribe-section .video-details .form-group input::-ms-input-placeholder {
           color: var(--theme-default6);
-          font-family: Montserrat, sans-serif;
+          font-family: 'Times New Roman', Times, serif;
           font-weight: 300; }
         .subscribe-section .video-details .form-group input::placeholder {
           color: var(--theme-default6);
-          font-family: Montserrat, sans-serif;
+          font-family: 'Times New Roman', Times, serif;
           font-weight: 300; }
       .subscribe-section .video-details .form-group::after {
         opacity: 0.6;
@@ -22361,7 +22365,7 @@ body {
   z-index: 7; }
   .dropdown .dropdown-menu .dropdown-item {
     font-size: 14px;
-    font-family: Rubik, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     padding: 6px 20px; }
@@ -22426,7 +22430,7 @@ body {
         display: block;
         -webkit-transition: 0.5s;
         transition: 0.5s;
-        font-family: Rubik, sans-serif;
+        font-family: 'Times New Roman', Times, serif;
         position: relative; }
         .filter-panel .grid-list-filter li > a svg,
         .filter-panel .grid-list-filter li .dropdown-toggle svg,
@@ -22563,10 +22567,10 @@ body {
 .filter-cards .advance-card .category-property ul li {
   display: block;
   color: #878787;
-  font-family: Roboto, sans-serif; }
+  ffont-family: 'Times New Roman', Times, serif; }
   .filter-cards .advance-card .category-property ul li a {
     color: #878787;
-    font-family: Roboto, sans-serif;
+    ffont-family: 'Times New Roman', Times, serif;
     letter-spacing: 0.04rem; }
     .filter-cards .advance-card .category-property ul li a:hover, .filter-cards .advance-card .category-property ul li a:focus {
       color: var(--theme-default3); }
@@ -22731,7 +22735,7 @@ body {
       right: 30px;
       top: 21px;
       content: "\f054";
-      font-family: "Font Awesome 5 free";
+      font-family: 'Times New Roman', Times, serif;
       color: #586167;
       font-weight: 900;
       -webkit-transition: 0.5s ease;
@@ -22744,7 +22748,7 @@ body {
 
 .accordion .card-body {
   color: #959595;
-  font-family: Roboto, sans-serif;
+  ffont-family: 'Times New Roman', Times, serif;
   border-top: 1px solid #eee;
   line-height: 1.6;
   padding: 30px; }
@@ -22796,7 +22800,7 @@ body {
   .contact_section .contact_wrap ul {
     margin-bottom: -8px; }
     .contact_section .contact_wrap ul li {
-      font-family: Roboto, sans-serif;
+      ffont-family: 'Times New Roman', Times, serif;
       color: #959595;
       display: block;
       line-height: 1.8; }
@@ -23040,7 +23044,7 @@ body {
     margin-bottom: 15px; }
     .agent-section .agent-content .agent-contact li {
       display: block;
-      font-family: Roboto, sans-serif;
+      ffont-family: 'Times New Roman', Times, serif;
       color: #878787;
       text-align: left; }
       .agent-section .agent-content .agent-contact li i {
@@ -23102,7 +23106,7 @@ body {
 .dz-message h6, .dz-message .h6,
 .dz-message span {
   color: #959595;
-  font-family: Rubik, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: 400; }
 
 .property-wizard .wizard-box .wizard-step-container .wizard-steps li {
@@ -23133,7 +23137,7 @@ body {
       .property-wizard .wizard-box .wizard-step-container .wizard-steps li .media .media-body h5, .property-wizard .wizard-box .wizard-step-container .wizard-steps li .media .media-body .h5,
       .property-wizard .wizard-box .wizard-step-container .wizard-steps li .media .media-body h6,
       .property-wizard .wizard-box .wizard-step-container .wizard-steps li .media .media-body .h6 {
-        font-family: Rubik, sans-serif; }
+        font-family: 'Times New Roman', Times, serif; }
       
       .property-wizard .wizard-box .wizard-step-container .wizard-steps li .media .media-body h6,
       .property-wizard .wizard-box .wizard-step-container .wizard-steps li .media .media-body .h6 {
@@ -23237,7 +23241,7 @@ body {
 
 .property-wizard label {
   font-weight: 500;
-  font-family: Montserrat, sans-serif; }
+  font-family: 'Times New Roman', Times, serif; }
 
 .property-wizard .form-control {
   color: rgba(88, 97, 103, 0.6); }
@@ -23357,7 +23361,7 @@ body {
         -ms-flex-align: center;
             align-items: center; }
     .user-dashboard .dashboard-content .user-wrapper .widgets .media .media-body p {
-      font-family: Roboto, sans-serif;
+      ffont-family: 'Times New Roman', Times, serif;
       text-transform: capitalize;
       margin-bottom: 5px;
       margin-top: -2px; }
@@ -23428,7 +23432,7 @@ body {
       width: 100%; }
       .user-dashboard .dashboard-content .user-wrapper .overview .overview-content li p {
         margin-bottom: 5px;
-        font-family: Roboto, sans-serif; }
+        ffont-family: 'Times New Roman', Times, serif; }
       .user-dashboard .dashboard-content .user-wrapper .overview .overview-content li h4, .user-dashboard .dashboard-content .user-wrapper .overview .overview-content li .h4 {
         margin-bottom: 0;
         font-weight: 500; }
@@ -23474,7 +23478,7 @@ body {
   .user-dashboard .property-overview table tr td {
     color: #959595;
     vertical-align: middle;
-    font-family: Roboto, sans-serif;
+    ffont-family: 'Times New Roman', Times, serif;
     padding: 15px 12px 0; }
     .user-dashboard .property-overview table tr td .d-flex {
       -webkit-box-align: center;
@@ -23545,7 +23549,7 @@ body {
     display: block; }
     .right-line-tab .nav-item .nav-link {
       color: #1c2d3a;
-      font-family: Roboto, sans-serif;
+      ffont-family: 'Times New Roman', Times, serif;
       border: none;
       border-left: 2px solid transparent;
       border-radius: 0;
@@ -23634,7 +23638,7 @@ body {
       width: 16px;
       height: 16px; }
     .my-profile .profile-info .user-detail li span {
-      font-family: Roboto, sans-serif; }
+      ffont-family: 'Times New Roman', Times, serif; }
 
 .my-profile .profile-info p {
   line-height: 1.8;
@@ -23642,7 +23646,7 @@ body {
 
 .my-profile .profile-info .information ul li {
   display: block;
-  font-family: Roboto, sans-serif; }
+  ffont-family: 'Times New Roman', Times, serif; }
   .my-profile .profile-info .information ul li span:first-child {
     min-width: 180px;
     display: inline-block; }
@@ -23759,10 +23763,10 @@ input[type="date"] {
   color: inherit; }
 
 .gj-picker div[role=navigator] div[role=period] {
-  font-family: Roboto, sans-serif; }
+  ffont-family: 'Times New Roman', Times, serif; }
 
 .gj-picker-bootstrap table tr td {
-  font-family: Roboto, sans-serif; }
+  ffont-family: 'Times New Roman', Times, serif; }
   .gj-picker-bootstrap table tr td.today div {
     color: var(--theme-default3); }
   .gj-picker-bootstrap table tr td.selected.gj-cursor-pointer div {
@@ -23784,7 +23788,7 @@ input[type="date"] {
     background-color: #73a3b9;
     height: 100%; }
   .card-payment .payment-card .card-details h6, .card-payment .payment-card .card-details .h6 {
-    font-family: Roboto, sans-serif;
+    ffont-family: 'Times New Roman', Times, serif;
     color: #ffffff; }
   .card-payment .payment-card .card-details .card-number > div img {
     width: 15%; }
@@ -23818,7 +23822,7 @@ input[type="date"] {
             align-items: center; }
     .card-payment .payment-card .card-details .name-detail h5, .card-payment .payment-card .card-details .name-detail .h5 {
       margin-bottom: 0;
-      font-family: Roboto, sans-serif;
+      ffont-family: 'Times New Roman', Times, serif;
       font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
       color: #ffffff;
       text-transform: uppercase;
@@ -23865,7 +23869,7 @@ input[type="date"] {
         text-transform: capitalize;
         margin-bottom: 0;
         margin-top: 5px;
-        font-family: Roboto, sans-serif; }
+        ffont-family: 'Times New Roman', Times, serif; }
   .card-payment .payment-card:hover .edit-card {
     opacity: 1;
     -webkit-transition: all 0.5s ease;

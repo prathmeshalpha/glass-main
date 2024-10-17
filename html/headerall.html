@@ -31,355 +31,153 @@
 <!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+<header class="header-4" style="height: 70px; padding: 10px;">
+    <div class="container-fluid h-100" style="padding: 0;">
+        <div class="menu d-flex justify-content-between align-items-center h-100" style="padding: 0;">
+            <!-- Left Side: Dropdowns for City and Country -->
+            <ul class="nav-menu d-flex">
+                <li class="dropdown-container">
+                    <select id="city-dropdown" class="custom-dropdown">
+                        <option style="font-family: 'Times New Roman', Times, serif;" value="" disabled selected>Select City</option>
+                        <option value="new-york">New York</option>
+                        <option value="los-angeles">Los Angeles</option>
+                        <option value="chicago">Chicago</option>
+                        <option value="houston">Houston</option>
+                    </select>
+                </li>
+                <li class="dropdown-container ml-3">
+                    <select id="country-dropdown" class="custom-dropdown">
+                        <option style="font-family: 'Times New Roman', Times, serif;" value="" disabled selected>Select Country</option>
+                        <option value="india">India</option>
+                        <option value="usa">USA</option>
+                        <option value="australia">Australia</option>
+                    </select>
+                </li>
+            </ul>
 
-<header class="header-4">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="menu">
-                        <div class="brand-logo">
-                            <a href="#">
-                                <h2>Glassbrix</h2>
-                            </a>
-                        </div>
-                        <nav>
-                            <div class="main-navbar">
-                                <div id="mainnav">
-                                    <div class="toggle-nav">
-                                        <i class="fa fa-bars sidebar-bar"></i>
-                                    </div>
-                                    
-                                    <ul class="nav-menu">
-                                        <li class="back-btn">
-                                            <div class="mobile-back text-end">
-                                                <span>Back</span>
-                                                <i aria-hidden="true" class="fa fa-angle-right ps-1"></i>
-                                            </div>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="{% url 'home' %}" class="nav-link menu-title">Home</a>  
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="{% url 'property-listing' %}" class="nav-link menu-title">Listing</a>
-                                            <!-- <ul class="nav-submenu menu-content">
-                                                <li>
-                                                    <a href="javascript:void(0)" class="menu-title-level1">Grid view</a>
-                                                    <ul class="nav-sub-childmenu level1">
-                                                        
-                                                        <li>
-                                                            <a href="javascript:void(0)" class="submenu-title">3 Grid</a>
-                                                            <ul class="nav-sub-childmenu submenu-content level2">
-                                                                <li><a href="templates/grid-left-sidebar.html">Left Sidebar</a>
-                                                                </li>
-                                                                
-                                                            </ul>
-                                                        </li>
-                                                        
-                                                        
-                                                        
-                                                        
-                                                        
-                                                        <li>
-                                                            <a href="javascript:void(0)" class="submenu-title">map header</a>
-                                                            <ul class="nav-sub-childmenu submenu-content level2">
-                                                                <li><a href="templates/google-header.html">google map</a></li>
-                                                                
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0)" class="menu-title-level1">List view</a>
-                                                    <ul class="nav-sub-childmenu level1">
-                                                        <li>
-                                                            <a href="javascript:void(0)" class="submenu-title">Listing</a>
-                                                            <ul class="nav-sub-childmenu submenu-content level2">
-                                                                <li><a href="templates/list-left-sidebar.html">Left Sidebar</a>
-                                                                </li>
-                                                                
-                                                            </ul>
-                                                        </li>
-                                                        
-                                                        
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0)" class="menu-title-level1">Tab layout</a>
-                                                    <ul class="nav-sub-childmenu level1">
-                                                        <li><a href="templates/tab-layout.html">Tab full width</a></li>
-                                                        
-                                                    </ul>
-                                                </li>
-                                            </ul> -->
-                                        </li>
-                                        <!-- <li class="dropdown">
-                                            <a href="javascript:void(0)" class="nav-link menu-title">property</a>
-                                            <ul class="nav-submenu menu-content">
-                                                
-                                                <li><a href="templates/single-property-3.html">Without top</a></li>
-                                                
-                                                <li><a href="templates/single-property-8.html">image box</a></li>
-                                                
-                                            </ul>
-                                        </li> -->
-                                        <!-- <li class="mega-menu">
-                                            <a href="javascript:void(0)" class="nav-link menu-title">
-                                                pages
-                                            </a>
-                                            <div class="mega-menu-container menu-content">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col mega-box">
-                                                            <div class="link-section">
-                                                                <div class="submenu-title">
-                                                                    <h5>Portfolio</h5>
-                                                                </div>
-                                                                <div class="submenu-content opensubmegamenu">
-                                                                    <ul class="list">
-                                                                        <li><a href="templates/portfolio-grid-title-2.html">2 grid
-                                                                                title</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="col mega-box">
-                                                            <div class="link-section">
-                                                                <div class="submenu-title">
-                                                                    <h5>Agency</h5>
-                                                                </div>
-                                                                <div class="submenu-content opensubmegamenu">
-                                                                    <ul class="list">
-                                                                        <li><a href="templates/agency-profile.html">Agency Profile</a></li>
-                                                                        <li><a href="templates/agency-list.html">Agency List</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="link-section">
-                                                                <div class="submenu-title">
-                                                                    <h5>User panel</h5>
-                                                                </div>
-                                                                <div class="submenu-content opensubmegamenu">
-                                                                    <ul class="list">
-                                                                        <li><a href="templates/user-dashboard.html">user dashboard <span class="icon-trend label"><i class="fas fa-bolt"></i></span></a></li>
-                                                                        <li><a href="templates/user-listing.html">My Listing</a></li>
-                                                                        <li><a href="templates/user-create.html">Create property</a></li>
-                                                                        <li><a href="templates/user-profile.html">My profile</a></li>
-                                                                        <li><a href="templates/user-favourites.html">Favourites</a></li>
-                                                                        <li><a href="templates/compare.html">Compare Property</a></li>
-                                                                        <li><a href="templates/user-payment.html">Cards & payment</a></li>
-                                                                        <li><a href="templates/user-privacy.html">Privacy</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col mega-box">
-                                                            <div class="link-section">
-                                                                <div class="submenu-title">
-                                                                    <h5>other pages</h5>
-                                                                </div>
-                                                                <div class="submenu-content opensubmegamenu">
-                                                                    <ul class="list">
-                                                                        <li><a href="templates/about-us.html">About us 1</a></li>
-                                                                        <li><a href="templates/login.html">log in</a></li>
-                                                                        <li><a href="templates/signup.html">sign up</a></li>
-                                                                        <li><a href="templates/signup-wizard.html">sign up wizard <span class="icon-trend label"><i class="fas fa-bolt"></i></span></a></li>
-                                                                        <li><a href="templates/forgot-password.html">forgot password</a></li>
-                                                                        <li><a href="templates/terms-conditions.html">terms & conditions</a></li>
-                                                                        <li><a href="templates/privacy-policy.html">privacy policy</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li> -->
-                                        <!-- <li class="dropdown">
-                                            <a href="javascript:void(0)" class="nav-link menu-title">Modules</a>
-                                            <ul class="nav-submenu menu-content">
-                                                <li><a href="templates/button-element.html">Button</a>
-                                                </li>
-                                                <li><a href="templates/label-element.html">Label</a>
-                                                </li>
-                                                <li><a href="templates/title-element.html">Title</a>
-                                                </li>
-                                                <li><a href="templates/image-ratio-element.html">Image ratio <span class="icon-trend label"><i class="fas fa-bolt"></i></span></a>
-                                                </li>
-                                                <li><a href="templates/footer-element.html">footer</a>
-                                                </li>
-                                                <li><a href="templates/blog-element.html">blog</a>
-                                                </li>
-                                                <li><a href="templates/brand-element.html">brand</a>
-                                                </li>
-                                                <li><a href="templates/testimonial-element.html">testimonial</a>
-                                                </li>
-                                                <li><a href="templates/full-banner-element.html">full banner</a>
-                                                </li>
-                                                <li><a href="templates/about-element.html">about</a>
-                                                </li>
-                                                <li><a href="templates/service-element.html">service</a>
-                                                </li>
-                                                <li><a href="templates/property-element.html">property</a>
-                                                </li>
-                                                <li><a href="templates/feature-element.html">feature</a>
-                                                </li>
-                                                <li><a href="templatetemplates/s/other-element.html">others</a>
-                                                </li>
-                                            </ul>
-                                        </li> -->
-                                        <!-- <li class="dropdown">
-                                            <a href="javascript:void(0)" class="nav-link menu-title">agent</a>
-                                            <ul class="nav-submenu menu-content">
-                                                <li><a href="templates/agent-profile.html">Agent Profile</a></li>
-                                                <li><a href="templates/agent-grid.html">Agent Grid</a></li>
-                                                <li><a href="templates/agent-list.html">Agent List</a></li>
-                                                <li><a href="templates/submit-property.html">Submit property <span class="label">New</span></a></li>
-                                            </ul>
-                                        </li> -->
-                                        <li class="dropdown">
-                                            <a href="{% url 'contact' %}" class="nav-link menu-title">Contact</a>
-                                            <!-- <ul class="nav-submenu menu-content">
-                                                <li><a href="templates/contact-1.html">Contact us 1</a></li>
-                                                <li><a href="templates/contact-2.html">Contact us 2</a></li>
-                                                <li><a href="templates/contact-3.html">Contact us 3</a></li>
-                                            </ul> -->
-                                        </li>
-                                        <!-- i want drop down for city here -->
-                                        <li>
-                                            <a href="{% url 'about' %}" class="nav-link menu-title">About us</a>                                                                    
-                                        </li>
-                                        <li>
-                                            <!-- Single searchable dropdown -->
-                                            <select id="city-dropdown" class="form-control">
-                                                <option value="" disabled selected>Select City</option>
-                                                <option value="new-york">New York</option>
-                                                <option value="los-angeles">Los Angeles</option>
-                                                <option value="chicago">Chicago</option>
-                                                <option value="houston">Houston</option>
-                                                <option value="miami">Miami</option>
-                                                <!-- Add more city options here -->
-                                            </select>
-                                        </li>
-                                        
-                                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-                                        <script>
-                                            $(document).ready(function() {
-                                                // Initialize Select2 with search functionality
-                                                $('#city-dropdown').select2({
-                                                    placeholder: "Select or search a City",
-                                                    allowClear: true,
-                                                    width: '100%' // Ensures the dropdown takes full width
-                                                });
-                                            });
-                                        </script>
-                                        
-                                    </ul>
-                                </div>
-                            </div>
-                        </nav>
-                        
-                        <ul class="header-right">
-                            <!-- <li>
-                                <div class="search-box">
-                                    <i class="fas fa-search btn btn-outline-dark search-icon"></i>
-                                    <span class="font-roboto">Search</span>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Search here..">
-                                    </div>
-                                </div>
-                            </li> -->
-                            <li>
-                                <a href="{% url 'submit_property' %}"
-                                 style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent; ">
-                                    <i class="fas fa-home" style="color: black;background-color: transparent;"></i> <!-- Black Home icon from FontAwesome -->
-                                </a>
-                            </li>
-                                                   
-                            <li>
-                                <style>
-                                    
-                                    .btn-transparent {
-                                        background-color: transparent;
-                                        border: 1px solid transparent; /* Optional: set border to transparent */
-                                        color: inherit; /* Maintain the text color */
-                                        padding: 0.5rem 1rem; /* Add some padding */
-                                        transition: background-color 0.3s, color 0.3s; /* Smooth transition */
-                                    }
-                        
-                                    .btn-transparent:hover {
-                                        background-color: rgba(0, 0, 0, 0.1); /* Optional: Add a hover effect */
-                                        color: #000; /* Change text color on hover */
-                                    }
-                        
-                                    /* Ensure other button classes don't override your styles */
-                                    .btn {
-                                        display: inline-flex;
-                                        align-items: center; /* Center align the icon and text */
-                                        text-decoration: none; /* Remove underline */
-                                    }
-                                </style>
-                            </li>
-                        
-                            {% if user.is_authenticated %}
-                                <!-- Profile Dropdown -->
-                                <li id="profile-dropdown">
-                                    <a style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent; " href="#" id="profileButton" class="btn btn-outline-dark" data-bs-toggle="dropdown">
-                                        <i data-feather="user"></i> Profile
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent; " class="dropdown-item" href="{% url 'update_profile' %}">View Profile</a></li>
-                                        <li><a style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent; " class="dropdown-item" href="{% url 'logout' %}" id="logoutButton">Logout</a></li>
-                                    </ul>
-                                </li>
-                            {% else %}
-                                <li>
-                                    <a style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent; " href="{% url 'signin' %}" class="btn btn-outline-dark"><i class="fas fa-user white-icon"></i></a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                        
-                    
-                    </div>
-                </div>
+            <!-- Center: Logo -->
+            <div class="brand-logo text-center">
+                <a href="#"><h2>Glassbrix</h2></a>
             </div>
+
+            <!-- Right Side: POST and Profile dropdown (if user is authenticated) -->
+            <ul class="header-right d-flex">
+                <li><a href="{% url 'submit_property' %}">
+                    <button class="btn btn-outline-dark" style="border-radius: 0px;font-family: 'Times New Roman', Times, serif;">POST</button></a>
+                </li>
+
+                <!-- If user is authenticated, show profile dropdown -->
+                {% if user.is_authenticated %}
+                <li id="profile-dropdown">
+                    <a style="border-radius: 0px;" href="#" id="profileButton" class="btn btn-outline-dark" data-bs-toggle="dropdown">
+                        <i data-feather="user"></i> Profile
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent;" class="dropdown-item" href="{% url 'update_profile' %}">View Profile</a></li>
+                        <li><a style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent;" class="dropdown-item" href="{% url 'logout' %}" id="logoutButton">Logout</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <!-- If user is not authenticated, show LOGIN button -->
+                <li><a href="{% url 'signin' %}">
+                    <button class="btn btn-outline-dark" style=" font-family: 'Times New Roman', Times, serif;">
+                        LOGIN
+                    </button></a>
+                </li>
+                {% endif %}
+            </ul>
         </div>
+    </div>
 </header>
-  <style>
-/* Default button style with outline */
-.btn-outline-dark {
-    color: black !important; /* Black icon */
-    border-color: black !important; /* Black border */
-    background-color: transparent !important; /* Transparent background */
-    transition: background-color 0.3s, color 0.3s !important; /* Smooth transition for hover */
+
+<!-- Style for sharp borders, fixed height, and vertically centered text -->
+<style>
+/* Fixed height for header */
+.header-4 {
+    height: 70px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    width: 100%; /* Full width */
+    padding: 10px; /* Add 10px padding */
 }
 
-/* Hover effect */
-.btn-outline-dark:hover {
-    background-color: black !important; /* Black background on hover */
-    color: white !important; /* White icon on hover */
+/* Container fluid for full width */
+.container-fluid {
+    padding: 0; /* Remove container padding */
 }
 
-    
-    .white-icon {
-  color: #dc3545;
-}   
-/* Ensure Select2 container is relative to position the arrow */
-.select2-container--default .select2-selection--single {
-    position: relative;
+/* Basic structure of the nav-menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-/* Style the arrow */
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-    position: absolute;
-    right: 10px; /* Adjust as needed */
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%); /* Adjust vertical alignment */
+/* Dropdown container */
+.dropdown-container {
+    margin-right: 15px;
 }
 
-  </style>
+/* Custom dropdown with sharp borders */
+.custom-dropdown {
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid black;
+    border-radius: 0px; /* Sharp corners */
+    background-color: white;
+    color: black;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    height: 35px; /* Ensures dropdown height matches buttons */
+}
+
+.custom-dropdown:focus {
+    border-color: #555;
+}
+
+.custom-dropdown:hover {
+    background-color: #f1f1f1;
+}
+
+.ml-3 {
+    margin-left: 15px;
+}
+
+/* Sharp borders for buttons */
+.header-right .btn-outline-dark {
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 0px; /* Sharp corners for buttons */
+    background-color: transparent;
+    color: black; /* Black text */
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header-right .btn-outline-dark:hover {
+    background-color: black; /* Black background on hover */
+    color: white; /* White text on hover */
+}
+
+.header-right .btn {
+    margin-left: -15px;
+}
+
+/* Vertical alignment for buttons and dropdowns */
+.menu {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+</style>
+
+
+
+
+  
 <script>
     $(document).ready(function() {
         // Initialize Select2 with search functionality

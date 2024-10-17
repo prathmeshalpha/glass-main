@@ -8628,7 +8628,7 @@ footer.footer-brown {
       color: #d2d2d2; }
 
 footer.footer-dark {
-  background: #1b2c39; }
+  background: black; }
   footer.footer-dark .footer-details p {
     margin-top: 40px;
     color: rgba(255, 255, 255, 0.5); }
@@ -12312,7 +12312,7 @@ body.rtl.dark-layout .blog-single-detail .blog-title .post-detail li + li {
     font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320))); }
 
 .subscribe-section {
-  background-image: url(../images/others/subscribe-bg.jpg); }
+  background-image: url(../images/others/subs.jpg); }
   .subscribe-section .video-details {
     max-width: 810px;
     margin: 0 auto; }

@@ -18,6 +18,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&amp;display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 
     <!-- magnific css -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
@@ -58,6 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
     </script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -119,6 +125,12 @@ document.getElementById('loginButton').addEventListener('click', function() {
     <!-- home section start -->
     <section class="layout-home4 p-0">              
     <style>
+        body{
+           font-family: 'Times New Roman', Times, serif !important;
+        }
+        h3 h2 h1 h4 h5 p span button label a {
+            font-family: 'Times New Roman', Times, serif !important; 
+        }
         .containermain {
             display: flex;
             height: 80vh;
@@ -190,6 +202,7 @@ document.getElementById('loginButton').addEventListener('click', function() {
         margin: 5px; /* Add a margin to create a gap between buttons */
         width: 45%; /* Make all buttons the same width */
         display: inline-block; /* Allow buttons to be displayed inline */
+        border: 1px black;
     }
     .text-containermain div {
         text-align: center; /* Center the buttons */
@@ -204,15 +217,15 @@ document.getElementById('loginButton').addEventListener('click', function() {
         </div>
         <div class="text-containermain">
             <p>Glassbrix</p>
-            <h2>Welcome to your dream home! Discover properties that blend modern comfort with timeless elegance. we offer exclusive listings that suit every lifestyle.
+            <h2 style=" font-family: 'Times New Roman', Times, serif;" >Welcome to your dream home! Discover properties that blend modern comfort with timeless elegance. we offer exclusive listings that suit every lifestyle.
             </h2>
             <div style="padding-top: 10px;text-align: center;">
-                <a href="#" style="margin-right: 10px;border-radius: 0px;padding-left: 35px;" class="btn btn-outline-dark ss" >Residential Buy</a>
-                <a href="#" style="border-radius: 0px;padding-left: 40px;" class="btn btn-outline-dark ss" >Residential Rent</a>
+                <a href="#" style="margin-right: 10px;border-radius: 0px;padding-left: 35px;font-family: 'Times New Roman', Times, serif;" class="btn btn-outline-dark ss" >Residential Buy</a>
+                <a href="#" style="border-radius: 0px;padding-left: 40px;font-family: 'Times New Roman', Times, serif;" class="btn btn-outline-dark ss" >Residential Rent</a>
                 <br>
                 <br>
-                <a href="#" style="margin-right: 10px;border-radius: 0px;" class="btn btn-outline-dark">Commercial Buy</a>
-                <a href="#" style="border-radius: 0px;" class="btn btn-outline-dark">Commercial Rent</a>
+                <a href="#" style="margin-right: 10px;border-radius: 0px;font-family: 'Times New Roman', Times, serif;" class="btn btn-outline-dark">Commercial Buy</a>
+                <a href="#" style="border-radius: 0px;font-family: 'Times New Roman', Times, serif;" class="btn btn-outline-dark">Commercial Rent</a>
             </div>
         </div>
     </div>
@@ -233,9 +246,11 @@ document.getElementById('loginButton').addEventListener('click', function() {
           padding: 20px;
           padding-top: 10vh;
           padding-bottom: 10vh;
-          border-bottom: 1px solid #000;
-          border-top: 1px solid #000;
+         
+          background-color:#f8f9fa;
         }
+
+        
         .containercta h2{
             
                 text-align: center;
@@ -274,8 +289,8 @@ document.getElementById('loginButton').addEventListener('click', function() {
         
     </style>
     
-    <div style="padding-left: 30px;padding-right: 30px;" class="containercta">
-        <h2>"An estate agency like no other, The Modern House sells the most incredible design-led homes in urban and rural locations in the UK" - Evening Standard</h2>
+    <div style="padding-left: 50px;padding-right: 50px;font-family: 'Times New Roman', Times, serif;" class="containercta">
+        <h2 style=" font-family: 'Times New Roman', Times, serif;">"An estate agency like no other, The Modern House sells the most incredible design-led homes in urban and rural locations in the UK" - Evening Standard</h2>
         <p>Get a free market appraisal today and let us help you find your dream home.</p>
         <a href="#"></a> <button style="border-radius: 0px;" class="btn btn-outline-dark ">Sell With Us</button></a>
       </div>
@@ -582,13 +597,14 @@ document.getElementById('loginButton').addEventListener('click', function() {
         <div class="container">
             <div class="row ratio_landscape">
                 <div class="col">
-                    <div class="title-2">
-                        <h2>Latest Property Listing</h2>
-                        <p class="font-roboto">Residences can be classified into different type of housing tenure can used for same physical type.</p>
+                    <div>
+                        <h2 style=" text-align: center;color: black;margin-bottom: 10px;font-family: 'Times New Roman', Times, serif;" >Latest Property Listing</h2>
+                        <p  class="font-roboto" style="text-align: center;margin-bottom: 10px;font-family: 'Times New Roman', Times, serif;">Residences can be classified into different type of housing tenure can used for same physical type.</p>
                     </div>
+                    <br>
                     <div class="listing-hover-property row">
                         <div class="col-xl-4 col-md-6">
-                            <div class="property-box ">
+                            <div class="property-box " style="border-radius: 0px;">
                                 <div class="property-image">
                                     <a href="javascript:void(0)">
                                         <img src="static/images/blog/2.jpg" class="bg-img" alt="">
@@ -602,7 +618,7 @@ document.getElementById('loginButton').addEventListener('click', function() {
                                                 <h5><a href="single-property-6.html">Neverland</a></h5>
                                                 <h6>$13,000 <small>/ start from</small></h6>
                                             </div>
-                                            <button type="button" class="btn btn-gradient color-4 mt-3" onclick="document.location='single-property-8.html'">Details</button>
+                                            <button type="button" class="btn-outline-white" onclick="document.location='single-property-8.html'">Details</button>
                                         </div>
                                         <div class="overlay-option">
                                             <ul>
@@ -629,7 +645,7 @@ document.getElementById('loginButton').addEventListener('click', function() {
                             </div>
                         </div>
                         <div class="col-xl-4 col-md-6">
-                            <div class="property-box">
+                            <div class="property-box" style="border-radius: 0px;">
                                 <div class="property-image">
                                     <a href="javascript:void(0)">
                                         <img src="static/images/property/9.jpg" class="bg-img" alt="">
@@ -646,7 +662,7 @@ document.getElementById('loginButton').addEventListener('click', function() {
                                                 <h5><a href="single-property-6.html">Neverland</a></h5>
                                                 <h6>$13,000 <small>/ start from</small></h6>
                                             </div>
-                                            <button type="button" class="btn btn-gradient color-4 mt-3" onclick="document.location='single-property-8.html'">Details</button>
+                                            <button type="button" class="btn-outline-white" onclick="document.location='single-property-8.html'">Details</button>
                                         </div>
                                         <div class="overlay-option">
                                             <ul>
@@ -673,7 +689,7 @@ document.getElementById('loginButton').addEventListener('click', function() {
                             </div>
                         </div>
                         <div class="col-xl-4 col-md-6">
-                            <div class="property-box">
+                            <div class="property-box" style="border-radius: 0px;">
                                 <div class="property-image">
                                     <a href="javascript:void(0)">
                                         <img src="static/images/property/10.jpg" class="bg-img" alt="">
@@ -687,7 +703,7 @@ document.getElementById('loginButton').addEventListener('click', function() {
                                                 <h5><a href="single-property-6.html">Neverland</a></h5>
                                                 <h6>$13,000 <small>/ start from</small></h6>
                                             </div>
-                                            <button type="button" class="btn btn-gradient color-4 mt-3" onclick="document.location='single-property-8.html'">Details</button>
+                                            <button type="button" class="btn-outline-white" onclick="document.location='single-property-8.html'">Details</button>
                                         </div>
                                         <div class="overlay-option">
                                             <ul>
@@ -730,35 +746,35 @@ document.getElementById('loginButton').addEventListener('click', function() {
                             <div class="about-listing" style="padding: 20px; width: 100%;box-shadow: none;">
                                 <ul style="display: flex; justify-content: space-between; list-style: none; padding: 0; margin: 0; width: 100%;">
                                     <li style="flex: 1; text-align: center;">
-                                        <h4>15,801+</h4>
+                                        <h4 style="color: black;">15,801+</h4>
                                         <p>New Projects</p>
                                     </li>
                                     <li style="flex: 1; text-align: center;">
-                                        <h4>120+</h4>
+                                        <h4 style="color: black;">120+</h4>
                                         <p>Agents</p>
                                     </li>
                                     <li style="flex: 1; text-align: center;">
-                                        <h4>871+</h4>
+                                        <h4 style="color: black;">871+</h4>
                                         <p>Commercial Resale</p>
                                     </li>
                                     <li style="flex: 1; text-align: center;">
-                                        <h4>4791+</h4>
+                                        <h4 style="color: black;">4791+</h4>
                                         <p>Commercial Rent</p>
                                     </li>
                                     <li style="flex: 1; text-align: center;">
-                                        <h4>1801+</h4>
+                                        <h4 style="color: black;">1801+</h4>
                                         <p>Residential Resale</p>
                                     </li>
                                     <li style="flex: 1; text-align: center;">
-                                        <h4>579+</h4>
+                                        <h4 style="color: black;">579+</h4>
                                         <p>Residential Sale</p>
                                     </li>
                                     <li style="flex: 1; text-align: center;">
-                                        <h4>387+</h4>
+                                        <h4 style="color: black;">387+</h4>
                                         <p>Co-Working</p>
                                     </li>
                                     <li style="flex: 1; text-align: center;">
-                                        <h4>491+</h4>
+                                        <h4 style="color: black;">491+</h4>
                                         <p>Co-Living</p>
                                     </li>
                                 </ul>
@@ -770,18 +786,78 @@ document.getElementById('loginButton').addEventListener('click', function() {
         </div>
     </div>
 </section>
-<!-- service 2 start -->
+
+<style>
+    .about-listing ul li h4 {
+    color: black; /* Set the number color to black */
+    font-weight: bold; /* Make the numbers bold (optional) */
+}
+
+/* Responsive design as per the previous code */
+.about-listing ul {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.about-listing ul li {
+    flex: 1; /* Ensures each list item takes equal space */
+    text-align: center; /* Centers text in each item */
+    padding: 10px 0; /* Adds padding for better spacing */
+}
+
+@media (max-width: 768px) {
+    .about-listing ul {
+        justify-content: center; /* Center the list items on smaller screens */
+    }
+
+    .about-listing ul li {
+        flex: 1 1 50%; /* On mobile, each item takes 50% of the width */
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-listing ul li {
+        flex: 1 1 100%; /* On very small screens, each item takes full width */
+    }
+}
+
+/* Button styling */
+.btn-outline-white {
+    border-radius: 0px; /* Sharp corners */
+    border: 2px solid white; /* White border */
+    padding: 10px 20px; /* Adjust the padding to control the size */
+    text-align: center;
+    background-color: transparent; /* Transparent background */
+    color: white; /* White text */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s, color 0.3s; /* Smooth hover transition */
+}
+
+.btn-outline-white:hover {
+    background-color: white; /* White background on hover */
+    color: black; /* Black text on hover */
+}
+
+
+</style>
+<!-- Service 2 Start -->
 <section class="service-section service-2 bg-light">
     <div class="container">
         <div class="row">
             <div class="col">
                 <div class="title-3">
-                    <h2>Provided <span>Services</span></h2>
-                    <p class="font-roboto">Elegant retreat in Coral Gables setting. This home provides entertaining spaces with
+                    <h2 style=" font-family: 'Times New Roman', Times, serif;">Provided <span>Services</span></h2>
+                    <p style=" font-family: 'Times New Roman', Times, serif;">Elegant retreat in Coral Gables setting. This home provides entertaining spaces with
                         kitchen opening</p>
                 </div>
                 <div class="row property-service column-space">
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-3 col-md-6"> <!-- Adjusted to col-xl-3 for better fit -->
                         <div class="service-box color-3">
                             <div class="hover-line">
                                 <!-- Home Icon -->
@@ -790,45 +866,101 @@ document.getElementById('loginButton').addEventListener('click', function() {
                                     <hr class="icon-line-color" />
                                 </div>
                             </div>
-                            <a href="services.html"><h3>100% Verified Listing</h3></a>
-                            <p class="font-roboto">Elegant retreat in a quiet Coral Gables setting. This home provides wonderful entertaining spaces with a chef kitchen</p>
-                            <!-- <a href="services.html" class="btn btn-light-bg color-3 btn-flat"><span>view more</span></a> -->
+                            <a href="services.html"><h3 style=" font-family: 'Times New Roman', Times, serif;" >India's 1st & only 100% Verified Property Listing</h3></a>
+                            <!-- <p class="font-roboto">Elegant retreat in a quiet Coral Gables setting. This home provides wonderful entertaining spaces with a chef kitchen</p> -->
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6">
+                    <div class="col-xl-3 col-md-6"> <!-- Adjusted to col-xl-3 for better fit -->
                         <div class="service-box color-3">
                             <div class="hover-line">
-                                <!-- Customer Service Icon -->
-                                <i class="fa fa-headset service-icon" style="font-size: 36px;color: black;"></i>
+                                <!-- Crown Icon (representing premium status) -->
+                                <i class="fa fa-crown service-icon" style="font-size: 36px;color: black;"></i>
                                 <div>
                                     <hr class="icon-line-color" />
                                 </div>
                             </div>
-                            <a href="services.html"><h3>Genuine Seller</h3></a>
-                            <p class="font-roboto">Elegant retreat in a quiet Coral Gables setting. This home provides wonderful entertaining spaces with a chef kitchen</p>
-                            <!-- <a href="services.html" class="btn btn-light-bg color-3 btn-flat"><span>view more</span></a> -->
+                            <a href="services.html"><h3 style=" font-family: 'Times New Roman', Times, serif;">India's 1st & only Premium Property Portal</h3></a>
+                            <!-- <p class="font-roboto">Elegant retreat in a quiet Coral Gables setting. This home provides wonderful entertaining spaces with a chef kitchen</p> -->
                         </div>
                     </div>
-                    <div class="col-xl-4 offset-xl-0 offset-md-3 col-md-6">
+                    
+                    <div class="col-xl-3 col-md-6"> <!-- Adjusted to col-xl-3 for better fit -->
                         <div class="service-box color-3">
                             <div class="hover-line">
-                                <!-- House Icon -->
-                                <i class="fa fa-building service-icon" style="font-size: 36px;color: black;"></i>
+                                <!-- Check Circle Icon (representing genuine & authenticated sellers) -->
+                                <i class="fa fa-check-circle service-icon" style="font-size: 36px;color: black;"></i>
                                 <div>
                                     <hr class="icon-line-color" />
                                 </div>
                             </div>
-                            <a href="services.html"><h3>RERA Registered Projects/Agents</h3></a>
-                            <p class="font-roboto">Elegant retreat in a quiet Coral Gables setting. This home provides wonderful entertaining spaces with a chef kitchen</p>
-                            <!-- <a href="services.html" class="btn btn-light-bg color-3 btn-flat"><span>view more</span></a> -->
+                            <a href="services.html"><h3 style=" font-family: 'Times New Roman', Times, serif;">Only genuine & authenticated sellers</h3></a>
+                            <!-- <p class="font-roboto">Elegant retreat in a quiet Coral Gables setting. This home provides wonderful entertaining spaces with a chef kitchen</p> -->
                         </div>
                     </div>
+                    
+                    <div class="col-xl-3 col-md-6"> <!-- Adjusted to col-xl-3 for better fit -->
+                        <div class="service-box color-3">
+                            <div class="hover-line">
+                                <!-- Shield Icon (representing RERA Registered) -->
+                                <i class="fa fa-shield-alt service-icon" style="font-size: 36px;color: black;"></i>
+                                <div>
+                                    <hr class="icon-line-color" />
+                                </div>
+                            </div>
+                            <a href="services.html"><h3 style=" font-family: 'Times New Roman', Times, serif;">Only RERA Registered Projects & Agents</h3></a>
+                            <!-- <p class="font-roboto">Elegant retreat in a quiet Coral Gables setting. This home provides wonderful entertaining spaces with a chef kitchen</p> -->
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- service 2 end -->
+<!-- Service 2 End -->
+<style>
+.service-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Vertically center the content */
+    align-items: center;  /* Horizontally center the content */
+    text-align: center;  /* Center the text inside the box */
+    height: 100%;  /* Ensure the service box takes full height */
+    padding: 20px;  /* Add padding for spacing */
+}
+
+.hover-line {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Vertically center the icon */
+    align-items: center;  /* Horizontally center the icon */
+    margin-bottom: 10px;  /* Space between the icon and text */
+}
+
+.service-icon {
+    font-size: 36px;  /* Adjust icon size */
+    color: black;
+    margin-bottom: 10px;  /* Spacing below the icon */
+}
+
+.icon-line-color {
+    width: 50px;  /* Adjust width for the line */
+    border: 1px solid black;  /* Style for the line */
+    margin: 0 auto;  /* Center the line */
+}
+
+a h3 {
+    color: black;  /* Make the text black */
+    text-align: center;  /* Ensure text is centered */
+    font-weight: bold;
+}
+.property-details h3 {
+    text-align: left;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+</style>
     <!-- About us section end -->
 
 
@@ -936,20 +1068,16 @@ document.getElementById('loginButton').addEventListener('click', function() {
                 <div class="row ratio_55">
                     <div class="col">
                         <div class="title-2 text-white">
-                            <h2>What Are You Looking For</h2>
-                            <p>Discover New York’s best things to do, restaurants, theatre, nightlife and more</p>
+                            <h2 style=" font-family: 'Times New Roman', Times, serif;">What Are You Looking For</h2>
+                            <p>Discover New York's best things to do, restaurants, theatre, nightlife and more</p>
                         </div>
                         <ul id="tabs" class="nav nav-tabs">
-                            <li class="nav-item"><a href="#" data-bs-target="#morden" data-bs-toggle="tab" class="nav-link">Morden
-                                    Villa</a></li>
-                            <li class="nav-item"><a href="#" data-bs-target="#family" data-bs-toggle="tab"
-                                    class="nav-link active">Appartments</a></li>
-                            <li class="nav-item"><a href="#" data-bs-target="#town" data-bs-toggle="tab" class="nav-link">Office
-                                    </a></li>
-                            <li class="nav-item"><a href="#" data-bs-target="#appartment" data-bs-toggle="tab"
-                                    class="nav-link">New Projects</a></li>
-                            <li class="nav-item"><a href="#" data-bs-target="#office" data-bs-toggle="tab"
-                                    class="nav-link">Weekend Homes</a></li>
+                            <li class="nav-item"><a href="#" data-bs-target="#newp" data-bs-toggle="tab" class="nav-link">New Project</a></li>
+                            <li class="nav-item"><a href="#" data-bs-target="#weekend" data-bs-toggle="tab" class="nav-link active">Weekend Homes</a></li>
+                            <li class="nav-item"><a href="#" data-bs-target="#coloving" data-bs-toggle="tab" class="nav-link">Co-living </a></li>
+                            <li class="nav-item"><a href="#" data-bs-target="#coworking" data-bs-toggle="tab" class="nav-link">Co-working</a></li>
+                            <li class="nav-item"><a href="#" data-bs-target="#international" data-bs-toggle="tab" class="nav-link">International</a></li>
+                            <li class="nav-item"><a href="#" data-bs-target="#commercial" data-bs-toggle="tab" class="nav-link">Commercial</a></li>        
                         </ul>
                         <div id="tabsContent" class="tab-content">
                             <div id="morden" class="tab-pane fade">
@@ -1133,7 +1261,7 @@ document.getElementById('loginButton').addEventListener('click', function() {
                                                     <h3>Brazil</h3>
                                                 </a>
                                                 <h6  class="color-2">₹400513.00*</h6>
-                                                <p class="font-roboto">Real estate market in most countries are not as organize or efficient as markets for other, more liquid investment instruments.</p>
+                                                <p style="font-family: 'Times New Roman', Times, serif;">Real estate market in most countries are not as organize or efficient as markets for other, more liquid investment instruments.</p>
                                                 <ul>
                                                     <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bhk : 4</li>
                                                     <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Parking : 4</li>
@@ -1191,7 +1319,7 @@ document.getElementById('loginButton').addEventListener('click', function() {
                                                     <h3>Brazil</h3>
                                                 </a>
                                                 <h6 class="color-2">₹119554.00*</h6>
-                                                <p class="font-roboto">The most common and most absolute type of estate, the tenant enjoys the greatest discretion over the disposal of property.</p>
+                                                <p style="font-family: 'Times New Roman', Times, serif;">The most common and most absolute type of estate, the tenant enjoys the greatest discretion over the disposal of property.</p>
                                                 <ul>
                                                     <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bhk : 3</li>
                                                     <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Parking : 1</li>
@@ -1249,8 +1377,8 @@ document.getElementById('loginButton').addEventListener('click', function() {
                                                     <h3>Usa</h3>
                                                 </a>
                                                 <h6  class="color-2">₹126558.00*</h6>
-                                                <p class="font-roboto">This home provides wonderful spaces with a chef
-                                                    kitchen opening. Elegant retreat in quiet Coral Gables setting</p>
+                                                <p style="font-family: 'Times New Roman', Times, serif;">This home provides wonderful spaces with a chef
+                                                    kitchen opening. Elegant retreat in quiet Coral Gables setting on the home.</p>
                                                 <ul>
                                                     <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/double-bed.svg" class="img-fluid" alt="">Bhk : 5</li>
                                                     <li><img src="https://themes.pixelstrap.com/sheltos/static/images/svg/icon/bathroom.svg" class="img-fluid" alt="">Parking : 3</li>
@@ -1684,9 +1812,117 @@ document.getElementById('loginButton').addEventListener('click', function() {
                     </div>
                 </div>
             </div>
+            <br>
+            <div class="text-center">
+                <button type="button" class="btn btn-outline-dark">View More</button>
+            </div>
         </section>
         <!-- property section tab end -->
+        <style>
 
+
+            /* Basic styles for sharp borders */
+            .btn-pill {
+                border-radius: 0px !important; /* Removes rounded corners for all buttons */
+            }
+        
+            .property-box, .property-details, .hover-line, .dropdown-menu {
+                border-radius: 0px !important; /* Removes rounded corners from these elements */
+            }
+        
+            .service-icon, .btn-outline-dark, .dropdown-item {
+                border-radius: 0px !important; /* Ensures icons and buttons have sharp corners */
+            }
+        
+            /* Specific style for the buttons */
+            .btn {
+                border-radius: 0px !important; /* Ensures all buttons have sharp corners */
+                padding: 8px 15px; /* Adjusts padding for better appearance */
+                border: 2px solid black; /* Black border for the buttons */
+                background-color: transparent; /* Transparent background */
+                color: black; /* Black text */
+                text-decoration: none;
+                transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition on hover */
+            }
+        
+            .btn:hover {
+                background-color: black; /* Black background on hover */
+                color: white; /* White text on hover */
+            }
+        
+            /* Remove border and add shadow to property boxes */
+.property-box {
+    border: none; /* Removes the border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    border-radius: 0px !important; /* Ensures sharp corners */
+    transition: box-shadow 0.3s ease; /* Adds smooth transition for shadow */
+}
+
+/* Hover effect for property box to increase shadow */
+.property-box:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+/* Sharp corners for property details */
+.property-details {
+    border-radius: 0px !important;
+    box-shadow: none; /* Ensures no shadow inside details area */
+}
+
+            /* Sharp corners for property details */
+            .property-details {
+                border-radius: 0px !important;
+            }
+        
+            /* Icon borders and buttons with sharp corners */
+            .service-box {
+                border-radius: 0px !important;
+            }
+        
+            /* Align country name (span) to the left */
+            .property-details span {
+                display: block;
+                text-align: left; /* Aligns country names to the left */
+                margin-bottom: 10px; /* Adds some space between the country name and the next element */
+                font-weight: bold; /* Makes the country name stand out */
+                font-size: 14px;
+            }
+        
+            /* Set price to black */
+            .property-details h6 {
+                color: black !important; /* Forces the price to be black */
+                font-weight: bold; /* Optionally makes the price bold */
+            }
+
+            /* Remove border-radius for sharp corners */
+    .nav-link {
+        border-radius: 0px !important; /* Ensures no rounded corners */
+        border: 2px solid black; /* Adds sharp black borders around the tabs */
+        padding: 10px 15px; /* Adds padding for better spacing */
+        color: black; /* Sets text color to black */
+        background-color: transparent; /* Keeps background transparent */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Adds smooth transition on hover */
+    }
+
+    /* On hover and active state */
+    .nav-link:hover, .nav-link.active {
+        background-color: black; /* Black background on hover and active */
+        color: white; /* White text on hover and active */
+    }
+/* For active tab link */
+.nav-link.active {
+    color: black !important; /* Ensures active tab text color stays black */
+    background-color: white; /* Optional: Change the background of the active tab */
+    border-color: black; /* Optional: Add a black border for active tab */
+}
+    /* Optional styling for the entire tab container */
+    #tabs {
+        border-bottom: none; /* Removes the bottom border to match the tab items */
+    }
+        </style>
+        
+        
+        
 
         <!-- <style>
     
@@ -3230,77 +3466,22 @@ document.getElementById('loginButton').addEventListener('click', function() {
             </div>
         </div>
     </section> -->
-        <!-- portfolio section start -->
-        <section class="portfolio-creative odd-even ratio_55">
-            <div class="container">
-                <!-- <div class="row m-0">
-                    <div class="col-lg-6 p-0">
-                        <div class="wow zoomIn">
-                            <img src="{% static 'images/parallax/4.jpg' %}" class="bg-img img-fluid" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 p-0">
-                        <div class="content-sec wow zoomIn">
-                            <div>
-                                <h3><a href="portfolio-details.html">Merrick in Spring Way</a></h3>
-                                <p class="font-roboto">
-                                    Elegant retreat in a quiet Coral Gables setting. This home provides wonderful
-                                    entertaining spaces with a chef kitchen opening Residences can be classified by and connected to neighbouring residences and land.
-                                </p>
-                                <a href="portfolio-details.html" class="btn btn-gradient btn-pill color-2">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="row m-0">
-                    <div class="col-lg-6 p-0 order-lg-1">
-                        <div class="wow zoomIn">
-                            <img src="{% static 'images/parallax/5.jpg' %}" class="bg-img img-fluid" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 p-0">
-                        <div class="content-sec wow zoomIn">
-                            <div>
-                                <h3><a href="portfolio-details.html">About us</a></h3>
-                                <p class="font-roboto">Entertaining spaces with a chef kitchen opening Residences can be classified by and connected to neighbouring residences and land. Elegant retreat in a quiet Coral Gables setting. This home provides wonderful space.
-                                </p>
-                                <!-- <a href="portfolio-details.html" class="btn btn-gradient btn-pill color-2">Read More</a> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="row m-0">
-                    <div class="col-lg-6 p-0">
-                        <div class="wow zoomIn">
-                            <img src="{% static 'images/parallax/1.jpg' %}" class="bg-img img-fluid" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 p-0">
-                        <div class="content-sec wow zoomIn">
-                            <div>
-                                <h3><a href="portfolio-details.html">Merrick in Spring Way</a></h3>
-                                <p class="font-roboto">
-                                    Elegant retreat in a quiet Coral Gables setting. This home provides wonderful
-                                    entertaining spaces with a chef kitchen opening. Residences can be classified by and connected to neighbouring residences and land.
-                                </p>
-                                <a href="portfolio-details.html" class="btn btn-gradient btn-pill color-2">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-        </section>
-        <!-- portfolio section start -->
+    <div style="padding-left: 70px; padding-right: 70px;" class="containercta">
+        <h2 style=" font-family: 'Times New Roman', Times, serif;" >"Glassbrix brings a modern, transparent, and customer-centric approach to real estate, making it easier than ever to buy, sell, or rent premium properties across India." - The Real Estate Times</h2>
+        <!-- <p>At Glassbrix, we believe in simplifying property transactions through verified listings and seamless experiences. Let us help you find the perfect home or investment property with our unparalleled market expertise and trusted support.</p> -->
+    </div>
+    
+    
     <!-- about section end -->
 
     
     <!-- subscribe section start -->
-    <section class="subscribe-section">
+    <!-- <section class="subscribe-section">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="video-details">
-                        <!-- <span class="label label-light label-flat color-4">#Realestate</span> -->
+                        <span class="label label-light label-flat color-4">#Realestate</span>
                         <h2>Stay Up to Date</h2>
                         <p class="font-roboto">Elegant retreat in a quiet Coral Gables setting. This home provides wonderful entertaining spaces with a chef
                             kitchen opening Elegant retreat in a quiet Coral Gables setting.</p>
@@ -3314,8 +3495,72 @@ document.getElementById('loginButton').addEventListener('click', function() {
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- subscribe section end -->
+
+    <section class="subscribe-section">
+        <div class="container">
+            <div class="subscribe-content">
+                <h2 style=" font-family: 'Times New Roman', Times, serif;">Stay Up to Date</h2>
+                <p style=" font-family: 'Times New Roman', Times, serif;">Get the latest updates and offers right in your inbox.</p>
+                <form action="#" method="post" class="subscribe-form">
+                    <input type="email" placeholder="Enter your email" required class="subscribe-input">
+                    <button type="submit" class=" btn-outline-white">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+<style>
+
+.subscribe-section {
+    background-color: #f9f9f9; /* Light background */
+    padding: 50px 0;
+    text-align: center;
+}
+
+.subscribe-content h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.subscribe-content p {
+    font-size: 16px;
+    color: #dbdbdb;
+    margin-bottom: 20px;
+}
+
+.subscribe-form {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subscribe-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    width: 300px;
+    outline: none;
+}
+
+.subscribe-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.subscribe-button:hover {
+    background-color: #555;
+}
+
+</style>    
 
     <!-- testimonial section start -->
     <!-- <section class="testimonial-client">
