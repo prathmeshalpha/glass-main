@@ -68,9 +68,10 @@
 
                 <!-- If user is authenticated, show profile dropdown -->
                 {% if user.is_authenticated %}
-                <li id="profile-dropdown">
-                    <a style="border-radius: 0px;" href="#" id="profileButton" class="btn btn-outline-dark" data-bs-toggle="dropdown">
-                        <i data-feather="user"></i> Profile
+                <li id="profile-dropdown" class="btn btn-outline-dark" style="padding: 5px 10px 5px 10px;">
+                    <a style="border-radius: 0px;" href="#" id="profileButton"  data-bs-toggle="dropdown">
+                        <i data-feather="user"></i> <b style="font-family: 'Times New Roman', Times, serif;">Profile</b>
+                        
                     </a>
                     <ul class="dropdown-menu">
                         <li><a style="border-radius: 0px; display: inline-flex; align-items: center; padding: 10px; border: 2px solid black; text-decoration: none;background-color: transparent;" class="dropdown-item" href="{% url 'profile' %}">View Profile</a></li>
