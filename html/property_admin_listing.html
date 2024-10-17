@@ -227,6 +227,11 @@
                                             <li><img src="{% static 'images/svg/icon/bathroom.svg' %}" class="img-fluid" alt=""> Baths: {{ property.bathrooms }}</li>
                                             <li><img src="{% static 'images/svg/icon/square-ruler-tool.svg' %}" class="img-fluid" alt=""> Sq Ft: {{ property.property_area }}</li>
                                         </ul>
+                                        <form method="POST" action="{% url 'property_admin_listing'  %}">
+                                            {% csrf_token %}
+                                            <button type="submit" name="action" value="approve" class="btn btn-success">Approve</button>
+                                            <button type="submit" name="action" value="deny" class="btn btn-danger">Deny</button>
+                                        </form>
                                         <div class="property-btn d-flex">
                                             <span>{{ property.date_posted|date:"F j, Y" }}</span>
                                             <a href="{% url 'property_admin' property.id %}"><button type="button" class="btn btn-dashed btn-pill color-2">Details</button></a>

@@ -225,7 +225,28 @@ def property_admin(request,property_id):
 
 
 @login_required
-def approve_property_listing(request):
+def property_admin_listing(request):
+    
+    if request.method == 'POST':
+        # Get the property instance
+        property_id = request.POST.get('property_id')
+        property_instance = get_object_or_404(Property, id=property_id)
+
+        # Get the action (approve or deny)
+        action = request.POST.get('action')
+
+        # Update the approval status based on the action
+        if action == 'approve':
+            property_instance.approved = True
+        elif action == 'deny':
+            property_instance.approved = False
+        
+        # Save the property status
+        property_instance.save()
+
+        # Redirect to the admin property list page
+        return redirect('property_admin_listing')  # Redirect back to the list of unapproved properties
+    
     # Get filter values from GET request
     status = request.GET.get('status')
     property_type = request.GET.get('property_type')
@@ -445,7 +466,7 @@ def signin(request):
                 if user_email_domain in allowed_domains:
                     user.is_staff = True  # Ensure they are marked as staff for admin dashboard access
                     user.save()
-                    return redirect('approve_property_listing')  # Redirect to admin dashboard
+                    return redirect('property_admin_listing')  # Redirect to admin dashboard
                 else:
                     return redirect('home')
                 
