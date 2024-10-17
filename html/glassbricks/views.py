@@ -84,7 +84,7 @@ def signup(request):
                 
                 
                 if user.is_staff:
-                    return redirect('admin_dashboard')  # Redirect staff to the admin dashboard
+                    return redirect('approve_property_listing')  # Redirect staff to the admin dashboard
                 else:
                     return redirect('home')
         else:
