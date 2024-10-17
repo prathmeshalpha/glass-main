@@ -58,85 +58,75 @@ def send_property_pdf_via_email(request, property_id):
     
     return HttpResponse('Email Sent Successfully')
 
-# View for user signup
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()  # Save the new user to the database
+            user = form.save()  
             
-            # Authenticate the user to get the backend and login
+            
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             email = form.cleaned_data.get('email')
             user = authenticate(username=username, password=password)
 
-            allowed_domains = ['glassbrix.in', 'alphamotion.in']  # Add your company domains here
+            allowed_domains = ['glassbrix.in', 'alphamotion.in']  
             user_email_domain = email.split('@')[-1]
             
             if user_email_domain in allowed_domains:
-                user.is_staff = True  # Mark as staff for admin access
+                user.is_staff = True  
                 user.save()
                 
-            # If the user is authenticated, log them in with the correct backend
+            
             if user is not None:
                 login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 
                 
                 if user.is_staff:
-                    return redirect('approve_property_listing')  # Redirect staff to the admin dashboard
+                    return redirect('approve_property_listing')  
                 else:
                     return redirect('home')
         else:
-            print(form.errors)  # Debugging; remove in production
+            print(form.errors)  
     else:
         form = SignUpForm()
 
     return render(request, 'signup.html', {'form': form})
 
-# View for property submission
 
 def submit_property(request):
     if request.method == 'POST':
         property_form = PropertyForm(request.POST, request.FILES)
-        
         if property_form.is_valid():
             property_instance = property_form.save(commit=False)
-            property_instance.posted_by = request.user  # Automatically assign the current user
+            property_instance.posted_by = request.user  
             property_instance.save()
-            # Handle multiple image uploads
             images = request.FILES.getlist('images')
             if images:
-                print(f"Images uploaded: {[image.name for image in images]}")  # Debugging line
+                print(f"Images uploaded: {[image.name for image in images]}") 
             else:
-                print("No images uploaded")  # Debugging line
-
+                print("No images uploaded") 
             for image in images:
-                PropertyImage.objects.create(property=property_instance, image=image)
-            
-            
+                PropertyImage.objects.create(property=property_instance, image=image)    
             floor_plans = request.FILES.getlist('floor_plans')
             if images:
-                print(f"Images uploaded: {[image.name for image in images]}")  # Debugging line
+                print(f"Images uploaded: {[image.name for image in images]}")  
             else:
-                print("No images uploaded")  # Debugging line
+                print("No images uploaded")  
             for floor_plan in floor_plans:
                 PropertyFloorPlan.objects.create(property=property_instance, floor_plan=floor_plan)
-
-            # Handle multiple video uploads
             videos = request.FILES.getlist('videos')
             if videos:
-                print(f"Videos uploaded: {[video.name for video in videos]}")  # Debugging line
+                print(f"Videos uploaded: {[video.name for video in videos]}")  
             else:
-                print("No videos uploaded")  # Debugging line
-
+                print("No videos uploaded")  
             for video in videos:
                 PropertyVideo.objects.create(property=property_instance, video=video)
 
             
-            return redirect('home')  # Redirect to a success page after saving
+            return redirect('home')  
         else:
-            # Print form errors for debugging
+            
             print("Form errors:", property_form.errors)
             return render(request, 'submit-property.html', {
                 'property_form': property_form,
@@ -149,7 +139,7 @@ def submit_property(request):
         'property_form': property_form,
     })
 
-# View for the home page
+
 def home(request):
     return render(request, 'index.html')
 
