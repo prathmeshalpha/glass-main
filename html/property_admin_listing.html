@@ -107,269 +107,20 @@
       <!--  header end -->
     
 
-    <!-- breadcrumb start -->
-    <section class="breadcrumb-section p-0">
-        <img src="{% static 'images/inner-background.jpg'%}" class="bg-img img-fluid" alt="">
-        <div class="container">
-            <div class="breadcrumb-content">
-                <div>
-                    <h2>Left sidebar</h2>
-                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Listing</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Left sidebar</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- breadcrumb end -->
+ 
 
 
     <!-- property grid start -->
     <section class="property-section">
         <div class="container">
             <div class="row ratio_63">
-                <div class="col-xl-3 col-lg-4">
-                    <div class="left-sidebar">
-                        <div class="filter-cards">
-                            <div class="advance-card">
-                                <div class="back-btn d-lg-none d-block">
-                                    Back
-                                </div>
-                                <h5 class="mb-0 advance-title">Advance search </h5>
-                            </div>
-                            <div class="advance-card">
-                                <h6>filter</h6>
-                                <div class="row gx-2">
-                                     
-                                    <div class="col-12">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Property Status</span> <i
-                                                    class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('status', 'For Rent')">For Rent</a>
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('status', 'For Sale')">For Sale</a>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" id="status" name="status">
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Property Type</span> <i
-                                                    class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Property Type</a>
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('property_type', 'Apartment')">Apartment</a>
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('property_type', 'Office')">Office</a>
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('property_type', 'Weekend Home')">Weekend Home</a>
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('property_type', 'Building Floor')">Building Floor</a>
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('property_type', 'Co -Working Spaces')">Co -Working Spaces</a>
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('property_type', 'New Project')">New Project</a>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" id="property_type" name="property_type">
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown">
-                                                <span id="selected-location">Property Location</span> <i class="fas fa-angle-down"></i>
-                                            </span>
-                                            <div class="dropdown-menu text-start" id="locationDropdown">
-                                                <!-- Search input inside the dropdown -->
-                                                <input type="text" class="form-control" id="locationSearch" placeholder="Search location..." onkeyup="filterLocations()">
-                                                
-                                                <!-- Dropdown options -->
-                                                {% for city in distinct_cities %}
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setLocation('{{ city }}')">{{ city }}</a>
-                                                {% endfor %}
-                                            </div>
-                                        </div>
-                                        <input type="hidden" id="location" name="location">
-                                    </div>
-                                    
-                                    <script>
-                                        function filterLocations() {
-                                            var input, filter, dropdown, items, i;
-                                            input = document.getElementById("locationSearch");
-                                            filter = input.value.toUpperCase();
-                                            dropdown = document.getElementById("locationDropdown");
-                                            items = dropdown.getElementsByClassName("dropdown-item");
-                                    
-                                            // Loop through all dropdown items and filter based on search query
-                                            for (i = 0; i < items.length; i++) {
-                                                let itemText = items[i].textContent || items[i].innerText;
-                                                if (itemText.toUpperCase().indexOf(filter) > -1) {
-                                                    items[i].style.display = ""; // Show matching items
-                                                } else {
-                                                    items[i].style.display = "none"; // Hide non-matching items
-                                                }
-                                            }
-                                        }
-
-                                        function setLocation(location) {
-                                            document.getElementById('selected-location').textContent = location;
-                                            document.getElementById('location').value = location;
-                                        }
-                                    </script>
-                                    
-                                    <div class="col-12">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown"><span>Max
-                                                    Rooms</span> <i class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('max_rooms', '1')">1</a>
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('max_rooms', '2')">2</a>
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('max_rooms', '3')">3</a>
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('max_rooms', '4')">4</a>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="max_rooms" placeholder="Max Rooms" id="max_rooms" class="form-control">
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Possession</span> <i
-                                                    class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('possession', 'Under Construction')">Under Construction</a>
-                                                <a class="dropdown-item" href="javascript:void(0)" onclick="setFilter('possession', 'Ready to move')">Ready to move</a>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" id="possession" name="possession">
-                                    </div>
-                                    <!--<div class="col-sm-12">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Floor</span> <i
-                                                    class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Floor</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Ground</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Lower</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Middle</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">High</a>
-                                            </div>
-                                        </div>
-                                    </div>-->
-                                    <!--<div class="col-12">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle font-rubik"
-                                                data-bs-toggle="dropdown"><span>Agencies</span> <i
-                                                    class="fas fa-angle-down"></i></span>
-                                            <div class="dropdown-menu text-start">
-                                                <a class="dropdown-item" href="javascript:void(0)">Agencies</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Lincoln</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Blue Sky</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Zephyr</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Premiere</a>
-                                            </div>
-                                        </div>
-                                    </div>-->
-                                    <div class="col-12">
-                                        <div class="price-range">
-                                            <label for="price-amount">Price: </label>
-                                            <input type="text" id="price-amount" readonly style="border:0; font-weight:bold;">
-                                            <div id="price-slider" class="theme-range-2"></div>
-                                            <input type="hidden" id="min_price" name="min_price">
-                                            <input type="hidden" id="max_price" name="max_price">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-12">
-                                        <div class="price-range">
-                                            <label for="area-amount">Area: </label>
-                                            <input type="text" id="area-amount" readonly style="border:0; font-weight:bold;">
-                                            <div id="area-slider" class="theme-range-2"></div>
-                                            <input type="hidden" id="min_area" name="min_area">
-                                            <input type="hidden" id="max_area" name="max_area">
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- jQuery and jQuery UI -->
-                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-                                    
-                                    <script>
-                                        function setFilter(inputId, value) {
-                                            document.getElementById(inputId).value = value;
-                                        }
-                                        // Price Range Slider
-                                        $(function() {
-                                            $("#price-slider").slider({
-                                                range: true,
-                                                min: 0,
-                                                max: 1000000, // Adjust as needed
-                                                values: [200000, 800000], // Default starting values
-                                                slide: function(event, ui) {
-                                                    $("#price-amount").val("₹" + ui.values[0].toLocaleString() + " - ₹" + ui.values[1].toLocaleString());
-                                                    $("#min_price").val(ui.values[0]);
-                                                    $("#max_price").val(ui.values[1]);
-                                                }
-                                            });
-                                            $("#price-amount").val("₹" + $("#price-slider").slider("values", 0).toLocaleString() +
-                                                " - ₹" + $("#price-slider").slider("values", 1).toLocaleString());
-                                        
-                                    
-                                        // Area Range Slider
-                                        
-                                            $("#area-slider").slider({
-                                                range: true,
-                                                min: 0,
-                                                max: 5000, // Adjust as needed for area
-                                                values: [500, 2500], // Default starting values
-                                                slide: function(event, ui) {
-                                                    $("#area-amount").val(ui.values[0] + " sq ft - " + ui.values[1] + " sq ft");
-                                                    $("#min_area").val(ui.values[0]);
-                                                    $("#max_area").val(ui.values[1]);
-                                                }
-                                            });
-                                            $("#area-amount").val($("#area-slider").slider("values", 0) + " sq ft - " +
-                                                $("#area-slider").slider("values", 1) + " sq ft");
-                                        });
-
-                                        
-                                    </script>
-                                    
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-gradient color-2 btn-block btn-pill mt-2">Search </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="advance-card">
-                                <h6>Category</h6>
-                                <div class="category-property">
-                                    <ul>
-                                        <li><a href="javascript:void(0)"><i class="fas fa-arrow-right me-2"></i>Apartment <span
-                                                    class="float-end">(15)</span></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fas fa-arrow-right me-2"></i>Villa <span
-                                                    class="float-end">(10)</span></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fas fa-arrow-right me-2"></i>Family House <span
-                                                    class="float-end">(8)</span></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fas fa-arrow-right me-2"></i>Town House <span
-                                                    class="float-end">(5)</span></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fas fa-arrow-right me-2"></i>Offices <span
-                                                    class="float-end">(12)</span></a></li>
-                                        <li><a href="javascript:void(0)"><i class="fas fa-arrow-right me-2"></i>Duplexes <span
-                                                    class="float-end">(3)</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-9 col-lg-8 property-grid-2">
+                
+                <div class="col-xl-12 col-lg-8 property-grid-2">
                     <div class="filter-panel">
                         <div class="top-panel">
                             <div>
-                                <h2>Properties Listing</h2>
-                                <span class="show-result">Showing <span>1-15 of 69</span> Listings</span>
+                                <h2 style="font-family: 'Times New Roman', Times, serif;">Properties Listing [ ADMIN VIEW ]</h2>
+                                <span class="show-result">Showing <span style="color: black;">1-15 of 69</span> Listings</span>
                             </div>
                             <ul class="grid-list-filter d-flex">
                                 <li>
@@ -385,13 +136,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="collection-grid-view">
-                                    <ul>
-                                        <li><img src="{% static 'images/icon/2.png'%}" alt="" class="product-2-layout-view"></li>
-                                        <li><img src="{% static 'images/icon/3.png'%}" alt="" class="product-3-layout-view"></li>
-                                        <li><img src="{% static 'images/icon/4.png'%}" alt="" class="product-4-layout-view"></li>
-                                    </ul>
-                                </li>
+                            
                                 <li class="grid-btn">
                                     <a href="javascript:void(0)" class="grid-layout-view">
                                         <i data-feather="grid"></i>
@@ -494,6 +239,42 @@
                             {% endfor %}
                         </div>
                     </div>
+                    <style>
+
+                        /* Remove border-radius for sharp corners on the property box */
+                        .property-box {
+                            border-radius: 0px !important; /* Ensures sharp corners */
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+                            transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+                        }
+
+                        /* Hover effect to enhance shadow on hover */
+                        .property-box:hover {
+                            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+                        }
+
+                        /* Remove border-radius for all elements inside property-box */
+                        .property-image, .property-details, .property-btn, .labels-left, .overlay-property-box {
+                            border-radius: 0px !important; /* Ensures all corners remain sharp */
+                        }
+
+                        /* Style the buttons to have sharp corners */
+                        .btn-pill {
+                            border-radius: 0px !important; /* Removes rounded corners from buttons */
+                        }
+
+                        /* Optional: Sharpen the corners of images and labels */
+                        .property-image img, .labels-left span, .overlay-property-box a {
+                            border-radius: 0px !important; /* Ensures sharp corners for images and labels */
+                        }
+                        /* Set price to black */
+                        .property-details h6 {
+                            color: black !important; /* Forces the price text to be black */
+                            font-weight: bold; /* Optional: Makes the price bold */
+                        }
+
+
+                    </style>
                     
                     <!-- Include Slick JS (Or any slider you're using) -->
                     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -510,25 +291,7 @@
                             });
                         });
                     </script>
-                    <nav class="theme-pagination">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="javascript:void(0)" aria-label="Previous">
-                                    <span aria-hidden="true">«</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                                    <span aria-hidden="true">»</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                   
                 </div>
             </div>
         </div>
