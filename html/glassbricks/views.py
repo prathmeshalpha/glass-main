@@ -141,7 +141,23 @@ def submit_property(request):
 
 
 def home(request):
-    return render(request, 'index.html')
+    distinct_cities = Property.objects.values_list('city', flat=True).distinct()
+    
+    selected_city = request.GET.get('city', None)
+    
+    if selected_city:
+        properties = Property.objects.filter(city=selected_city, approved=True)
+    else:
+        properties = Property.objects.filter(approved=True)
+
+    context = {
+        'properties': properties,
+        'distinct_cities': distinct_cities,
+        'selected_city': selected_city,
+    }
+    
+    
+    return render(request, 'index.html',context)
 
 
 def signup_company(request):
@@ -221,32 +237,30 @@ def property_admin(request,property_id):
     }
     return render(request, 'property_admin.html',context)
 
-
-
-
 @login_required
-def property_admin_listing(request):
-    
-    if request.method == 'POST':
-        # Get the property instance
-        property_id = request.POST.get('property_id')
-        property_instance = get_object_or_404(Property, id=property_id)
+def approve_deny_property(request, property_id):
+    # Fetch the property by ID
+    property_instance = get_object_or_404(Property, id=property_id)
 
-        # Get the action (approve or deny)
+    if request.method == 'POST':
         action = request.POST.get('action')
 
-        # Update the approval status based on the action
         if action == 'approve':
             property_instance.approved = True
         elif action == 'deny':
             property_instance.approved = False
-        
-        # Save the property status
+
         property_instance.save()
 
-        # Redirect to the admin property list page
-        return redirect('property_admin_listing')  # Redirect back to the list of unapproved properties
-    
+        # Redirect back to the admin listing after action is taken
+        return redirect('property_admin_listing')
+
+    # If not a POST request, redirect to the property listing
+    return redirect('property_admin_listing')
+
+
+@login_required
+def property_admin_listing(request):
     # Get filter values from GET request
     status = request.GET.get('status')
     property_type = request.GET.get('property_type')

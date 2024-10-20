@@ -12,7 +12,7 @@ urlpatterns = [
     path('signin/', views.signin, name='signin'),
     path('logout/', views.user_logout, name='logout'),
     path('header/', views.header, name='header'),
-    
+    path('property/<int:property_id>/action/', views.approve_deny_property, name='approve_deny_property'),
     path('property_admin_listing/', views.property_admin_listing, name='property_admin_listing'),
     path('property_admin/<int:property_id>', views.property_admin, name='property_admin'),
 
