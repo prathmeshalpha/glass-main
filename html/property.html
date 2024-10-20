@@ -208,6 +208,7 @@
                                 </div>
                             </div>
                             <div class="desc-box">
+                                <br>
                                 <h4 style="font-family: 'Times New Roman', Times, serif;font-style: italic;" >“A light-filled addition flows out onto a tranquil rear garden”</h4>
                                 <p style="padding-left: 35%;padding-right: 60px;font-size: 20px;line-height: 1.5;text-decoration: none;font-family: 'Times New Roman', Times, serif;">
 
@@ -696,22 +697,93 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4">
-                    <div style="margin-left: 30px; justify-content: center;align-items: center;display: flex;height: 80vh;flex-direction: column;" class="sticky-cls single-sidebar">
+                <div class="col-xl-3 col-lg-4" style="padding: 0; padding-left: 05vh;">
+                    <div style="margin-left: 0px; justify-content: center;align-items: center;display: flex;height: 80vh;flex-direction: column;" class="sticky-cls single-sidebar">
                         <div style="text-align: left;" class="filter-cards">
                             <div class="advance-card">
                                 <div class="right-single">
                                 
-                                    <!-- <div class="d-flex">
-                                        <span><span class="label label-shadow ms-0">For
-                                            {{ property.post_type }}</span></span>
-                                    </div> -->
+                                   
+                                    
                                     <br>
+                                    
                                 <h4 style="font-size: 04vh;font-family: 'Times New Roman', Times, serif;"><b>{{ property.property_name }}</b></h4>
                                 <h5 style="font-size: 15px;font-weight: 400;font-family: 'Times New Roman', Times, serif;"><b>{{ property.locality }}, {{ property.city }}</b></h5>
                                 <br>
                                 <h5 style="font-size: 20px;font-weight: 400;font-family: 'Times New Roman', Times, serif;"><b>₹{{ property.property_price }} </b></h5>
-                                <h5 style="font-size: 15px;font-weight: 400;font-family: 'Times New Roman', Times, serif;"> {{ property.property_area }} Sq ft</h5>
+                                <div style="display: flex; justify-content: space-between; width: 100%;color: black;">
+                                    <div style="text-align: left;color: black;">
+                                        <p style="color: black;">BHK: {{ property.bedrooms }}</p>
+                                        <p style="color: black;">Bathroom: {{ property.bathrooms }}</p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <p style="color: black;">{{ property.property_area }} Sq. ft</p>
+                                        <p style="color: black;">Parking: {{ property.parking }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="custom-feature-grid">
+                                    <ul>
+                                        {% if features.wifi %}
+                                                <li>
+                                                    <i class="fas fa-wifi"></i> Free Wi-Fi
+                                                </li>
+                                                {% endif %}
+                                                {% if features.security %}
+                                            <li>
+                                                    <i class="fas fa-user-shield"></i> Security
+                                            </li>
+                                            {% endif %}
+                                            
+                                                {% if features.powerbackup %}
+                                                <li>
+                                                    <i class="fas fa-power-off"></i> Power Backup
+                                                </li>
+                                                {% endif %}
+                                                {% if features.parking %}
+                                                <li>
+                                                    <i class="fas fa-car"></i> Parking
+                                                </li>
+                                                {% endif %}
+                                                {% if features.gym %}
+                                                <li>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dumbbell" viewBox="0 0 16 16">
+                                                        <path d="M1.5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v.5h6V4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-.5H5V12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V4zm7 .5v7h-1v-7h1z"/>
+                                                    </svg> Gym
+                                                </li>
+                                                {% endif %}
+                                                {% if features.club %}
+                                                <li>
+                                                    <i class="fas fa-monument"></i> Clubhouse
+                                                </li>
+                                                {% endif %}
+                                                {% if features.ac %}
+                                                <li>
+                                                    <i class="fas fa-fan"></i> Air Conditioning
+                                                </li>
+                                                {% endif %}
+                                                {% if features.pool %}
+                                                <li>
+                                                    <i class="fas fa-water"></i> Pool
+                                                </li>
+                                                {% endif %}
+                                                {% if features.elevator %}
+                                                <li>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-elevator" viewBox="0 0 16 16">
+                                                        <path d="M8 0a2 2 0 0 0-2 2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2-2zm0 1a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2a1 1 0 0 1 1-1z"/>
+                                                        <path d="M7 10V6h1v4H7zm1-4V6h1v4H8zm2 0V6h1v4h-1z"/>
+                                                    </svg> Elevator Lift
+                                                </li>
+                                                {% endif %} 
+                                    </ul>
+                                </div>
+                                
+                                
+                                </div>
+                                
+                                
+
+                                
                                 <!-- <div class="category-property">
                                     <div class="agent-info">
                                         <div class="media">
@@ -798,10 +870,10 @@
                                     </style>
                                 
                                     <div class="containerxx">
-                                        <div ><b><a style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link2">Floorplan</a></b></div>
-                                        <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link3">Map</a></b></div>
-                                        <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link4">Brochure</a></b></div>
-                                        <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;" href="https://example.com/link1">Epc</a></b></div>
+                                        <div ><b><a style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;font-family: 'Times New Roman', Times, serif;" href="https://example.com/link2">Floorplan</a></b></div>
+                                        <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;font-family: 'Times New Roman', Times, serif;" href="https://example.com/link3">Map</a></b></div>
+                                        <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;font-family: 'Times New Roman', Times, serif;" href="https://example.com/link4">Brochure</a></b></div>
+                                        <div ><b><a  style="color: rgb(42, 39, 39);font-size: smaller;text-transform: uppercase;font-family: 'Times New Roman', Times, serif;" href="https://example.com/link1">Epc</a></b></div>
                                     </div>
                                     <form>
                                         <!-- <div class="form-group">
@@ -825,48 +897,51 @@
                                         <div class="form-group">
                                             <textarea placeholder="Message" class="form-control" rows="1"></textarea>
                                         </div> -->
-                                        <button style="width: 100%; border-radius: 0px; background-color: black !important; color: white !important;" type="submit" onclick="document.location='user-listing.html'" class="btn btn-outline-dark">
+                                        <span data-bs-toggle="modal" data-bs-target="#edit-contact" style="width: 100%; border-radius: 0px; background-color: black !important; color: white !important;
+                                        text-align: center;height: 05vh;justify-content: center;align-items: center;display: flex;" type="submit" class="label label-light label-flat color-4">
     REQUEST VIEWING
-</button>
+                                        </span>
 
-                                        
-                                        
                                     </form>
                                 </div>
                             </div>
                             <br>
-                            <div class="share-buttons">
-                                <h4 style="font-size: medium;">share on</h4>
-                                <div class="d-inline-block share-container">
-                                    <!-- Social Media Icons Only -->
-                                    <ul>
-                                        <!-- Facebook Share Button -->
-                                        <li>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="icon-facebook" target="_blank">
-                                                <i data-feather="facebook" style="width: 18px;height: 18px;"></i>
-                                            </a>
-                                        </li>
-                                        <!-- Twitter Share Button -->
-                                        <li>
-                                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check out this amazing property!" class="icon-twitter" target="_blank">
-                                                <i data-feather="twitter" style="width: 18px;height: 18px;"></i>
-                                            </a>
-                                        </li>
-                                        <!-- Instagram Button -->
-                                        <li>
-                                            <a href="https://www.instagram.com/" class="icon-instagram" target="_blank">
-                                                <i data-feather="instagram" style="width: 18px;height: 18px;"></i>
-                                            </a>
-                                        </li>
-                                        <!-- Email Button -->
-                                        <li>
-                                            <a href="{% url 'send_property_pdf_via_email' property.id %}" class="icon-mail">
-                                                <i data-feather="mail" style="width: 18px;height: 18px;"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <div class="share-buttons" style="text-align: left;">
+    <h4 style="font-size: medium;font-family: 'Times New Roman', Times, serif;">Share on</h4>
+    <div class="d-inline-block share-container" style="text-align: left;">
+        <!-- Social Media Icons Only -->
+        <ul style="display: flex; padding-left: 0; list-style: none; text-align: left;">
+            <!-- Facebook Share Button -->
+            <li style="margin-right: 10px;">
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="icon-facebook" target="_blank">
+                    <i data-feather="facebook" style="width: 18px; height: 18px;"></i>
+                </a>
+            </li>
+            <!-- Twitter Share Button -->
+            <li style="margin-right: 10px;">
+                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text=Check out this amazing property!" class="icon-twitter" target="_blank">
+                    <i data-feather="twitter" style="width: 18px; height: 18px;"></i>
+                </a>
+            </li>
+            <!-- Instagram Button -->
+            <li style="margin-right: 10px;">
+                <a href="https://www.instagram.com/" class="icon-instagram" target="_blank">
+                    <i data-feather="instagram" style="width: 18px; height: 18px;"></i>
+                </a>
+            </li>
+            <!-- Email Button -->
+            <li>
+                <!-- <a href="{% url 'send_property_pdf_via_email' property.id %}" class="icon-mail">
+                    <i data-feather="mail" style="width: 18px; height: 18px;"></i> -->
+                    <a data-bs-toggle="modal" data-bs-target="#edit-address" class="icon-mail" style="cursor: pointer;">
+                        <i data-feather="mail" style="width: 18px; height: 18px;"></i>
+                    </a>
+                    
+            </li>
+        </ul>
+    </div>
+</div>
+
                           
                            
                             <!-- <div class="advance-card">
@@ -895,12 +970,174 @@
                             </div> -->
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </section>
     <!-- single property end -->
+<style>
 
+.custom-feature-grid ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allows the items to wrap into multiple rows */
+}
+
+.custom-feature-grid li {
+    flex: 1 1 45%; /* Makes each item take up approximately half the width */
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem; /* Adds some space between the items */
+    font-size: 0.7rem; /* Sets the font size to be smaller */
+    color: black;
+    line-height: 1.4rem; /* Adjusts line height for better readability */
+}
+
+.custom-feature-grid i, .custom-feature-grid svg {
+    margin-right: 0.5rem; /* Adds some space between the icons and the text */
+}
+
+.custom-feature-grid li:nth-child(odd) {
+    margin-right: 10%; /* Adds spacing between odd-numbered items */
+}
+
+/* Ensure full-width on smaller screens */
+@media (max-width: 768px) {
+    .custom-feature-grid li {
+        flex: 1 1 100%;  /* Makes each item full width on smaller screens */
+    }
+}
+
+
+
+
+/* Font Adjustments for Consistency */
+h4, h5 {
+    font-size: 1rem; /* Standardized font size for headings */
+    margin-bottom: 0.5rem;
+}
+
+
+
+</style>
+   <!-- edit profile modal start -->
+   <div class="modal fade edit-profile-modal" id="edit-address">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contact Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="border-radius: 0;background-color: black;color: white;">
+                    <span aria-hidden="true">&times;</span>    
+                </button>
+            </div>
+           
+            <div class="modal-body">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+                    <!-- Card 1 -->
+                    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+                        <!-- Card 1 -->
+                        <a href="link_to_suits_season_6" style="text-decoration: none;width: 22%;">
+                            <div style="border: 1px solid black; color: black; padding: 15px; border-radius: 0px; text-align: center;">
+                                <img src="{{ images.0.image.url }}" alt="Suits Season 6" style="width: 100%; height: auto; border-radius: 0px;">
+                                <div style="font-size: 12px; font-weight: bold; margin: 10px 0;">Suits (Season 6)</div>
+                            </div>
+                        </a>
+                    
+                        <!-- Card 2 -->
+                        <a href="link_to_the_office_2024" style="text-decoration: none;width: 22%;">
+                            <div style="border: 1px solid black; color: black; padding: 15px; border-radius: 0px; text-align: center;">
+                                <img src="path_to_the_office_image.jpg" alt="The Office" style="width: 100%; height: auto; border-radius: 0px;">
+                                <div style="font-size: 12px; font-weight: bold; margin: 10px 0;">The Office (2024)</div>
+                            </div>
+                        </a>
+                    
+                        <!-- Card 3 -->
+                        <a href="link_to_suits_season_5" style="text-decoration: none;width: 22%;">
+                            <div style="border: 1px solid black; color: black; padding: 15px; border-radius: 0px; text-align: center;">
+                                <img src="path_to_suits_s5_image.jpg" alt="Suits Season 5" style="width: 100%; height: auto; border-radius: 0px;">
+                                <div style="font-size: 12px; font-weight: bold; margin: 10px 0;">Suits (Season 5)</div>
+                            </div>
+                        </a>
+                    
+                        <!-- Card 4 -->
+                        <a href="link_to_vox_machina_season_3" style="text-decoration: none;width: 22%;">
+                            <div style="border: 1px solid black; color: black; padding: 15px; border-radius: 0px; text-align: center;">
+                                <img src="path_to_vox_machina_image.jpg" alt="Vox Machina" style="width: 100%; height: auto; border-radius: 0px;">
+                                <div style="font-size: 12px; font-weight: bold; margin: 10px 0;">The Legend of Vox Machina (Season 3)</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                
+                
+                
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+   </div>
+<!-- edit profile modal start -->
+
+
+
+ <!-- edit address modal start -->
+ <div class="modal fade edit-profile-modal" id="edit-contact">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contact Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="border-radius: 0;background-color: black;color: white;">
+                    <span aria-hidden="true">&times;</span>    
+                </button>
+            </div>
+           
+            <div class="modal-body">
+                <style>
+                    .contact-section {
+                      font-family: 'Arial', sans-serif;
+                      color: black;
+                      font-size: 14px;
+                    }
+                  
+                    .contact-section ul {
+                      list-style: none;
+                      padding: 0;
+                      margin: 0;
+                    }
+                  
+                    .contact-section li {
+                      display: flex;
+                      align-items: center;
+                      margin-bottom: 10px;
+                    }
+                  
+                    .contact-section li i {
+                      font-size: 18px;
+                      margin-right: 10px;
+                      color: black;
+                    }
+                  </style>
+                  
+                  <div class="contact-section">
+                    <ul>
+                      <li><i class="fas fa-phone"></i> +123-456-7890</li>
+                      <li><i class="fas fa-globe"></i> www.reallygreatsite.com</li>
+                      <li><i class="fas fa-envelope"></i> hello@reallygreatsite.com</li>
+                      <li><i class="fas fa-map-marker-alt"></i> 123 Anywhere St., Any City</li>
+                    </ul>
+                  </div>
+                  
+                
+                
+            </div>
+            
+        </div>
+    </div>
+ </div>
+<!-- edit address modal start -->
     <!-- footer start -->
      <!-- footer start -->
      <div id="footer-container"></div>
