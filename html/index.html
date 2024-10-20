@@ -289,7 +289,7 @@ document.getElementById('loginButton').addEventListener('click', function() {
         
     </style>
     
-    <div style="padding-left: 50px;padding-right: 50px;font-family: 'Times New Roman', Times, serif;" class="containercta">
+    <div style="padding-left: 130px;padding-right: 130px;font-family: 'Times New Roman', Times, serif;" class="containercta">
         <h2 style=" font-family: 'Times New Roman', Times, serif;">"An estate agency like no other, The Modern House sells the most incredible design-led homes in urban and rural locations in the UK" - Evening Standard</h2>
         <p>Get a free market appraisal today and let us help you find your dream home.</p>
         <a href="#"></a> <button style="border-radius: 0px;" class="btn btn-outline-dark ">Sell With Us</button></a>
@@ -735,51 +735,43 @@ document.getElementById('loginButton').addEventListener('click', function() {
         </div>
     </section>
     <!-- property 5 end -->
-   <!-- About us section start -->
-<section style="padding-bottom: 70px;padding-top: 20px;" class="about-main ratio_36">
+<!-- About us section start -->
+<section style="padding: 50px 0;" class="about-main">
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="user-about">
-                    <div class="row" style="padding-left: 10%;">
-                        <div class="col-xl-12 col-lg-12">
-                            <div class="about-listing" style="padding: 20px; width: 100%;box-shadow: none;">
-                                <ul style="display: flex; justify-content: space-between; list-style: none; padding: 0; margin: 0; width: 100%;">
-                                    <li style="flex: 1; text-align: center;">
-                                        <h4 style="color: black;">15,801+</h4>
-                                        <p>New Projects</p>
-                                    </li>
-                                    <li style="flex: 1; text-align: center;">
-                                        <h4 style="color: black;">120+</h4>
-                                        <p>Agents</p>
-                                    </li>
-                                    <li style="flex: 1; text-align: center;">
-                                        <h4 style="color: black;">871+</h4>
-                                        <p>Commercial Resale</p>
-                                    </li>
-                                    <li style="flex: 1; text-align: center;">
-                                        <h4 style="color: black;">4791+</h4>
-                                        <p>Commercial Rent</p>
-                                    </li>
-                                    <li style="flex: 1; text-align: center;">
-                                        <h4 style="color: black;">1801+</h4>
-                                        <p>Residential Resale</p>
-                                    </li>
-                                    <li style="flex: 1; text-align: center;">
-                                        <h4 style="color: black;">579+</h4>
-                                        <p>Residential Sale</p>
-                                    </li>
-                                    <li style="flex: 1; text-align: center;">
-                                        <h4 style="color: black;">387+</h4>
-                                        <p>Co-Working</p>
-                                    </li>
-                                    <li style="flex: 1; text-align: center;">
-                                        <h4 style="color: black;">491+</h4>
-                                        <p>Co-Living</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <h4>15,801+</h4>
+                        <p>New Projects</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>120+</h4>
+                        <p>Agents</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>871+</h4>
+                        <p>Commercial Resale</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>4791+</h4>
+                        <p>Commercial Rent</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>1801+</h4>
+                        <p>Residential Resale</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>579+</h4>
+                        <p>Residential Sale</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>387+</h4>
+                        <p>Co-Working</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>491+</h4>
+                        <p>Co-Living</p>
                     </div>
                 </div>
             </div>
@@ -788,44 +780,53 @@ document.getElementById('loginButton').addEventListener('click', function() {
 </section>
 
 <style>
-    .about-listing ul li h4 {
-    color: black; /* Set the number color to black */
-    font-weight: bold; /* Make the numbers bold (optional) */
-}
-
-/* Responsive design as per the previous code */
-.about-listing ul {
-    display: flex;
-    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
-    justify-content: space-between;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-
-.about-listing ul li {
-    flex: 1; /* Ensures each list item takes equal space */
-    text-align: center; /* Centers text in each item */
-    padding: 10px 0; /* Adds padding for better spacing */
-}
-
-@media (max-width: 768px) {
-    .about-listing ul {
-        justify-content: center; /* Center the list items on smaller screens */
-    }
-
-    .about-listing ul li {
-        flex: 1 1 50%; /* On mobile, each item takes 50% of the width */
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr); /* 8 equal columns */
+        gap: 20px; /* Add some gap between items */
         text-align: center;
     }
-}
 
-@media (max-width: 576px) {
-    .about-listing ul li {
-        flex: 1 1 100%; /* On very small screens, each item takes full width */
+    .grid-item {
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
     }
-}
+
+    .grid-item h4 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .grid-item p {
+        margin: 4px 0 0;
+        font-size: 12px;
+    }
+
+    /* Media query for better responsiveness */
+    @media (max-width: 1200px) {
+        .grid-container {
+            grid-template-columns: repeat(4, 1fr); /* Adjust to 4 columns on medium screens */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .grid-container {
+            grid-template-columns: repeat(2, 1fr); /* Adjust to 2 columns on small screens */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .grid-container {
+            grid-template-columns: repeat(1, 1fr); /* Full-width on very small screens */
+        }
+    }
+</style>
+
+
+
+<style>
+ 
 
 /* Button styling */
 .btn-outline-white {
@@ -3466,8 +3467,11 @@ a h3 {
             </div>
         </div>
     </section> -->
-    <div style="padding-left: 70px; padding-right: 70px;" class="containercta">
-        <h2 style=" font-family: 'Times New Roman', Times, serif;" >"Glassbrix brings a modern, transparent, and customer-centric approach to real estate, making it easier than ever to buy, sell, or rent premium properties across India." - The Real Estate Times</h2>
+    <div style="padding-left: 140px; padding-right: 140px;" class="containercta">
+        <h2 style=" font-family: 'Times New Roman', Times, serif;font-size: large; line-height: 1.5;" >Glassbrix is an innovative company specializing in sustainable and durable building materials, with a focus on creating
+             high-quality glass blocks and modular building solutions. Known for their aesthetically appealing and functional glass products, Glassbrix designs solutions that blend modern 
+             architecture with environmental consciousness. Their glass blocks are often used in both residential and commercial buildings, offering durability, sound insulation, and enhanced
+              natural lighting while maintaining energy efficiency. The company is dedicated to innovation, ensuring their products align with modern design trends and green building practices.</h2>
         <!-- <p>At Glassbrix, we believe in simplifying property transactions through verified listings and seamless experiences. Let us help you find the perfect home or investment property with our unparalleled market expertise and trusted support.</p> -->
     </div>
     
@@ -3502,10 +3506,10 @@ a h3 {
         <div class="container">
             <div class="subscribe-content">
                 <h2 style=" font-family: 'Times New Roman', Times, serif;">Stay Up to Date</h2>
-                <p style=" font-family: 'Times New Roman', Times, serif;">Get the latest updates and offers right in your inbox.</p>
+                <p style=" font-family: 'Times New Roman', Times, serif;text-shadow:black;color: white;">Get the latest updates and offers right in your inbox.</p>
                 <form action="#" method="post" class="subscribe-form">
-                    <input type="email" placeholder="Enter your email" required class="subscribe-input">
-                    <button type="submit" class=" btn-outline-white">Subscribe</button>
+                    <input type="email" placeholder="Enter your email" required class="subscribe-input" style="border-radius: 0;border:none">
+                    <button type="submit" class=" btn-outline-white" style="border:  1.5px solid white;">Subscribe</button>
                 </form>
             </div>
         </div>

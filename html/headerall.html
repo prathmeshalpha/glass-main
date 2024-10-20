@@ -63,14 +63,14 @@
             <!-- Right Side: POST and Profile dropdown (if user is authenticated) -->
             <ul class="header-right d-flex">
                 <li><a href="{% url 'submit_property' %}">
-                    <button class="btn btn-outline-dark" style="border-radius: 0px;font-family: 'Times New Roman', Times, serif;">POST</button></a>
+                    <button class="btn btn-outline-dark" style="border-radius: 0px;font-family: 'Times New Roman', Times, serif;font-size:small ;">POST</button></a>
                 </li>
 
                 <!-- If user is authenticated, show profile dropdown -->
                 {% if user.is_authenticated %}
                 <li id="profile-dropdown" class="prof  btn btn-outline-dark " style="padding: 5px 10px 5px 10px;">
                     <a style="border-radius: 0px;color: black;" href="#" id="profileButton"  data-bs-toggle="dropdown">
-                        <i data-feather="user"></i> <b style="font-family: 'Times New Roman', Times, serif;">Profile</b>
+                        <i data-feather="user"></i> <b style="font-family: 'Times New Roman', Times, serif;">PROFILE</b>
                         
                     </a>
                     <ul class="dropdown-menu">
