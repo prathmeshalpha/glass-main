@@ -98,9 +98,13 @@
         <!-- Left panel -->
         <div class="row">
             <div class="col-md-4 p-4 left-panel">
-                <div class="image-section">
-                    <img src="{{ property.main_image.url }}" alt="{{ property.property_name }} Image" class="img-fluid">
-                </div>
+                {% if property.images.all %}
+                    <div class="image-section">
+                        <img src="{{ property.images.all.0.image.url }}" alt="{{ property.property_name }} Image" class="img-fluid">
+                    </div>
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
                 <h2 class="mt-4">Welcome to {{ property.property_name }} Open Days</h2>
                 <p class="date-range">{{ property.open_days }} | {{ property.open_time }}</p>
                 <p class="company-name">{{ property.agent.company_name }}</p>
@@ -118,6 +122,18 @@
                     <li>{{ property.parking_spaces }} Parking Spaces</li>
                     <li>{{ property.living_space }} sq.ft Living Spaces</li>
                 </ul>
+                <h3>Estate Features</h3>
+                <ul class="list-unstyled">
+                    <li><i class="feature-icon">✔</i> Security: {{ property.security|yesno:"Yes,No" }}</li>
+                    <li><i class="feature-icon">✔</i> Power Backup: {{ property.powerbackup|yesno:"Yes,No" }}</li>
+                    <li><i class="feature-icon">✔</i> Wi-Fi: {{ property.wifi|yesno:"Yes,No" }}</li>
+                    <li><i class="feature-icon">✔</i> Elevator: {{ property.elevator|yesno:"Yes,No" }}</li>
+                    <li><i class="feature-icon">✔</i> Parking: {{ property.parking|yesno:"Yes,No" }}</li>
+                    <li><i class="feature-icon">✔</i> Air Conditioning: {{ property.ac|yesno:"Yes,No" }}</li>
+                    <li><i class="feature-icon">✔</i> Swimming Pool: {{ property.pool|yesno:"Yes,No" }}</li>
+                    <li><i class="feature-icon">✔</i> Gym: {{ property.gym|yesno:"Yes,No" }}</li>
+                    <li><i class="feature-icon">✔</i> Club House: {{ property.club|yesno:"Yes,No" }}</li>
+                </ul>
 
                 <div class="price-tag">
                     <h4>₹{{ property.property_price }}</h4>
@@ -127,10 +143,15 @@
                     <div class="row">
                         {% for image in property.images.all %}
                         <div class="col-md-4">
-                            <img src="{{ image.url }}" alt="Property Image" class="img-fluid">
-                            <p class="text-center">{{ image.caption }}</p>
+                            <img src="{{ image.image.url }}" alt="Property Image" class="img-fluid">
+                            
                         </div>
                         {% endfor %}
+                    </div>
+
+
+                    <div class="active-link">
+                        <a href="{{ property_link }}" class="btn btn-primary" target="_blank">View Property Details Online</a>
                     </div>
                 </div>
             </div>

@@ -24,7 +24,10 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 
 def property_brochure_view(request, property_id):
-    property = get_object_or_404(Property, id=property_id)
+    property = get_object_or_404(Property.objects.prefetch_related('images'), id=property_id)
+    
+    
+    property_link = request.build_absolute_uri(f'/property/{property.id}/')
     
     # Path to the HTML file stored in the root directory
     project_root = os.path.dirname(os.path.abspath(__file__))
@@ -37,7 +40,10 @@ def property_brochure_view(request, property_id):
     # Use Django template rendering to replace placeholders with actual property values
     from django.template import Template, Context
     template = Template(html_content)
-    context = Context({'property': property})
+    context = Context({
+                        'property': property,
+                        'property_link': property_link
+                       })
     rendered_html = template.render(context)
 
     return HttpResponse(rendered_html)

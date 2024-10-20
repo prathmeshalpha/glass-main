@@ -933,11 +933,34 @@
             <li>
                 <!-- <a href="{% url 'send_property_pdf_via_email' property.id %}" class="icon-mail">
                     <i data-feather="mail" style="width: 18px; height: 18px;"></i> -->
-                    <a data-bs-toggle="modal" data-bs-target="#edit-address" class="icon-mail" style="cursor: pointer;">
+                    <a data-bs-toggle="modal" data-bs-target="#template-selection-modal" class="icon-mail" style="cursor: pointer;">
                         <i data-feather="mail" style="width: 18px; height: 18px;"></i>
                     </a>
                     
             </li>
+            <!-- Modal for Template Selection -->
+            <div class="modal fade" id="template-selection-modal" tabindex="-1" aria-labelledby="templateSelectionLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="templateSelectionLabel">Choose Email Template</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="template-selection-form" method="get" action="{% url 'send_property_pdf_via_email' property.id %}">
+                                <div class="mb-3">
+                                    <label for="templateType" class="form-label">Select Template Type</label>
+                                    <select class="form-select" id="templateType" name="template_type" required>
+                                        <option value="template1">Template 1 (Default)</option>
+                                        <!-- Other templates can be added here if needed -->
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send Email</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ul>
     </div>
 </div>
