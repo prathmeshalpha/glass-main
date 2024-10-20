@@ -222,16 +222,16 @@
                                     </div>
                     
                                     <div class="property-details">
-                                        <span class="font-roboto">{{ property.city }}</span>
+                                        <span style="font-family: 'Times New Roman', Times, serif;" class="font-roboto">{{ property.city }}</span>
                                             <a href="{% url 'property_admin' property.id %}">
-                                                <h3>{{ property.property_name }}</h3>
+                                                <h3 style="font-family: 'Times New Roman', Times, serif;">{{ property.property_name }}</h3>
                                             </a>
-                                        <h6>₹{{ property.property_price }}</h6>
+                                        <h6 style="font-family: 'Times New Roman', Times, serif;">₹{{ property.property_price }}</h6>
                                         <p class="font-roboto">{{ property.description|truncatechars:150 }}</p>
                                         <ul>
-                                            <li><img src="{% static 'images/svg/icon/double-bed.svg' %}" class="img-fluid" alt=""> Bed: {{ property.bedrooms }}</li>
-                                            <li><img src="{% static 'images/svg/icon/bathroom.svg' %}" class="img-fluid" alt=""> Baths: {{ property.bathrooms }}</li>
-                                            <li><img src="{% static 'images/svg/icon/square-ruler-tool.svg' %}" class="img-fluid" alt=""> Sq Ft: {{ property.property_area }}</li>
+                                            <li style="font-family: 'Times New Roman', Times, serif;"><img  src="{% static 'images/svg/icon/double-bed.svg' %}" class="img-fluid" alt=""> Bed: {{ property.bedrooms }}</li>
+                                            <li style="font-family: 'Times New Roman', Times, serif;"><img src="{% static 'images/svg/icon/bathroom.svg' %}" class="img-fluid" alt=""> Baths: {{ property.bathrooms }}</li>
+                                            <li style="font-family: 'Times New Roman', Times, serif;"><img src="{% static 'images/svg/icon/square-ruler-tool.svg' %}" class="img-fluid" alt=""> Sq Ft: {{ property.property_area }}</li>
                                         </ul>
                                         <form method="POST" action="{% url 'approve_deny_property' property.id %}">
                                             {% csrf_token %}
@@ -240,8 +240,8 @@
                                         </form>
                                         <div class="property-btn d-flex">
                                             <span>{{ property.date_posted|date:"F j, Y" }}</span>
-                                            <a href="{% url 'property_admin' property.id %}"><button type="button" class="btn btn-dashed btn-pill color-2">Details</button></a>
-                                        </div>
+                                            <a href="{% url 'property_admin' property.id %}"><button style="font-family: 'Times New Roman', Times, serif;" type="button" class="btn btn-dashed btn-pill color-2">Details</button></a>
+                                        </div> 
                                     </div>
                                 </div>
                             </div>
