@@ -15,48 +15,98 @@ from .forms import UserProfileForm, SignUpForm, PasswordResetForm, PropertyForm 
 from .models import UserProfile, Property, PropertyImage, PropertyVideo, PropertyFloorPlan
 import random
 import os
+import base64
 from io import BytesIO
+import time
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 
-def property_pdf(request, property_id):
-    property_obj = get_object_or_404(Property, id=property_id)
-    template = get_template('property_pdf_template.html')
-    html = template.render({'property': property_obj})
+def property_brochure_view(request, property_id):
+    property = get_object_or_404(Property, id=property_id)
+    
+    # Path to the HTML file stored in the root directory
+    project_root = os.path.dirname(os.path.abspath(__file__))
+    template_path = os.path.join(project_root, '../template1.html')  # Adjust this path if needed
 
-    # Generate PDF from HTML
-    pdf_file = BytesIO()
-    HTML(string=html).write_pdf(pdf_file)
+    # Load the HTML content
+    with open(template_path, 'r', encoding='utf-8') as file:
+        html_content = file.read()
 
-    # Create HTTP response
-    response = HttpResponse(pdf_file.getvalue(), content_type='application/pdf')
-    response['Content-Disposition'] = f'attachment; filename="property_{property_id}.pdf"'
-    return response
+    # Use Django template rendering to replace placeholders with actual property values
+    from django.template import Template, Context
+    template = Template(html_content)
+    context = Context({'property': property})
+    rendered_html = template.render(context)
+
+    return HttpResponse(rendered_html)
+
+def print_property_to_pdf(request, property_id):
+    property_brochure_url = request.build_absolute_uri(f'/property-brochure/{property_id}/')
+
+    # Set up Chrome options for headless browsing
+    chrome_options = ChromeOptions()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+
+    # Path to ChromeDriver located in the "drivers" folder in the root project directory
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    chrome_driver_path = os.path.join(project_root, 'drivers', 'chromedriver.exe')
+
+    # Initialize the Selenium WebDriver for Chrome
+    driver = webdriver.Chrome(service=ChromeService(chrome_driver_path), options=chrome_options)
+
+    try:
+        # Open the property print page
+        driver.get(property_brochure_url)
+
+        # Wait for the page to fully render
+        time.sleep(2)
+
+        # Save the page as a PDF using the print functionality
+        output_pdf_path = os.path.join(project_root,'property_details.pdf')
+         
+        pdf_data = driver.execute_cdp_cmd("Page.printToPDF",{
+            "paperWidth": 8.27,
+            "paperHeight": 11.69,
+            "printBackground": True
+        })
+        
+        pdf_bytes = base64.b64decode(pdf_data['data'])
+
+        # Load the PDF from the file system
+        with open(output_pdf_path, 'wb') as file:
+            file.write(pdf_bytes)
+
+       
+
+        return pdf_bytes
+
+    finally:
+        driver.quit()
 
 def send_property_pdf_via_email(request, property_id):
-    property_instance = get_object_or_404(Property, id=property_id)
-    template = render_to_string('property_pdf_template.html', {'property': property_instance})
+    # Generate PDF for the property
+    pdf_bytes = print_property_to_pdf(request, property_id)
 
-    buffer = BytesIO()
-    pisa_status = pisa.CreatePDF(template, dest=buffer)
+    # Get the property for the email subject
+    property = get_object_or_404(Property, id=property_id)
 
-    
+    # Create an email message
+    subject = f"Property Details for {property.property_name}"
+    message = "Please find attached the property details."
+    email = EmailMessage(subject, message, 'from@example.com', ['to@example.com'])  # Replace with appropriate 'from' and 'to' addresses
 
-    # If there is an error in creating the PDF
-    if pisa_status.err:
-        return HttpResponse('Error generating PDF')
+    # Attach the PDF
+    email.attach(f'property_{property_id}.pdf', pdf_bytes, 'application/pdf')
 
-    # Prepare the email
-    email = EmailMessage(
-        'Property Details',
-        'Please find attached the property details.',
-        'shreyashshinde2608@gmail.com',
-        ['shreyashshindejj@gmail.com'],
-    )
-    
-    email.attach(f'property_{property_instance.id}.pdf', buffer.getvalue(), 'application/pdf')
+    # Send the email
     email.send()
-    
-    return HttpResponse('Email Sent Successfully')
+
+    # Render a template after email is sent (you can customize this template)
+    return render(request, 'email_sent.html')
 
 def signup(request):
     if request.method == 'POST':

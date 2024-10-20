@@ -15,7 +15,9 @@ urlpatterns = [
     path('property/<int:property_id>/action/', views.approve_deny_property, name='approve_deny_property'),
     path('property_admin_listing/', views.property_admin_listing, name='property_admin_listing'),
     path('property_admin/<int:property_id>', views.property_admin, name='property_admin'),
-
+    path('property-brochure/<int:property_id>/', views.property_brochure_view, name='property_brochure'),
+    # Send the property brochure PDF via email
+    path('send-property-pdf/<int:property_id>/', views.send_property_pdf_via_email, name='send_property_pdf'),
     path('footer/', views.footer, name='footer'),
     path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),
@@ -25,7 +27,6 @@ urlpatterns = [
     path('profile/',views.profile ,name='profile'),
     path('property-listing/',views.property_listing ,name='property-listing'),
     path('property/<int:property_id>',views.property ,name='property'),
-    path('property/<int:property_id>/pdf/', views.property_pdf, name='generate_property_pdf'),
     path('property/<int:property_id>/send_email/', views.send_property_pdf_via_email, name='send_property_pdf_via_email'),
     # Password reset URLs
     path('password_reset/', 
