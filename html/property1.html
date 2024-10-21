@@ -933,11 +933,38 @@
             <li>
                 <!-- <a href="{% url 'send_property_pdf_via_email' property.id %}" class="icon-mail">
                     <i data-feather="mail" style="width: 18px; height: 18px;"></i> -->
-                    <a data-bs-toggle="modal" data-bs-target="#edit-address" class="icon-mail" style="cursor: pointer;">
+                    <a data-bs-toggle="modal" data-bs-target="#template-selection-modal" class="icon-mail" style="cursor: pointer;">
                         <i data-feather="mail" style="width: 18px; height: 18px;"></i>
                     </a>
                     
             </li>
+            <!-- Modal for Template Selection -->
+            <div class="modal fade" id="template-selection-modal" tabindex="-1" aria-labelledby="templateSelectionLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="templateSelectionLabel">Choose Email Template</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="template-selection-form" method="get" action="{% url 'send_property_pdf_via_email' property.id %}">
+                                <div class="mb-3">
+                                    <label for="templateType" class="form-label">Select Template Type</label>
+                                    <select class="form-select" id="templateType" name="template_type" required>
+                                        <option value="template1">Template 1 (Default)</option>
+                                        <!-- Other templates can be added here if needed -->
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipientEmail" class="form-label">Recipient Email Address</label>
+                                    <input type="email" class="form-control" id="recipientEmail" name="recipient_email" placeholder="Enter recipient's email" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send Email</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ul>
     </div>
 </div>
@@ -1022,92 +1049,63 @@ h4, h5 {
 
 </style>
    <!-- edit profile modal start -->
-    <div class="modal fade edit-profile-modal" id="edit-address">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Contact Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="border-radius: 0;background-color: black;color: white;">
-                        <span aria-hidden="true">&times;</span>    
-                    </button>
-                </div>
-            
-                <div class="modal-body">
-                    <form id="template-selection-form" method="POST" action="{% url 'send_property_pdf_via_email' property.id %}">
-                        {% csrf_token %}
-                        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
-                            
-                            <!-- Card 1 -->
-                            <a href="javascript:void(0);" onclick="selectTemplate('template1', this);" class="template-card" style="text-decoration: none;width: 22%;">
-                                <div style="border: 1px solid black; color: black; padding: 15px; border-radius: 0px; text-align: center;">
-                                    <img src="{{ images.0.image.url }}" alt="Template 1" style="width: 100%; height: auto; border-radius: 0px;">
-                                    <div style="font-size: 12px; font-weight: bold; margin: 10px 0;">Suits (Season 6)</div>
-                                </div>
-                            </a>
-                
-                            <!-- Card 2 -->
-                            <a href="javascript:void(0);" onclick="selectTemplate('template2', this);" class="template-card" style="text-decoration: none;width: 22%;">
-                                <div style="border: 1px solid black; color: black; padding: 15px; border-radius: 0px; text-align: center;">
-                                    <img src="{{ images.1.image.url }}" alt="Template 2" style="width: 100%; height: auto; border-radius: 0px;">
-                                    <div style="font-size: 12px; font-weight: bold; margin: 10px 0;">The Office (2024)</div>
-                                </div>
-                            </a>
-                
-                            <!-- Card 3 -->
-                            <a href="javascript:void(0);" onclick="selectTemplate('template3', this);" class="template-card" style="text-decoration: none;width: 22%;">
-                                <div style="border: 1px solid black; color: black; padding: 15px; border-radius: 0px; text-align: center;">
-                                    <img src="{{ images.2.image.url }}" alt="Template 3" style="width: 100%; height: auto; border-radius: 0px;">
-                                    <div style="font-size: 12px; font-weight: bold; margin: 10px 0;">Suits (Season 5)</div>
-                                </div>
-                            </a>
-                
-                            <!-- Card 4 -->
-                            <a href="javascript:void(0);" onclick="selectTemplate('template4', this);" class="template-card" style="text-decoration: none;width: 22%;">
-                                <div style="border: 1px solid black; color: black; padding: 15px; border-radius: 0px; text-align: center;">
-                                    <img src="{{ images.3.image.url }}" alt="Template 4" style="width: 100%; height: auto; border-radius: 0px;">
-                                    <div style="font-size: 12px; font-weight: bold; margin: 10px 0;">Vox Machina (Season 3)</div>
-                                </div>
-                            </a>
-                        </div>
-                
-                        <div class="mb-3 mt-4">
-                            <label for="recipientEmail" class="form-label">Recipient Email Address</label>
-                            <input type="email" class="form-control" id="recipientEmail" name="recipient_email" placeholder="Enter recipient's email" required>
-                        </div>
-                
-                        <!-- Hidden input to store selected template type -->
-                        <input type="hidden" id="templateType" name="template_type" value="template1">
-                
-                        <button type="submit" class="btn btn-primary">Send Email</button>
-                    </form>    
-                </div>    
+   <div class="modal fade edit-profile-modal" id="edit-address">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contact Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="border-radius: 0;background-color: black;color: white;">
+                    <span aria-hidden="true">&times;</span>    
+                </button>
             </div>
+           
+            <div class="modal-body">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+                    <!-- Card 1 -->
+                    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+                        <!-- Card 1 -->
+                        <a href="link_to_suits_season_6" style="text-decoration: none;width: 22%;">
+                            <div style="border: 1px solid black; color: black; padding: 15px; border-radius: 0px; text-align: center;">
+                                <img src="{{ images.0.image.url }}" alt="Suits Season 6" style="width: 100%; height: auto; border-radius: 0px;">
+                                <div style="font-size: 12px; font-weight: bold; margin: 10px 0;">Suits (Season 6)</div>
+                            </div>
+                        </a>
+                    
+                        <!-- Card 2 -->
+                        <a href="link_to_the_office_2024" style="text-decoration: none;width: 22%;">
+                            <div style="border: 1px solid black; color: black; padding: 15px; border-radius: 0px; text-align: center;">
+                                <img src="path_to_the_office_image.jpg" alt="The Office" style="width: 100%; height: auto; border-radius: 0px;">
+                                <div style="font-size: 12px; font-weight: bold; margin: 10px 0;">The Office (2024)</div>
+                            </div>
+                        </a>
+                    
+                        <!-- Card 3 -->
+                        <a href="link_to_suits_season_5" style="text-decoration: none;width: 22%;">
+                            <div style="border: 1px solid black; color: black; padding: 15px; border-radius: 0px; text-align: center;">
+                                <img src="path_to_suits_s5_image.jpg" alt="Suits Season 5" style="width: 100%; height: auto; border-radius: 0px;">
+                                <div style="font-size: 12px; font-weight: bold; margin: 10px 0;">Suits (Season 5)</div>
+                            </div>
+                        </a>
+                    
+                        <!-- Card 4 -->
+                        <a href="link_to_vox_machina_season_3" style="text-decoration: none;width: 22%;">
+                            <div style="border: 1px solid black; color: black; padding: 15px; border-radius: 0px; text-align: center;">
+                                <img src="path_to_vox_machina_image.jpg" alt="Vox Machina" style="width: 100%; height: auto; border-radius: 0px;">
+                                <div style="font-size: 12px; font-weight: bold; margin: 10px 0;">The Legend of Vox Machina (Season 3)</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                
+                
+                
+            </div>
+            
+            
         </div>
     </div>
-    <script>
-        // JavaScript function to select a template and update the hidden input
-        function selectTemplate(template, element) {
-            // Set the value of the hidden input
-            document.getElementById('templateType').value = template;
-    
-            // Remove the active class from all template cards
-            const allCards = document.querySelectorAll('.template-card');
-            allCards.forEach(card => card.classList.remove('selected'));
-    
-            // Add the active class to the selected template card
-            element.classList.add('selected');
-        }
-    
-        // Add some CSS to visually indicate the selected template
-        const style = document.createElement('style');
-        style.innerHTML = `
-            .template-card.selected div {
-                border: 2px solid blue;
-                background-color: #f0f8ff;
-            }
-        `;
-        document.head.appendChild(style);
-    </script>   
+</div>
+   </div>
 <!-- edit profile modal start -->
 
 

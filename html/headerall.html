@@ -36,15 +36,16 @@
         <div class="menu d-flex justify-content-between align-items-center h-100" style="padding: 0;">
             <!-- Left Side: Dropdowns for City and Country -->
             <ul class="nav-menu d-flex">
-                <li class="dropdown-container">
-                    <select id="city-dropdown" class="custom-dropdown">
-                        <option style="font-family: 'Times New Roman', Times, serif;" value="" disabled selected>Select City</option>
-                        <option value="new-york">New York</option>
-                        <option value="los-angeles">Los Angeles</option>
-                        <option value="chicago">Chicago</option>
-                        <option value="houston">Houston</option>
-                    </select>
-                </li>
+                <form id="city-selection-form" method="GET" action="{% url 'home' %}">
+                    <li class="dropdown-container">
+                        <select id="city-dropdown"name="city" class="custom-dropdown" onchange="filterPropertiesByCity()">
+                            <option style="font-family: 'Times New Roman', Times, serif;" value="" disabled selected>Select City</option>
+                            {% for city in cities %}
+                            <option value="{{ city }}">{{ city }}</option>
+                            {% endfor %}
+                        </select>
+                    </li>
+                </form>
                 <li class="dropdown-container ml-3">
                     <select id="country-dropdown" class="custom-dropdown">
                         <option style="font-family: 'Times New Roman', Times, serif;" value="" disabled selected>Select Country</option>

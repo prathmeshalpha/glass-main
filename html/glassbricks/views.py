@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail, EmailMessage
+from django.core.exceptions import PermissionDenied
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string, get_template
@@ -24,14 +25,17 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 
 def property_brochure_view(request, property_id):
+    
+    template_type= request.GET.get('template_type', 'template1')
+    
     property = get_object_or_404(Property.objects.prefetch_related('images'), id=property_id)
     
     
-    property_link = request.build_absolute_uri(f'/property/{property.id}/')
+    
     
     # Path to the HTML file stored in the root directory
     project_root = os.path.dirname(os.path.abspath(__file__))
-    template_path = os.path.join(project_root, '../template1.html')  # Adjust this path if needed
+    template_path = os.path.join(project_root, f'../{template_type}.html')  # Adjust this path if needed
 
     # Load the HTML content
     with open(template_path, 'r', encoding='utf-8') as file:
@@ -42,77 +46,80 @@ def property_brochure_view(request, property_id):
     template = Template(html_content)
     context = Context({
                         'property': property,
-                        'property_link': property_link
+                        'property_link': request.build_absolute_uri(f'/property/{property.id}/'),
                        })
     rendered_html = template.render(context)
 
     return HttpResponse(rendered_html)
 
-def print_property_to_pdf(request, property_id):
-    property_brochure_url = request.build_absolute_uri(f'/property-brochure/{property_id}/')
-
-    # Set up Chrome options for headless browsing
+def print_property_to_pdf(request, property_id, template_type='template1'):
+    property_brochure_url = request.build_absolute_uri(f'/property-brochure/{property_id}/') + f'?template_type={template_type}'
+    
     chrome_options = ChromeOptions()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
 
-    # Path to ChromeDriver located in the "drivers" folder in the root project directory
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     chrome_driver_path = os.path.join(project_root, 'drivers', 'chromedriver.exe')
 
-    # Initialize the Selenium WebDriver for Chrome
     driver = webdriver.Chrome(service=ChromeService(chrome_driver_path), options=chrome_options)
 
     try:
-        # Open the property print page
         driver.get(property_brochure_url)
+        time.sleep(2)  # Wait for rendering
 
-        # Wait for the page to fully render
-        time.sleep(2)
-
-        # Save the page as a PDF using the print functionality
-        output_pdf_path = os.path.join(project_root,'property_details.pdf')
-         
-        pdf_data = driver.execute_cdp_cmd("Page.printToPDF",{
-            "paperWidth": 8.27,
-            "paperHeight": 11.69,
+        # Use DevTools to generate a PDF
+        pdf_data = driver.execute_cdp_cmd("Page.printToPDF", {
+            "paperWidth": 8.27,  # A4 paper size width
+            "paperHeight": 11.69,  # A4 paper size height
             "printBackground": True
         })
-        
+
+        # Decode the base64-encoded PDF data
         pdf_bytes = base64.b64decode(pdf_data['data'])
-
-        # Load the PDF from the file system
-        with open(output_pdf_path, 'wb') as file:
-            file.write(pdf_bytes)
-
-       
 
         return pdf_bytes
 
+    except Exception as e:
+        print(f"Error generating PDF: {e}")
+        return None
     finally:
         driver.quit()
 
 def send_property_pdf_via_email(request, property_id):
-    # Generate PDF for the property
-    pdf_bytes = print_property_to_pdf(request, property_id)
+    property_instance = get_object_or_404(Property, pk=property_id)
 
-    # Get the property for the email subject
-    property = get_object_or_404(Property, id=property_id)
+    if request.method == "POST":
+        recipient_email = request.POST.get('recipient_email')
+        template_type = request.POST.get('template_type','template1')
 
-    # Create an email message
-    subject = f"Property Details for {property.property_name}"
-    message = "Please find attached the property details."
-    email = EmailMessage(subject, message, 'from@example.com', ['to@example.com'])  # Replace with appropriate 'from' and 'to' addresses
+        # Assuming you generate the PDF with a function like `print_property_to_pdf`
+        pdf_bytes = print_property_to_pdf(request, property_id, template_type)
+        if pdf_bytes is None:
+            return render(request, 'error.html', {'message': 'Unable to generate PDF.'})
 
-    # Attach the PDF
-    email.attach(f'property_{property_id}.pdf', pdf_bytes, 'application/pdf')
+        
+        subject = f"Property Details: {property_instance.property_name}"
+        message = f"Please find attached the property details for {property_instance.property_name}."
+        email = EmailMessage(
+            subject=subject,
+            body=message,
+            from_email=request.user.email,  # Using the current user's email as sender
+            to=[recipient_email],
+        )
+        
+        
+        email.attach(f"{property_instance.property_name}_details.pdf", pdf_bytes, 'application/pdf')
 
-    # Send the email
-    email.send()
+        # Send the email
+        try:
+            email.send()
+            return render(request, 'email_sent.html', {'message': 'Email sent successfully.'})
+        except Exception as e:
+            return render(request, 'error.html', {'message': f"Failed to send email: {str(e)}"})
 
-    # Render a template after email is sent (you can customize this template)
-    return render(request, 'email_sent.html')
+    return render(request, 'error.html', {'message': 'Invalid request method.'})
 
 def signup(request):
     if request.method == 'POST':
@@ -197,23 +204,18 @@ def submit_property(request):
 
 
 def home(request):
-    distinct_cities = Property.objects.values_list('city', flat=True).distinct()
-    
-    selected_city = request.GET.get('city', None)
-    
-    if selected_city:
-        properties = Property.objects.filter(city=selected_city, approved=True)
+    city_filter = request.GET.get('city')
+    if city_filter:
+        properties = Property.objects.filter(city__iexact=city_filter)
     else:
-        properties = Property.objects.filter(approved=True)
+        properties = Property.objects.all()
 
+    cities = Property.objects.values_list('city', flat=True).distinct()
     context = {
         'properties': properties,
-        'distinct_cities': distinct_cities,
-        'selected_city': selected_city,
+        'cities': cities,
     }
-    
-    
-    return render(request, 'index.html',context)
+    return render(request, 'index.html', context)
 
 
 def signup_company(request):
