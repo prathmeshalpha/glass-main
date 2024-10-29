@@ -204,17 +204,32 @@ def submit_property(request):
 
 
 def home(request):
-    city_filter = request.GET.get('city')
-    if city_filter:
-        properties = Property.objects.filter(city__iexact=city_filter)
-    else:
-        properties = Property.objects.all()
+    # Get the selected city from the URL parameters
+    selected_city = request.GET.get('city')
 
-    cities = Property.objects.values_list('city', flat=True).distinct()
+    if selected_city:
+        # Filter properties based on the selected city
+        properties_in_city = Property.objects.filter(city__iexact=selected_city)
+
+        # Randomly select 3 properties if more than 3 are available
+        if properties_in_city.count() > 3:
+            properties = random.sample(list(properties_in_city), 3)
+        else:
+            properties = properties_in_city
+    else:
+        # If no city is selected, randomly select 3 properties from all available properties
+        all_properties = Property.objects.all()
+        if all_properties.count() > 3:
+            properties = random.sample(list(all_properties), 3)
+        else:
+            properties = all_properties
+
+    # Pass data to the context for rendering
     context = {
         'properties': properties,
-        'cities': cities,
+        'selected_city': None,
     }
+
     return render(request, 'index.html', context)
 
 
@@ -514,7 +529,16 @@ def property_listing(request):
 
 # View for the header
 def header(request):
-    return render(request, 'headerall.html')
+    
+    # Get distinct cities for the dropdown
+    cities = Property.objects.values_list('city', flat=True).distinct()
+
+    # Pass the cities to the context
+    context = {
+        'cities': cities,
+    }
+    
+    return render(request, 'headerall.html', context)
 
 # View for the footer
 def footer(request):

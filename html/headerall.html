@@ -30,22 +30,50 @@
 
 <!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<style>
+    .city-selection-buttons {
+        display: flex;
+        gap: 10px; /* Spacing between buttons */
+        flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
+    }
+    .city-button {
+        padding: 10px 15px;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 14px;
+        border: 1px solid black;
+        background-color: white;
+        color: black;
+        cursor: pointer;
+        border-radius: 5px; /* Adjust to your desired appearance */
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .city-button:hover {
+        background-color: black;
+        color: white;
+    }
+</style>
 
 <header class="header-4" style="height: 70px; padding: 10px;">
     <div class="container-fluid h-100" style="padding: 0;">
         <div class="menu d-flex justify-content-between align-items-center h-100" style="padding: 0;">
             <!-- Left Side: Dropdowns for City and Country -->
             <ul class="nav-menu d-flex">
-                <form id="city-selection-form" method="GET" action="{% url 'home' %}">
-                    <li class="dropdown-container">
-                        <select id="city-dropdown"name="city" class="custom-dropdown" onchange="filterPropertiesByCity()">
-                            <option style="font-family: 'Times New Roman', Times, serif;" value="" disabled selected>Select City</option>
+                <form id="city-selection-form" method="get" action="{% url 'home' %}">
+                    <div class="dropdown city-selection-dropdown">
+                        <span class="dropdown-toggle font-rubik" data-bs-toggle="dropdown">
+                            <span>Select City</span> <i class="fas "></i>
+                        </span>
+                        <div class="dropdown-menu text-start">
                             {% for city in cities %}
-                            <option value="{{ city }}">{{ city }}</option>
+                                <button type="submit" name="city" value="{{ city }}" class="dropdown-item city-button">
+                                    {{ city }}
+                                </button>
                             {% endfor %}
-                        </select>
-                    </li>
+                        </div>
+                    </div>
                 </form>
+                
+                
                 <li class="dropdown-container ml-3">
                     <select id="country-dropdown" class="custom-dropdown">
                         <option style="font-family: 'Times New Roman', Times, serif;" value="" disabled selected>Select Country</option>
@@ -182,20 +210,21 @@
 
   
 <script>
-    $(document).ready(function() {
-        // Initialize Select2 with search functionality
-        $('#city-dropdown').select2({
-            placeholder: "Select or search a City",
-            allowClear: true,
-            width: '100%' // Ensures the dropdown takes full width
-        });
-    });
+    function changeCity() {
+        var selectedCity = document.getElementById('city-dropdown').value;
+        // Update the URL with the selected city parameter and reload the page
+        if (selectedCity) {
+            var currentURL = window.location.origin + window.location.pathname;
+            var newURL = currentURL + "?city=" + encodeURIComponent(selectedCity);
+            window.location.href = newURL;  // This will reload the page with the new city parameter
+        }
+    }
 </script>
 
 
 
 
-  </script>
+ 
 <body>
     <!-- latest jquery-->
     <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
