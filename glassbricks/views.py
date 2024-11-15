@@ -1,81 +1,62 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail, EmailMessage
-from django.core.exceptions import PermissionDenied
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
-from django.template.loader import render_to_string, get_template
-from django.contrib.auth.decorators import login_required
-from django.conf import settings
+from django.template.loader import render_to_string
+from weasyprint import HTML
 from django.http import HttpResponse
-from xhtml2pdf import pisa
-from django.urls import reverse
-from .forms import UserProfileForm, SignUpForm, PasswordResetForm, PropertyForm , CustomUserCreationForm
-from .models import UserProfile, Property, PropertyImage, PropertyVideo, PropertyFloorPlan
+from .forms import SignUpForm, PropertyForm
+from .models import Property, PropertyImage
 import random
 import os
-import base64
 from io import BytesIO
-import time
-from weasyprint import HTML  # Import WeasyPrint for PDF generation
-
 
 def property_brochure_view(request, property_id):
-    template_type = request.GET.get('template_type', 'template1')
+    template_type = request.GET.get('template_type', 'template1')  # Default to 'template1' if not selected
     property = get_object_or_404(Property.objects.prefetch_related('images'), id=property_id)
 
-    # Path to the HTML file stored in the root directory
-    project_root = os.path.dirname(os.path.abspath(__file__))
-    template_path = os.path.join(project_root, f'../{template_type}.html')  # Adjust this path if needed
+    # Get the appropriate template based on the selected template_type
+    template_name = f'{template_type}.html'  # Example: 'template1.html', 'template2.html', etc.
+    
+    try:
+        # Render the template with property data
+        html_content = render_to_string(template_name, {'property': property, 'property_link': request.build_absolute_uri(f'/property/{property.id}/')})
+    except Exception as e:
+        return HttpResponse(f"Error rendering template: {e}", status=500)
 
-    # Load the HTML content
-    with open(template_path, 'r', encoding='utf-8') as file:
-        html_content = file.read()
-
-    # Use Django template rendering to replace placeholders with actual property values
-    from django.template import Template, Context
-    template = Template(html_content)
-    context = Context({
-                        'property': property,
-                        'property_link': request.build_absolute_uri(f'/property/{property.id}/'),
-                       })
-    rendered_html = template.render(context)
-
-    return HttpResponse(rendered_html)
-
+    return HttpResponse(html_content)
 
 def print_property_to_pdf(request, property_id, template_type='template1'):
     property_brochure_url = request.build_absolute_uri(f'/property-brochure/{property_id}/') + f'?template_type={template_type}'
     
     try:
-        html = HTML(url=property_brochure_url)  # WeasyPrint renders the HTML from the URL
-        pdf_bytes = html.write_pdf()  # Converts the HTML to PDF in bytes
+        # WeasyPrint renders the HTML from the URL
+        html = HTML(url=property_brochure_url)  
+        pdf_bytes = html.write_pdf()  # Convert the HTML content to PDF
         return pdf_bytes
     except Exception as e:
         print(f"Error generating PDF: {e}")
         return None
-
 
 def send_property_pdf_via_email(request, property_id):
     property_instance = get_object_or_404(Property, pk=property_id)
 
     if request.method == "POST":
         recipient_email = request.POST.get('recipient_email')
-        template_type = request.POST.get('template_type','template1')
+        template_type = request.POST.get('template_type', 'template1')  # Default to 'template1'
 
-        # Assuming you generate the PDF with a function like `print_property_to_pdf`
+        # Generate the PDF with the selected template
         pdf_bytes = print_property_to_pdf(request, property_id, template_type)
         if pdf_bytes is None:
             return render(request, 'error.html', {'message': 'Unable to generate PDF.'})
 
+        # Compose the email with the PDF attached
         subject = f"Property Details: {property_instance.property_name}"
         message = f"Please find attached the property details for {property_instance.property_name}."
         email = EmailMessage(
             subject=subject,
             body=message,
-            from_email=request.user.email,  # Using the current user's email as sender
+            from_email=request.user.email,  # Sender's email (current logged-in user)
             to=[recipient_email],
         )
         
