@@ -18,6 +18,8 @@ import os
 import base64
 from io import BytesIO
 import time
+from weasyprint import HTML, CSS
+
 
 def property_brochure_view(request, property_id):
     
