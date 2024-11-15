@@ -19,20 +19,13 @@ import os
 import base64
 from io import BytesIO
 import time
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.chrome.options import Options as ChromeOptions
+from weasyprint import HTML  # Import WeasyPrint for PDF generation
 
 
 def property_brochure_view(request, property_id):
-    
-    template_type= request.GET.get('template_type', 'template1')
-    
+    template_type = request.GET.get('template_type', 'template1')
     property = get_object_or_404(Property.objects.prefetch_related('images'), id=property_id)
-    
-    
-    
-    
+
     # Path to the HTML file stored in the root directory
     project_root = os.path.dirname(os.path.abspath(__file__))
     template_path = os.path.join(project_root, f'../{template_type}.html')  # Adjust this path if needed
@@ -52,40 +45,18 @@ def property_brochure_view(request, property_id):
 
     return HttpResponse(rendered_html)
 
+
 def print_property_to_pdf(request, property_id, template_type='template1'):
     property_brochure_url = request.build_absolute_uri(f'/property-brochure/{property_id}/') + f'?template_type={template_type}'
     
-    chrome_options = ChromeOptions()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-
-    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    chrome_driver_path = os.path.join(project_root, 'drivers', 'chromedriver.exe')
-
-    driver = webdriver.Chrome(service=ChromeService(chrome_driver_path), options=chrome_options)
-
     try:
-        driver.get(property_brochure_url)
-        time.sleep(2)  # Wait for rendering
-
-        # Use DevTools to generate a PDF
-        pdf_data = driver.execute_cdp_cmd("Page.printToPDF", {
-            "paperWidth": 8.27,  # A4 paper size width
-            "paperHeight": 11.69,  # A4 paper size height
-            "printBackground": True
-        })
-
-        # Decode the base64-encoded PDF data
-        pdf_bytes = base64.b64decode(pdf_data['data'])
-
+        html = HTML(url=property_brochure_url)  # WeasyPrint renders the HTML from the URL
+        pdf_bytes = html.write_pdf()  # Converts the HTML to PDF in bytes
         return pdf_bytes
-
     except Exception as e:
         print(f"Error generating PDF: {e}")
         return None
-    finally:
-        driver.quit()
+
 
 def send_property_pdf_via_email(request, property_id):
     property_instance = get_object_or_404(Property, pk=property_id)
@@ -99,7 +70,6 @@ def send_property_pdf_via_email(request, property_id):
         if pdf_bytes is None:
             return render(request, 'error.html', {'message': 'Unable to generate PDF.'})
 
-        
         subject = f"Property Details: {property_instance.property_name}"
         message = f"Please find attached the property details for {property_instance.property_name}."
         email = EmailMessage(
@@ -108,7 +78,6 @@ def send_property_pdf_via_email(request, property_id):
             from_email=request.user.email,  # Using the current user's email as sender
             to=[recipient_email],
         )
-        
         
         email.attach(f"{property_instance.property_name}_details.pdf", pdf_bytes, 'application/pdf')
 
