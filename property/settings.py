@@ -25,6 +25,10 @@ SECRET_KEY = 'django-insecure-b%zq9a!1bi&7osgm!yk^3gi6xinppr@)v)+n)f$v4$4(e16z@)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_DOMAIN = None
+
 ALLOWED_HOSTS = ['*']
 
 MEDIA_URL = '/media/'
