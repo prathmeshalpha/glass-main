@@ -11,6 +11,7 @@ import random
 import os
 from io import BytesIO
 
+# Property brochure view
 def property_brochure_view(request, property_id):
     template_type = request.GET.get('template_type', 'template1')  # Default to 'template1' if not selected
     property = get_object_or_404(Property.objects.prefetch_related('images'), id=property_id)
@@ -26,6 +27,7 @@ def property_brochure_view(request, property_id):
 
     return HttpResponse(html_content)
 
+# PDF generation function
 def print_property_to_pdf(request, property_id, template_type='template1'):
     property_brochure_url = request.build_absolute_uri(f'/property-brochure/{property_id}/') + f'?template_type={template_type}'
     
@@ -38,6 +40,7 @@ def print_property_to_pdf(request, property_id, template_type='template1'):
         print(f"Error generating PDF: {e}")
         return None
 
+# Email sending function with the PDF attached
 def send_property_pdf_via_email(request, property_id):
     property_instance = get_object_or_404(Property, pk=property_id)
 
