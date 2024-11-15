@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 from weasyprint import HTML
 from django.http import HttpResponse
 from .forms import SignUpForm, PropertyForm
-from .models import Property, PropertyImage
+from .models import Property, PropertyImage, PropertyVideo
 import random
 import os
 from io import BytesIO
