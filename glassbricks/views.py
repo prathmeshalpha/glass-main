@@ -1,32 +1,51 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout, get_user_model
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail, EmailMessage
-from django.template.loader import render_to_string
-from weasyprint import HTML
+from django.core.exceptions import PermissionDenied
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.template.loader import render_to_string, get_template
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
 from django.http import HttpResponse
-from .forms import SignUpForm, PropertyForm
-from .models import Property, PropertyImage, PropertyVideo
+from django.urls import reverse
+from .forms import UserProfileForm, SignUpForm, PasswordResetForm, PropertyForm , CustomUserCreationForm
+from .models import UserProfile, Property, PropertyImage, PropertyVideo, PropertyFloorPlan
 import random
 import os
+import base64
 from io import BytesIO
+import time
 
-# Property brochure view
 def property_brochure_view(request, property_id):
-    template_type = request.GET.get('template_type', 'template1')  # Default to 'template1' if not selected
-    property = get_object_or_404(Property.objects.prefetch_related('images'), id=property_id)
-
-    # Get the appropriate template based on the selected template_type
-    template_name = f'{template_type}.html'  # Example: 'template1.html', 'template2.html', etc.
     
-    try:
-        # Render the template with property data
-        html_content = render_to_string(template_name, {'property': property, 'property_link': request.build_absolute_uri(f'/property/{property.id}/')})
-    except Exception as e:
-        return HttpResponse(f"Error rendering template: {e}", status=500)
+    template_type= request.GET.get('template_type', 'template1')
+    
+    property = get_object_or_404(Property.objects.prefetch_related('images'), id=property_id)
+    
+    
+    
+    
+    # Path to the HTML file stored in the root directory
+    project_root = os.path.dirname(os.path.abspath(__file__))
+    template_path = os.path.join(project_root, f'../{template_type}.html')  # Adjust this path if needed
 
-    return HttpResponse(html_content)
+    # Load the HTML content
+    with open(template_path, 'r', encoding='utf-8') as file:
+        html_content = file.read()
+
+    # Use Django template rendering to replace placeholders with actual property values
+    from django.template import Template, Context
+    template = Template(html_content)
+    context = Context({
+                        'property': property,
+                        'property_link': request.build_absolute_uri(f'/property/{property.id}/'),
+                       })
+    rendered_html = template.render(context)
+
+    return HttpResponse(rendered_html)
 
 # PDF generation function
 def print_property_to_pdf(request, property_id, template_type='template1'):
