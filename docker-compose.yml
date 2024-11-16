@@ -6,6 +6,8 @@ services:
     command: gunicorn property.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
+      - ./static:/app/static
+      - ./media:/app/media
     ports:
       - "8000:8000"
     environment:
