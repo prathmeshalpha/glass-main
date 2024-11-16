@@ -91,16 +91,19 @@ WSGI_APPLICATION = 'property.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'glassbricks',
-        'HOST':'localhost',
-        'USER':'glassbrix',
-        'PASSWORD':'glassbrix',
-        'PORT':'5432',
+        'NAME': os.getenv('POSTGRES_DB', 'glassbricks'),
+        'USER': os.getenv('POSTGRES_USER', 'glassbrix'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'glassbrix'),
+        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),  # Uses the environment variable (IP address)
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
+
 
 
 # Password validation
