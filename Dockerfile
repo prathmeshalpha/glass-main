@@ -26,6 +26,7 @@ COPY . /app/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+RUN mkdir -p /app/staticfiles/
 RUN cp -r /app/static/* /app/staticfiles/
 
 # Expose the port that the Django app will run on
