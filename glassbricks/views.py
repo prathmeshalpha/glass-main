@@ -22,7 +22,6 @@ from weasyprint import HTML, CSS
 
 
 def property_brochure_view(request, property_id):
-    print("demo")
     template_type= request.GET.get('template_type', 'template1')
     
     property = get_object_or_404(Property.objects.prefetch_related('images'), id=property_id)
