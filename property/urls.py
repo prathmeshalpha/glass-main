@@ -27,30 +27,10 @@ urlpatterns = [
     path('property-listing/', views.property_listing, name='property-listing'),
     path('property/<int:property_id>', views.property, name='property'),
     path('property/<int:property_id>/send_email/', views.send_property_pdf_via_email, name='send_property_pdf_via_email'),
-    
-    # Password reset URLs
-    path('password_reset/', 
-         auth_views.PasswordResetView.as_view(
-             template_name='forgot-password.html',  # Custom template
-             email_template_name='password_reset_email.txt',  # Custom email template
-         ), 
-         name='password_reset'),
-    path('password_reset_done/', 
-         auth_views.PasswordResetDoneView.as_view(
-             template_name='password_reset_done.html'  # Ensure this template exists
-         ), 
-         name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', 
-         auth_views.PasswordResetConfirmView.as_view(
-             template_name='password_reset_confirm.html'  # Ensure this template exists
-         ), 
-         name='password_reset_confirm'),
-    path('reset/done/', 
-         auth_views.PasswordResetCompleteView.as_view(
-             template_name='password_reset_complete.html'  # Ensure this template exists
-         ), 
-         name='password_reset_complete'),
-    
-    # Social authentication URLs (with social_django)
+    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='forgot-password.html'), name='password_reset'),
+    path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), name='password_reset_complete'),
     path('auth/', include('social_django.urls', namespace='social')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
