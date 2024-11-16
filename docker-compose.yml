@@ -3,12 +3,11 @@ version: "3.8"
 services:
   web:
     build: .
-    command: >
-      bash -c "python manage.py collectstatic --noinput && gunicorn property.wsgi:application --bind 0.0.0.0:8000"
+    command: gunicorn property.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
-      - ./static:/app/static  # Maps the static files to the container
-      - ./staticfiles:/app/static
+      - ./static:/app/static
+      - ./staticfiles:/app/staticfiles
       - ./media:/app/media
     ports:
       - "8000:8000"
