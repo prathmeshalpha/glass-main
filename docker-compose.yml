@@ -1,30 +1,23 @@
-version: '3.8'
+version: "3.8"
 
 services:
   web:
     build: .
-    command: gunicorn --workers 3 --bind 0.0.0.0:8000 property.wsgi:application
+    command: gunicorn property.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
-    environment:
-      - DEBUG=False
-      - DATABASE_URL=postgres://glassbrix:glassbrix@db:5432/glassbricks  # Using the db service name
-      - DJANGO_SECRET_KEY=your-secret-key
     ports:
       - "8000:8000"
-    depends_on:
-      - db
-
-  db:
-    image: postgres:14
     environment:
-      POSTGRES_DB: glassbricks
-      POSTGRES_USER: glassbrix
-      POSTGRES_PASSWORD: glassbrix
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+      - DEBUG=True
+      - POSTGRES_DB=glassbricks
+      - POSTGRES_USER=glassbrix
+      - POSTGRES_PASSWORD=glassbrix
+      - POSTGRES_HOST=193.22.147.76   # Directly using the IP address
+      - POSTGRES_PORT=5432  # Default PostgreSQL port
+    networks:
+      - backend
 
-volumes:
-  postgres_data:
+networks:
+  backend:
+    driver: bridge
