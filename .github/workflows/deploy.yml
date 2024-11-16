@@ -24,20 +24,24 @@ jobs:
       run: |
         # Using sshpass with SSH password to connect to VPS
         echo "Starting deployment process on VPS..."
-        
-        # Connect via SSH, pull latest code, and rebuild Docker containers
+
+        # Connect via SSH, pull latest code, and collect static files
         sshpass -p $VPS_SSH_PASSWORD ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_IP <<EOF
           echo "Changing directory to /root/glass-main..."
           cd /root/glass-main
-          
+
           echo "Pulling latest changes from the main branch..."
           git pull origin main
-          
+
+          # Run collectstatic before restarting containers
+          echo "Running collectstatic..."
+          python manage.py collectstatic --noinput
+
           echo "Stopping and removing existing containers..."
           docker-compose down
-          
+
           echo "Building and restarting containers..."
           docker-compose up -d --build
-          
+
           echo "Deployment completed!"
         EOF
