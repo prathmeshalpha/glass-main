@@ -4,7 +4,7 @@ services:
   web:
     build: .
     command: >
-      bash -c "cp -r /app/static/* /app/staticfiles/ && python manage.py collectstatic --noinput && gunicorn property.wsgi:application --bind 0.0.0.0:8000"
+      bash -c "python manage.py collectstatic --noinput && gunicorn property.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/app
       - ./static:/app/static  # Maps the static files to the container
