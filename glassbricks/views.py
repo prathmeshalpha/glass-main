@@ -131,7 +131,7 @@ def signup(request):
 
     return render(request, 'signup.html', {'form': form})
 
-
+@login_required
 def submit_property(request):
     if request.method == 'POST':
         property_form = PropertyForm(request.POST, request.FILES)
