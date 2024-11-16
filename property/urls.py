@@ -16,22 +16,22 @@ urlpatterns = [
     path('property_admin_listing/', views.property_admin_listing, name='property_admin_listing'),
     path('property_admin/<int:property_id>', views.property_admin, name='property_admin'),
     path('property-brochure/<int:property_id>/', views.property_brochure_view, name='property_brochure'),
-    # Send the property brochure PDF via email
     path('send-property-pdf/<int:property_id>/', views.send_property_pdf_via_email, name='send_property_pdf'),
     path('footer/', views.footer, name='footer'),
     path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),
     path('update_profile_picture/', views.update_profile_picture, name='update_profile_picture'),
-    path('submit_property/',views.submit_property ,name='submit_property'),
-    path('update_profile/',views.update_profile ,name='update_profile'),
-    path('profile/',views.profile ,name='profile'),
-    path('property-listing/',views.property_listing ,name='property-listing'),
-    path('property/<int:property_id>',views.property ,name='property'),
+    path('submit_property/', views.submit_property, name='submit_property'),
+    path('update_profile/', views.update_profile, name='update_profile'),
+    path('profile/', views.profile, name='profile'),
+    path('property-listing/', views.property_listing, name='property-listing'),
+    path('property/<int:property_id>', views.property, name='property'),
     path('property/<int:property_id>/send_email/', views.send_property_pdf_via_email, name='send_property_pdf_via_email'),
+    
     # Password reset URLs
     path('password_reset/', 
          auth_views.PasswordResetView.as_view(
-             template_name='forgot-password.html',  # Use your custom template
+             template_name='forgot-password.html',  # Custom template
              email_template_name='password_reset_email.txt',  # Custom email template
          ), 
          name='password_reset'),
@@ -51,12 +51,6 @@ urlpatterns = [
          ), 
          name='password_reset_complete'),
     
-    
+    # Social authentication URLs (with social_django)
     path('auth/', include('social_django.urls', namespace='social')),
-    
-   
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
