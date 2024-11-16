@@ -1,0 +1,31 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch (or your preferred branch)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install sshpass
+      run: sudo apt-get install sshpass
+
+    - name: Deploy to VPS using SSH Password
+      env:
+        VPS_IP: ${{ secrets.VPS_IP }}
+        VPS_USER: ${{ secrets.VPS_USER }}
+        VPS_SSH_PASSWORD: ${{ secrets.VPS_SSH_PASSWORD }}
+      run: |
+        # Using sshpass with SSH password to connect to VPS
+        sshpass -p $VPS_SSH_PASSWORD ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_IP <<EOF
+          cd /root/glass-main
+          git pull origin main
+          docker-compose down
+          docker-compose up -d --build
+        EOF
