@@ -22,7 +22,7 @@ from weasyprint import HTML, CSS
 
 
 def property_brochure_view(request, property_id):
-    
+    print("demo")
     template_type= request.GET.get('template_type', 'template1')
     
     property = get_object_or_404(Property.objects.prefetch_related('images'), id=property_id)
@@ -52,7 +52,6 @@ def property_brochure_view(request, property_id):
 # PDF generation function
 def print_property_to_pdf(request, property_id, template_type='template1'):
     property_brochure_url = request.build_absolute_uri(f'/property-brochure/{property_id}/') + f'?template_type={template_type}'
-    
     try:
         # WeasyPrint renders the HTML from the URL
         html = HTML(url=property_brochure_url)  
