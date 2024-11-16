@@ -11,6 +11,15 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app/
 
+RUN apt-get update && apt-get install -y \
+    libgobject-2.0-0 \
+    libcairo2 \
+    libpango1.0-0 \
+    libjpeg-dev \
+    libpq-dev \
+    gcc \
+    libffi-dev
+    
 # Install the Python dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
