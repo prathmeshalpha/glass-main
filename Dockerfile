@@ -26,6 +26,8 @@ COPY . /app/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+RUN cp -r /app/static/* /app/staticfiles/
+
 # Expose the port that the Django app will run on
 EXPOSE 8000
 
