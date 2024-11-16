@@ -64,3 +64,4 @@ websocket-client==1.8.0
 wsproto==1.2.0
 xhtml2pdf==0.2.16
 zopfli==0.2.3.post1
+gunicorn==23.0.0
