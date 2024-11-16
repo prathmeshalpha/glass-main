@@ -3,10 +3,11 @@ version: "3.8"
 services:
   web:
     build: .
-    command: gunicorn property.wsgi:application --bind 0.0.0.0:8000
+    command: >
+      bash -c "python manage.py collectstatic --noinput && gunicorn property.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/app
-      - ./static:/app/static
+      - ./static:/app/static  # Maps the static files to the container
       - ./media:/app/media
     ports:
       - "8000:8000"
@@ -15,8 +16,8 @@ services:
       - POSTGRES_DB=glassbricks
       - POSTGRES_USER=glassbrix
       - POSTGRES_PASSWORD=glassbrix
-      - POSTGRES_HOST=193.22.147.76   # Directly using the IP address
-      - POSTGRES_PORT=5432  # Default PostgreSQL port
+      - POSTGRES_HOST=193.22.147.76
+      - POSTGRES_PORT=5432
     networks:
       - backend
 
