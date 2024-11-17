@@ -8,14 +8,9 @@ ENV PYTHONUNBUFFERED 1
 # Install system dependencies (PostgreSQL, WeasyPrint, etc.)
 RUN apt-get update \
     && apt-get install -y \
-    build-essential \
-    pango1.0-tools \
-    libpango1.0-dev \
-    libgobject-2.0-0 \
-    libffi-dev \
-    shared-mime-info \
     libpq-dev \
     libcairo2 \
+    libpango1.0-0 \
     libgdk-pixbuf2.0-0 \
     libjpeg-dev \
     gcc \
